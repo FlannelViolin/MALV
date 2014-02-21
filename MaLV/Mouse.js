@@ -22,6 +22,7 @@ function handleEvent(e){
      document.body.scrollLeft!=null) {
   clickX = evt.clientX + document.body.scrollLeft;
   clickY = evt.clientY + document.body.scrollTop;
+     ellipse(clickX,clickY,20);
  }
  if ((evt.clientX || evt.clientY) &&
      document.compatMode=='CSS1Compat' && 
@@ -29,6 +30,7 @@ function handleEvent(e){
      document.documentElement.scrollLeft!=null) {
   clickX = evt.clientX + document.documentElement.scrollLeft;
   clickY = evt.clientY + document.documentElement.scrollTop;
+
  }
  if (evt.pageX || evt.pageY) {
   clickX = evt.pageX;
