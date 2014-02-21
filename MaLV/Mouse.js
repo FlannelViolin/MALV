@@ -22,7 +22,9 @@ function handleEvent(e){
      document.body.scrollLeft!=null) {
   clickX = evt.clientX + document.body.scrollLeft;
   clickY = evt.clientY + document.body.scrollTop;
-     ellipse(clickX,clickY,20);
+  
+  ctx.strokeStyle = '#ff0000';
+  ellipse(clickX,clickY,20);
  }
  if ((evt.clientX || evt.clientY) &&
      document.compatMode=='CSS1Compat' && 
