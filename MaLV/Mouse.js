@@ -12,6 +12,7 @@
 //el.addEventListener("click", checkMouseLocation, false);
 
 document.onclick = handleEvent;
+var canvasOffset = 153;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
@@ -22,7 +23,7 @@ function handleEvent(e){
      document.body.scrollLeft!=null) {
   clickX = evt.clientX + document.body.scrollLeft;
   clickY = evt.clientY + document.body.scrollTop;
-     ellipse(clickX,clickY,20);
+     ellipse(clickX,clickY-canvasOffset,20);
  }
  if ((evt.clientX || evt.clientY) &&
      document.compatMode=='CSS1Compat' && 
@@ -37,13 +38,13 @@ function handleEvent(e){
   clickY = evt.pageY;
  }
 
- alert (evt.type.toUpperCase() + ' mouse event:'
-  +'\n pageX = ' + clickX
-  +'\n pageY = ' + clickY 
-  +'\n clientX = ' + evt.clientX
-  +'\n clientY = '  + evt.clientY 
-  +'\n screenX = ' + evt.screenX 
-  +'\n screenY = ' + evt.screenY
- );
+// alert (evt.type.toUpperCase() + ' mouse event:'
+//  +'\n pageX = ' + clickX
+//  +'\n pageY = ' + clickY 
+//  +'\n clientX = ' + evt.clientX
+//  +'\n clientY = '  + evt.clientY 
+//  +'\n screenX = ' + evt.screenX 
+//  +'\n screenY = ' + evt.screenY
+// );
  return false;
 }
