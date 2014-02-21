@@ -12,7 +12,6 @@
 //el.addEventListener("click", checkMouseLocation, false);
 
 document.onclick = handleEvent;
-var canvasOffset = 153;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
@@ -43,10 +42,10 @@ function handleEvent(e){
  alert (evt.type.toUpperCase() + ' mouse event:'
   +'\n pageX = ' + clickX
   +'\n pageY = ' + clickY 
-//  +'\n clientX = ' + evt.clientX
-//  +'\n clientY = '  + evt.clientY 
-//  +'\n screenX = ' + evt.screenX 
-//  +'\n screenY = ' + evt.screenY
+  +'\n clientX = ' + evt.clientX
+  +'\n clientY = '  + evt.clientY 
+  +'\n screenX = ' + evt.screenX 
+  +'\n screenY = ' + evt.screenY
  );
  return false;
 }
