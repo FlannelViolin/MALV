@@ -38,13 +38,13 @@ function handleEvent(e){
   clickY = evt.pageY;
  }
 
-// alert (evt.type.toUpperCase() + ' mouse event:'
-//  +'\n pageX = ' + clickX
-//  +'\n pageY = ' + clickY 
+ alert (evt.type.toUpperCase() + ' mouse event:'
+  +'\n pageX = ' + clickX
+  +'\n pageY = ' + clickY 
 //  +'\n clientX = ' + evt.clientX
 //  +'\n clientY = '  + evt.clientY 
 //  +'\n screenX = ' + evt.screenX 
 //  +'\n screenY = ' + evt.screenY
-// );
+ );
  return false;
 }
