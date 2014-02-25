@@ -16,12 +16,12 @@ function line(startX, startY, endX, endY){
 
 // will draw a curved Line
 function curvedLine(startX, startY, endX, endY){
-	var diffDist; // distance bdtween control points and end poitns
+	var diffDist; // distance between control points and end points
 	var xDiff;
 	var yDiff;
 	var controlPoints = new Array(); //bezierCurveTo([0],[1],[2],[3],endX,endY); after the first moveTo(startX,startY)
 	var angle = Math.PI/3; // 60degrees
-	// is it a vertical line or a horizantal line?
+	// is it a vertical line or a horizontal line?
 	if(Math.abs(endY - startY) > Math.abs(endX-startX)){
 		diffDist  = (endY-startY)/7;		
 	}
