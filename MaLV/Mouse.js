@@ -8,7 +8,8 @@
 var y = c.offsetTop;
 var Yoffset = y + 35;
 var Xoffset = 5;
-document.onclick = handleEvent;
+c.addEventListener('click', handleEvent, false);
+//document.onclick = handleEvent;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
