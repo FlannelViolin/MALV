@@ -4,11 +4,16 @@
 
 // ---------- VARS -----------
 // List of states
+var Qstates     = [];
 // transitions ( for current state )
+var transitions = {};
 // Start State
+var Qzero       = null;
 // Accept States
-// 
+var FStates     = [];
+
 // input
+var input = "";
 
 
 

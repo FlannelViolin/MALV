@@ -2,15 +2,12 @@
  *  Controls mouse input
  */
 
-//document.write("<p>merp</p>");
-
-//function checkMouseLocation(ev){
-//	
-//}
-//
 //var el = document.getElementById("machineSpace");
 //el.addEventListener("click", checkMouseLocation, false);
 
+var y = c.offsetTop;
+var Yoffset = y + 35;
+var Xoffset = 5;
 document.onclick = handleEvent;
 
 function handleEvent(e){
@@ -24,21 +21,9 @@ function handleEvent(e){
   clickY = evt.clientY + document.body.scrollTop;
   
   ctx.strokeStyle = '#ff0000';
-  ellipse(clickX,clickY,20);
+  ellipse(clickX-Xoffset,clickY-Yoffset,20);
  }
- if ((evt.clientX || evt.clientY) &&
-     document.compatMode=='CSS1Compat' && 
-     document.documentElement && 
-     document.documentElement.scrollLeft!=null) {
-  clickX = evt.clientX + document.documentElement.scrollLeft;
-  clickY = evt.clientY + document.documentElement.scrollTop;
-
- }
- if (evt.pageX || evt.pageY) {
-  clickX = evt.pageX;
-  clickY = evt.pageY;
- }
-
+ 
 // alert (evt.type.toUpperCase() + ' mouse event:'
 //  +'\n pageX = ' + clickX
 //  +'\n pageY = ' + clickY 
