@@ -17,11 +17,15 @@
 // ------------ FUNCTIONS -------------
 //
 function State( X, Y){
-	
+	//alert('State Created');
+	this.x = X;
+	this.y = Y;
+	this.display = stateDisplay;
 }
 
-function display(){
-	ellipse()
+function stateDisplay(){
+	ctx.strokeStyle = '#ff0000';
+	ellipse(this.x, this.y, 20);
 	// Draw the state with a circle
 	// Use radius and Color
 	

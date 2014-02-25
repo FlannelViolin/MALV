@@ -10,6 +10,7 @@ var Yoffset = y + 35;
 var Xoffset = 5;
 c.addEventListener('click', handleEvent, false);
 //document.onclick = handleEvent;
+var numStates = 0;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
@@ -21,8 +22,10 @@ function handleEvent(e){
   clickX = evt.clientX + document.body.scrollLeft;
   clickY = evt.clientY + document.body.scrollTop;
   
-  ctx.strokeStyle = '#ff0000';
-  ellipse(clickX-Xoffset,clickY-Yoffset,20);
+  //ellipse(clickX-Xoffset,clickY-Yoffset,20);
+  numStates += 1;
+  var newState = new State(clickX-Xoffset,clickY-Yoffset);
+  Qstates.push(newState);
  }
  
 // alert (evt.type.toUpperCase() + ' mouse event:'

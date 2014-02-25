@@ -7,6 +7,9 @@ function update(){
 	var d=new Date();
 	var t=d.toLocaleTimeString();
 	document.getElementById("demo").innerHTML=t;
+	for(var i=0; i<Qstates.length; i++){
+		Qstates[i].display();
+	}
 	
 // ------------------------ Everything that happens in Processing update: ----------------------------
 // 
