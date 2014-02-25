@@ -6,10 +6,15 @@
 <p>Machine Language Visualizer</p>
 
 <p id="demo"></p>
-<button type="button">State</button>
 <form>
-Input: <input type="text" name="input" value="">
+	Input: <input type="text" name="input" value="">  
+	<input type="submit" value="Go">
 </form>
+<div id="buttons">	
+	<input type="image" id="state_btn" src="http://i.imgur.com/M7QwM1o.png"  onmouseover="this.src='http://i.imgur.com/CJdsqy7.png'" onmouseout="this.src='http://i.imgur.com/M7QwM1o.png'"/>
+	<input type="image" id="state_btn" src="http://i.imgur.com/n8ROdlG.png" onmouseover="this.src='http://i.imgur.com/A7CI6nC.png'" onmouseout="this.src='http://i.imgur.com/n8ROdlG.png'"/>
+	
+</div>
 <canvas id="machineSpace" width="700" height="500" style="border:1px solid #000000;"></canvas>
 <script>
 var c=document.getElementById("machineSpace");
