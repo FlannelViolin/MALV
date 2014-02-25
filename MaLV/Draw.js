@@ -35,29 +35,29 @@ function curvedLine(startX, startY, endX, endY){
 	if(endX > startX){ // end point is to the left of the start point
 		if(endY > startY){ // end point is under start point
 			
-			controlPoints[0] = startX + xDiff//x coord on first control point
-			controlPoints[1] = startY + yDiff //y coord on first control point
-			controlPoints[2] = startX - xDiff//x coord on second control point
-			controlPoints[3] = startY + yDiff// y coord on second control point
+			controlPoints[0] = startX + xDiff;//x coord on first control point
+			controlPoints[1] = startY + yDiff; //y coord on first control point
+			controlPoints[2] = startX - xDiff;//x coord on second control point
+			controlPoints[3] = startY + yDiff;// y coord on second control point
 		}
 		else{ // end point is above start point
-			controlPoints[0] = startX+xDiff//x coord on first control point
-			controlPoints[1] = startY-yDiff//y coord on first control point
-			controlPoints[2] = startX-xDiff//x coord on second control point
-			controlPoints[3] = startY-yDiff// y coord on second control point
+			controlPoints[0] = startX+xDiff;//x coord on first control point
+			controlPoints[1] = startY-yDiff;//y coord on first control point
+			controlPoints[2] = startX-xDiff;//x coord on second control point
+			controlPoints[3] = startY-yDiff;// y coord on second control point
 		}
 	}else{ // end point is to the right of the start point
 		if(endY > startY){ // end point is under start point
-			controlPoints[0] = startX-xDiff//x coord on first control point
-			controlPoints[1] = startY+yDiff//y coord on first control point
-			controlPoints[2] = startX-xDiff//x coord on second control point
-			controlPoints[3] = startY+yDiff// y coord on second control point
+			controlPoints[0] = startX-xDiff;//x coord on first control point
+			controlPoints[1] = startY+yDiff;//y coord on first control point
+			controlPoints[2] = startX-xDiff;//x coord on second control point
+			controlPoints[3] = startY+yDiff;// y coord on second control point
 		}
 		else{ // end point is above start point
-			controlPoints[0] = startX-xDiff//x coord on first control point
-			controlPoints[1] = startY-yDiff//y coord on first control point
-			controlPoints[2] = startX+xDiff//x coord on second control point
-			controlPoints[3] = startY-yDiff// y coord on second control point
+			controlPoints[0] = startX-xDiff;//x coord on first control point
+			controlPoints[1] = startY-yDiff;//y coord on first control point
+			controlPoints[2] = startX+xDiff;//x coord on second control point
+			controlPoints[3] = startY-yDiff;// y coord on second control point
 		}
 	}
 	
