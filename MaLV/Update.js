@@ -3,6 +3,8 @@
  *  
  */
 
+var pm = PlacementMode.STATE;
+
 function update(){
 	var d=new Date();
 	var t=d.toLocaleTimeString();
@@ -39,5 +41,12 @@ function update(){
 
 var timeVar = setInterval(function(){update();},10);
 
+
+function changePlacement(newPlacement){
+		
+	pm = newPlacement;
+	console.log(pm + " " + pm.value);
+	
+}
 
 

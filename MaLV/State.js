@@ -21,7 +21,7 @@ function State( X, Y){
 }
 
 function display(){
-	ellipse()
+	ellipse();
 	// Draw the state with a circle
 	// Use radius and Color
 	
