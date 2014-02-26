@@ -32,8 +32,11 @@ function stateDisplay(){
 	// Draw all attached transitions
 }
 
-function snapTransition(){
+// p is a vector (2 space array)
+function snapTransition(p){
 	// MATH
+	var snapped = new Array(this.x - p[0], this.y - p[1]);
+	snapped = noramlize(snapped);
 }
 
 function toggleSelect(){

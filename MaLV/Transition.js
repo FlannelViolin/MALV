@@ -20,13 +20,13 @@
 var startAnchor = new Array();
 startAnchor[0] = -1;
 startAnchor[1] = -1;
-//var endAnchor = new Array();
+var endAnchor = new Array();
 
 function Transition(_beginState, _endState){
-	this.display = transitionDisplay();
-	this.getCharacter = getCharacter();
-	this.setCharacter = setCharacter();
-	this.getEndState = getEndState();
+	this.display = transitionDisplay;
+	this.getCharacter = getCharacter;
+	this.setCharacter = setCharacter;
+	this.getEndState = getEndState;
 	
 }
 
@@ -61,7 +61,7 @@ function newTransition(_x,_y){
 		startAnchor[1] = _y;
 	}
 	else{
-		line(startAnchor[0],startAnchor[1])
+		
 	}
 }
 
