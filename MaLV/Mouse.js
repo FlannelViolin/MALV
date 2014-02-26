@@ -24,7 +24,7 @@ function handleEvent(e){
   
   //ellipse(clickX-Xoffset,clickY-Yoffset,20);
   
-  if(pm.STATE){
+  if(pm == PlacementMode.STATE){
 	  numStates += 1;
 	  var newState = new State(clickX-Xoffset,clickY-Yoffset);
 	  Qstates.push(newState);
