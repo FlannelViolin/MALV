@@ -66,3 +66,12 @@ function curvedLine(startX, startY, endX, endY){
 	bezierCurveTo(controlPoints[0],controlPoints[1],controlPoints[2],controlPoints[3],endX,endY);
 	ctx.stroke();
 }
+
+function normalize(vector){
+	var length = math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
+	vector[0]/=length;
+	vector[1]/=length;
+	return vector;
+}
+
+
