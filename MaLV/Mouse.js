@@ -23,9 +23,12 @@ function handleEvent(e){
   clickY = evt.clientY + document.body.scrollTop;
   
   //ellipse(clickX-Xoffset,clickY-Yoffset,20);
-  numStates += 1;
-  var newState = new State(clickX-Xoffset,clickY-Yoffset);
-  Qstates.push(newState);
+  
+  if(pm.STATE){
+	  numStates += 1;
+	  var newState = new State(clickX-Xoffset,clickY-Yoffset);
+	  Qstates.push(newState);
+  }
  }
  
 // alert (evt.type.toUpperCase() + ' mouse event:'
