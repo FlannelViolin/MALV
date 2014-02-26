@@ -9,7 +9,7 @@
 // position
 // id
 //
-// list or hash of transitions
+var transitions = {};
 //
 // Color
 // ------------------------------------
