@@ -6,15 +6,16 @@
 //
 function State( X, Y, id){
 	//alert('State Created');
+	this.transitions = {};
+	this.tranList = new Array();
+	
 	this.id = id;
 	this.label = id;
 	this.x = X;
 	this.y = Y;
 	this.radius = 20;
 	this.display = stateDisplay;
-	
-	this.transitions = {};
-	this.tranList = [];
+	this.addTransition = addTransition;
 }
 
 function stateDisplay(){
@@ -26,6 +27,11 @@ function stateDisplay(){
 	ctx.fillText(this.label,this.x-5,this.y+5);
 	
 	// Draw all attached transitions
+	for(var i=0; i<this.tranList.length; i++){
+		T = this.tranList[i];
+		line(T.startState.x, T.startState.y, T.endState.x, T.endState.y);
+	}
+
 }
 
 // p is a vector (2 space array)
@@ -40,7 +46,7 @@ function toggleSelect(){
 }
 
 function addTransition( transition ){
-	tranList.push(transition);
-	transitions[transition.character] = transition.end;
+	this.tranList.push(transition);
+	this.transitions[transition.character] = transition.end;
 }
 

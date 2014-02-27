@@ -39,15 +39,17 @@ function handleEvent(e){
   }
   
   if(pm == PlacementMode.TRANSITION){
-	  if(drawingTran == false && clickedState != null){
+	  if(drawingTran == false){
 		  drawingTran = true;
 		  tranStartState = clickedState;
 	  }
 	  else{
-		  if( clickedState != null ){
+		  if( clickedState != null && tranStartState != null ){
 			  makeNewTran(tranStartState, clickedState);
+			  clickedState = null;
+			  tranStartState = null;
 		  }
-		  drawingtran = false;
+		  drawingTran = false;
 	  }
   }
   
@@ -75,7 +77,9 @@ function updateMousePos(e){
 }
 
 function makeNewTran( start, end ){
+	//console.log("CHECK");
 	var newTran = new Transition(start, end);
+	start.addTransition(newTran);
 }
 
 function distance(x,y,p,q){

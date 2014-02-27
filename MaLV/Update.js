@@ -22,7 +22,7 @@ function update(){
 	
 	//console.log(drawingTran);
 	//console.log(clickedState);
-	if( drawingTran == true && clickedState != null ){
+	if( drawingTran == true && clickedState != null && pm == PlacementMode.TRANSITION ){
 		line(clickedState.x, clickedState.y, mouseX, mouseY);
 	}
 	
