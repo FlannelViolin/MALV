@@ -53,7 +53,7 @@ function drawArrow(){
 }
 
 function transitionDisplay(){
-	
+	line(this.startState.x, this.startState.y, this.endState.x, this.endState.y);
 }
 
 function newTransition(_x,_y){

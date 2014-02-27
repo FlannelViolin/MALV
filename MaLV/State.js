@@ -29,9 +29,8 @@ function stateDisplay(){
 	// Draw all attached transitions
 	for(var i=0; i<this.tranList.length; i++){
 		T = this.tranList[i];
-		line(T.startState.x, T.startState.y, T.endState.x, T.endState.y);
+		T.display();
 	}
-
 }
 
 // p is a vector (2 space array)
