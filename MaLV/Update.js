@@ -3,14 +3,27 @@
  *  
  */
 
+var drawingTran = false;
 var pm = PlacementMode.STATE;
 
 function update(){
 	var d=new Date();
 	var t=d.toLocaleTimeString();
-	document.getElementById("demo").innerHTML=t;
+	document.getElementById("demo").innerHTML=t;	
+	
+	ctx.clearRect(0,0,c.width,c.height);
+	
+	//console.log("MouseX " + mouseX);
+	//console.log("MouseY " + mouseY);
+	
 	for(var i=0; i<Qstates.length; i++){
 		Qstates[i].display();
+	}
+	
+	//console.log(drawingTran);
+	//console.log(clickedState);
+	if( drawingTran == true && clickedState != null ){
+		line(clickedState.x, clickedState.y, mouseX, mouseY);
 	}
 	
 // ------------------------ Everything that happens in Processing update: ----------------------------
@@ -42,7 +55,7 @@ function update(){
 // ----------------------------------------------------------------------------------------------------------
 }
 
-var timeVar = setInterval(function(){update();},10);
+var timeVar = setInterval(function(){update();},100);
 
 
 function changePlacement(newPlacement){

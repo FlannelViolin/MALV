@@ -10,7 +10,7 @@ function ellipse(x,y,r){
 function line(startX, startY, endX, endY){
 	ctx.beginPath();
 	ctx.moveTo(startX, startY); //begin drawing
-	ctx.moveTo(endX,EndY);
+	ctx.lineTo(endX,endY);
 	ctx.stroke();
 }
 

@@ -2,10 +2,14 @@
  *  Controls mouse input
  */
 
+var mouseX = 0;
+var mouseY = 0;
+
 var y = c.offsetTop;
 var Yoffset = y + 45;
 var Xoffset = 5;
 c.addEventListener('click', handleEvent, false);
+c.onmousemove = updateMousePos;
 
 var numStates = 0;
 var clickedState = null;
@@ -26,12 +30,16 @@ function handleEvent(e){
   for(var i=0;i<numStates;i++){
 	  var tempState = Qstates[i];
 	  //console.log("Distance to " + tempState.label + ": " + distance(tempState.x,tempState.y,clickX,clickY));
-	  if(distance(tempState.x,tempState.y,clickX,clickY) < 20){
+	  if(distance(tempState.x,tempState.y,clickX,clickY) < 42){
 		  console.log("State " + tempState.label + " clicked")
 		  clickedState = Qstates[i];
 		  break;
 	  }
-  } 
+  }
+  
+  if(pm == PlacementMode.TRANSITION){
+	  drawingTran = true;
+  }
   
   if(pm == PlacementMode.STATE && clickedState == null){
 	  numStates += 1;
@@ -49,6 +57,11 @@ function handleEvent(e){
 //  +'\n screenY = ' + evt.screenY
 // );
  return false;
+}
+
+function updateMousePos(e){
+	mouseX = e.clientX -= Xoffset;
+	mouseY = e.clientY -= Yoffset;
 }
 
 function distance(x,y,p,q){
