@@ -9,6 +9,6 @@ var PlacementMode = {
 	TRANSITION: 		{value: 1},
 	ENDTRANSITION: 		{value: 2},
 	ANCHOR: 			{value: 3},
-	NOTHING:			{value: 4},
+	NOTHING:			{value: 4}
 	
 };

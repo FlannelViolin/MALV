@@ -2,15 +2,13 @@
  *  Controls mouse input
  */
 
-//var el = document.getElementById("machineSpace");
-//el.addEventListener("click", checkMouseLocation, false);
-
 var y = c.offsetTop;
 var Yoffset = y + 45;
 var Xoffset = 5;
 c.addEventListener('click', handleEvent, false);
-//document.onclick = handleEvent;
+
 var numStates = 0;
+var clickedState = null;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
@@ -21,12 +19,23 @@ function handleEvent(e){
      document.body.scrollLeft!=null) {
   clickX = evt.clientX + document.body.scrollLeft;
   clickY = evt.clientY + document.body.scrollTop;
+  clickX -= Xoffset;
+  clickY -= Yoffset;
   
-  //ellipse(clickX-Xoffset,clickY-Yoffset,20);
+  clickedState = null;
+  for(var i=0;i<numStates;i++){
+	  var tempState = Qstates[i];
+	  //console.log("Distance to " + tempState.label + ": " + distance(tempState.x,tempState.y,clickX,clickY));
+	  if(distance(tempState.x,tempState.y,clickX,clickY) < 20){
+		  console.log("State " + tempState.label + " clicked")
+		  clickedState = Qstates[i];
+		  break;
+	  }
+  } 
   
-  if(pm == PlacementMode.STATE){
+  if(pm == PlacementMode.STATE && clickedState == null){
 	  numStates += 1;
-	  var newState = new State(clickX-Xoffset,clickY-Yoffset, numStates);
+	  var newState = new State(clickX,clickY, numStates);
 	  Qstates.push(newState);
   }
  }
@@ -40,4 +49,11 @@ function handleEvent(e){
 //  +'\n screenY = ' + evt.screenY
 // );
  return false;
+}
+
+function distance(x,y,p,q){
+	var a = x - p;
+	var b = y - q;
+	var c = Math.sqrt((a*a) + (b*b));
+	return c;
 }
