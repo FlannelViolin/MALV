@@ -14,6 +14,7 @@ function State( X, Y, id){
 	this.display = stateDisplay;
 	
 	this.transitions = {};
+	this.tranList = [];
 }
 
 function stateDisplay(){
@@ -39,6 +40,7 @@ function toggleSelect(){
 }
 
 function addTransition( transition ){
-	// add a transition to the attached transition list
+	tranList.push(transition);
+	transitions[transition.character] = transition.end;
 }
 

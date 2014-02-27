@@ -3,7 +3,7 @@
  */
 
 //
-// -------------- VARS ----------------
+// -------------- Transition ----------------
 //
 // character
 // AnchorPoint[]
@@ -15,19 +15,20 @@
 // Color
 // ------------------------------------
 
-// ------------ FUNCTIONS -------------
-//
-var startAnchor = new Array();
-startAnchor[0] = -1;
-startAnchor[1] = -1;
-var endAnchor = new Array();
 
 function Transition(_beginState, _endState){
+	this.startState = _beginState;
+	this.endState = _endState;
+	
+	this.startAnchor = new Array();
+	this.startAnchor[0] = -1;
+	this.startAnchor[1] = -1;
+	this.endAnchor = new Array();
+	
 	this.display = transitionDisplay;
 	this.getCharacter = getCharacter;
 	this.setCharacter = setCharacter;
-	this.getEndState = getEndState;
-	
+	this.getEndState = getEndState;	
 }
 
 function getCharacter(){

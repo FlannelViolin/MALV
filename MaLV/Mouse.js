@@ -13,6 +13,7 @@ c.onmousemove = updateMousePos;
 
 var numStates = 0;
 var clickedState = null;
+var tranStartState = null;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
@@ -38,7 +39,16 @@ function handleEvent(e){
   }
   
   if(pm == PlacementMode.TRANSITION){
-	  drawingTran = true;
+	  if(drawingTran == false && clickedState != null){
+		  drawingTran = true;
+		  tranStartState = clickedState;
+	  }
+	  else{
+		  if( clickedState != null ){
+			  makeNewTran(tranStartState, clickedState);
+		  }
+		  drawingtran = false;
+	  }
   }
   
   if(pm == PlacementMode.STATE && clickedState == null){
@@ -62,6 +72,10 @@ function handleEvent(e){
 function updateMousePos(e){
 	mouseX = e.clientX -= Xoffset;
 	mouseY = e.clientY -= Yoffset;
+}
+
+function makeNewTran( start, end ){
+	var newTran = new Transition(start, end);
 }
 
 function distance(x,y,p,q){
