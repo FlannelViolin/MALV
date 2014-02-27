@@ -17,6 +17,11 @@
 
 
 function Transition(_beginState, _endState){
+	// Vars
+	this.character = "x";
+	this.midX = (_beginState.x + _endState.x)/2;
+	this.midY = (_beginState.y + _endState.y)/2;
+	
 	this.startState = _beginState;
 	this.endState = _endState;
 	
@@ -25,6 +30,7 @@ function Transition(_beginState, _endState){
 	this.startAnchor[1] = -1;
 	this.endAnchor = new Array();
 	
+	// Functions
 	this.display = transitionDisplay;
 	this.getCharacter = getCharacter;
 	this.setCharacter = setCharacter;
@@ -32,12 +38,11 @@ function Transition(_beginState, _endState){
 }
 
 function getCharacter(){
-	
-
+	return this.character;
 }
 
 function setCharacter(c){
-	
+	this.character = c;
 }
 
 function getEndState(){
@@ -54,6 +59,8 @@ function drawArrow(){
 
 function transitionDisplay(){
 	line(this.startState.x, this.startState.y, this.endState.x, this.endState.y);
+	ctx.font="15px Georgia";
+	ctx.fillText(this.character,this.midX,this.midY);
 }
 
 function newTransition(_x,_y){

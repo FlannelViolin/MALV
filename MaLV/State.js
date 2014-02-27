@@ -6,6 +6,8 @@
 //
 function State( X, Y, id){
 	//alert('State Created');
+	
+	// Vars
 	this.transitions = {};
 	this.tranList = new Array();
 	
@@ -14,6 +16,8 @@ function State( X, Y, id){
 	this.x = X;
 	this.y = Y;
 	this.radius = 20;
+	
+	// Functions
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
 }
