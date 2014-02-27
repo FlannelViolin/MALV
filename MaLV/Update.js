@@ -55,7 +55,7 @@ function update(){
 // ----------------------------------------------------------------------------------------------------------
 }
 
-var timeVar = setInterval(function(){update();},100);
+var timeVar = setInterval(function(){update();},10);
 
 
 function changePlacement(newPlacement){
