@@ -6,7 +6,7 @@
 //el.addEventListener("click", checkMouseLocation, false);
 
 var y = c.offsetTop;
-var Yoffset = y + 35;
+var Yoffset = y + 45;
 var Xoffset = 5;
 c.addEventListener('click', handleEvent, false);
 //document.onclick = handleEvent;
@@ -26,7 +26,7 @@ function handleEvent(e){
   
   if(pm == PlacementMode.STATE){
 	  numStates += 1;
-	  var newState = new State(clickX-Xoffset,clickY-Yoffset);
+	  var newState = new State(clickX-Xoffset,clickY-Yoffset, numStates);
 	  Qstates.push(newState);
   }
  }

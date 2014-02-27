@@ -1,20 +1,13 @@
 /**
  * 
  */
-
 //
-// -------------- VARS ----------------
+// ------------ State -------------
 //
-// id
-//
-//
-// Color
-// ------------------------------------
-
-// ------------ FUNCTIONS -------------
-//
-function State( X, Y){
+function State( X, Y, id){
 	//alert('State Created');
+	this.id = id;
+	this.label = id;
 	this.x = X;
 	this.y = Y;
 	this.radius = 20;
@@ -28,6 +21,8 @@ function stateDisplay(){
 	ellipse(this.x, this.y, this.radius);
 	// Draw the state with a circle
 	// Use radius and Color
+	ctx.font="20px Georgia";
+	ctx.fillText(this.label,this.x-5,this.y+5);
 	
 	// Draw all attached transitions
 }
