@@ -16,14 +16,21 @@ function State( X, Y, id){
 	this.x = X;
 	this.y = Y;
 	this.radius = 20;
+	this.selected = false;
 	
 	// Functions
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
+	this.toggleSelect = toggleSelect;
 }
 
 function stateDisplay(){
-	ctx.strokeStyle = '#ff0000';
+	if(this.selected){
+		ctx.strokeStyle = '#0000ff';
+	}
+	else{
+		ctx.strokeStyle = '#ff0000';
+	}
 	ellipse(this.x, this.y, this.radius);
 	// Draw the state with a circle
 	// Use radius and Color
@@ -54,7 +61,7 @@ function snapTransition(p){
 }
 
 function toggleSelect(){
-	// Change selection status
+	this.selected = !this.selected;
 }
 
 function addTransition( transition ){

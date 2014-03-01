@@ -14,6 +14,7 @@ c.onmousemove = updateMousePos;
 var numStates = 0;
 var clickedState = null;
 var tranStartState = null;
+var selectedState = null;
 
 function handleEvent(e){
  var evt = e ? e:window.event;
@@ -53,10 +54,21 @@ function handleEvent(e){
 	  }
   }
   
-  if(pm == PlacementMode.STATE && clickedState == null){
-	  numStates += 1;
-	  var newState = new State(clickX,clickY, numStates);
-	  Qstates.push(newState);
+  if(pm == PlacementMode.STATE){
+	  if( selectedState != null ){
+		  console.log(selectedState.label);
+		  selectedState.toggleSelect();
+		  selectedState = null;
+	  }	  
+	  if( clickedState == null ){
+		  numStates += 1;
+		  var newState = new State(clickX,clickY, numStates);
+		  Qstates.push(newState);
+	  }
+	  else{
+		  selectedState = clickedState;
+		  selectedState.toggleSelect();
+	  }
   }
  }
  
