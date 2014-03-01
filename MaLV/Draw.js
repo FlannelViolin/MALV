@@ -79,3 +79,9 @@ function heading(vector){
 }
 
 
+function distance(x,y,p,q){
+	var a = x - p;
+	var b = y - q;
+	var c = Math.sqrt((a*a) + (b*b));
+	return c;
+}

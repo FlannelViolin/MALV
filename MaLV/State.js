@@ -40,8 +40,17 @@ function stateDisplay(){
 // p is a vector (2 space array)
 function snapTransition(p){
 	// MATH
+	// get vector from one position to the next
 	var snapped = new Array(this.x - p[0], this.y - p[1]);
+	//normalize
 	snapped = noramlize(snapped);
+	// get angle of
+	var angle = heading(snapped);
+	// find point along circle and add to position
+	snapped[0] = snapped[1] - (Math.cos(angle)*this.radius) + this.x;
+	snapped[0] = snapped[1] - (Math.sin(angle)*this.radius) + this.y;
+	
+	return snapped;
 }
 
 function toggleSelect(){

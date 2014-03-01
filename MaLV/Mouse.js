@@ -32,7 +32,7 @@ function handleEvent(e){
 	  var tempState = Qstates[i];
 	  //console.log("Distance to " + tempState.label + ": " + distance(tempState.x,tempState.y,clickX,clickY));
 	  if(distance(tempState.x,tempState.y,clickX,clickY) < 42){
-		  console.log("State " + tempState.label + " clicked")
+		  console.log("State " + tempState.label + " clicked");
 		  clickedState = Qstates[i];
 		  break;
 	  }
@@ -80,11 +80,4 @@ function makeNewTran( start, end ){
 	//console.log("CHECK");
 	var newTran = new Transition(start, end);
 	start.addTransition(newTran);
-}
-
-function distance(x,y,p,q){
-	var a = x - p;
-	var b = y - q;
-	var c = Math.sqrt((a*a) + (b*b));
-	return c;
 }
