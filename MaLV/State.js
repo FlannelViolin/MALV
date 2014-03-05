@@ -66,6 +66,6 @@ function toggleSelect(){
 
 function addTransition( transition ){
 	this.tranList.push(transition);
-	this.transitions[transition.character] = transition.end;
+	this.transitions[transition.character] = transition.endState;
 }
 
