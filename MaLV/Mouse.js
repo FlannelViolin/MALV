@@ -8,13 +8,28 @@ var mouseY = 0;
 var y = c.offsetTop;
 var Yoffset = y + 45;
 var Xoffset = 5;
-c.addEventListener('click', handleEvent, false);
+//c.addEventListener('click', handleEvent, false);
+c.addEventListener('mousedown', moveState, false);
+c.addEventListener('mouseup', stopMoveState, false);
 c.onmousemove = updateMousePos;
 
 var numStates = 0;
 var clickedState = null;
 var tranStartState = null;
 var selectedState = null;
+
+function moveState(e){
+	handleEvent(e);
+	if( selectedState != null ){
+		selectedState.moving = true;
+	}
+}
+
+function stopMoveState(e){
+	if( selectedState != null ){
+		selectedState.moving = false;
+	}
+}
 
 function handleEvent(e){
  var evt = e ? e:window.event;
