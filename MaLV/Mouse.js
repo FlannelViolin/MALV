@@ -20,13 +20,13 @@ var selectedState = null;
 
 function moveState(e){
 	handleEvent(e);
-	if( selectedState != null ){
+	if( selectedState != null && pm == PlacementMode.STATE ){
 		selectedState.moving = true;
 	}
 }
 
 function stopMoveState(e){
-	if( selectedState != null ){
+	if( selectedState != null && pm == PlacementMode.STATE ){
 		selectedState.moving = false;
 	}
 }
