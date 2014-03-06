@@ -59,9 +59,8 @@ function transitionDisplay(){
 	this.midX = (this.startState.x + this.endState.x)/2;
 	this.midY = (this.startState.y + this.endState.y)/2;
 
-	setAnchors(startState.snapTransition(endState.position));
-		this.midX = (this.startState.x + this.endState.x)/2;
-	this.midY = (this.startState.y + this.endState.y)/2;
+	// THIS DOESNT WORK
+	//setAnchors(this.startState.snapTransition(this.endState.position));
 	line(this.startState.x, this.startState.y, this.endState.x, this.endState.y);
 	
 	ctx.font="15px Georgia";
