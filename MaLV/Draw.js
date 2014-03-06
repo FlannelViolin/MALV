@@ -14,6 +14,10 @@ function line(startX, startY, endX, endY){
 	ctx.stroke();
 }
 
+function arrowHead( ){
+	
+}
+
 // will draw a curved Line
 function curvedLine(startX, startY, endX, endY){
 	var diffDist; // distance between control points and end points

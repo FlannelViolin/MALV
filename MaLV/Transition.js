@@ -59,6 +59,7 @@ function drawArrow(){
 
 function transitionDisplay(){
 	line(this.startState.x, this.startState.y, this.endState.x, this.endState.y);
+	arrowHead( this.endState.x, this.endState.y );
 	ctx.font="15px Georgia";
 	ctx.fillText(this.character,this.midX,this.midY);
 }
