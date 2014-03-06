@@ -56,6 +56,8 @@ function drawArrow(){
 	
 }
 function transitionDisplay(){
+	this.midX = (this.startState.x + this.endState.x)/2;
+	this.midY = (this.startState.y + this.endState.y)/2;
 
 	setAnchors(startState.snapTransition(endState.position));
 		this.midX = (this.startState.x + this.endState.x)/2;
