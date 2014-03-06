@@ -22,11 +22,12 @@ function State( X, Y, id){
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
 	this.toggleSelect = toggleSelect;
+	this.snapTransition = snapTransition;
 }
 
 function stateDisplay(){
 	if(this.selected){
-		ctx.strokeStyle = '#0000ff';
+		ctx.strokeStyle = '#ffffff';
 	}
 	else{
 		ctx.strokeStyle = '#ff0000';

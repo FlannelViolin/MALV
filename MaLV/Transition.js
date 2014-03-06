@@ -25,16 +25,15 @@ function Transition(_beginState, _endState){
 	this.startState = _beginState;
 	this.endState = _endState;
 	
-	this.startAnchor = new Array();
-	this.startAnchor[0] = -1;
-	this.startAnchor[1] = -1;
-	this.endAnchor = new Array();
+	this.anchorPoints = new Array(2);
+	
 	
 	// Functions
 	this.display = transitionDisplay;
 	this.getCharacter = getCharacter;
 	this.setCharacter = setCharacter;
 	this.getEndState = getEndState;	
+	this.setAnchors = setAnchors;
 }
 
 function getCharacter(){
@@ -56,30 +55,39 @@ function drawRecursiveArrow(){
 function drawArrow(){
 	
 }
-
 function transitionDisplay(){
+	
+	setAnchors(startState.snapTransition(endState.position));
+	
 	line(this.startState.x, this.startState.y, this.endState.x, this.endState.y);
-	arrowHead( this.endState.x, this.endState.y );
+	
 	ctx.font="15px Georgia";
 	ctx.fillText(this.character,this.midX,this.midY);
 }
 
-function newTransition(_x,_y){
-	if(startAnchor[0] == -1 || startAnchor[1] == -1){
-		startAnchor[0] = _x;
-		startAnchor[1] = _y;
-	}
-	else{
-		
-	}
-}
+
 
 /*
 function getAnchors(){
 
-}
+}*/
 
+// _start and end are vectors that have been snapped
 function setAnchors(_start, _end){
-
+	if(_start != null){
+		if(anchorPoints[0] == null){
+			anchorPoints[0] = new AnchorPoints(_start, this);
+		}
+		else{
+			anchorPoints[0].position = _start;
+		}
+	}
+	if(_end != null){
+		if(anchorPoints[1] == null){
+			anchorPoints[1] = new AnchorPoint(_end, this);
+		}
+		else{
+			anchorPoints[1].position=_end;
+		}
+	}
 }
-*/

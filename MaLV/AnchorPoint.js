@@ -6,5 +6,11 @@ function AnchorPoint(p, t){
 	this.position = p;
 	this.myTransition = t;
 	this.radius = 5;
-	this.display
+	this.display = anchorPointDisplay;
+}
+
+function anchorPointDisplay(){
+	ctx.strokeStyle = '#ff0000';
+	ellipse(p.x, p.y, radius);
+	
 }
