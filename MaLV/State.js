@@ -1,4 +1,3 @@
-
 /**
  * 
  */
@@ -18,6 +17,7 @@ function State( X, Y, id){
 	this.y = Y;
 	this.radius = 20;
 	this.selected = false;
+	this.moving = false;
 	
 	// Functions
 	this.display = stateDisplay;
@@ -27,6 +27,10 @@ function State( X, Y, id){
 }
 
 function stateDisplay(){
+	if(this.moving){
+		this.x = mouseX;
+		this.y = mouseY;
+	}
 	if(this.selected){
 		ctx.strokeStyle = '#ffffff';
 	}
