@@ -54,7 +54,11 @@ function readInput(){
 		nextState = null;
 	}
 	
-	alert("Machine completed");
+	if( $.inArray(currentState, FStates) != -1 ){
+		alert("Machine completed in accept State");
+		return;
+	}
+	alert("No more input");
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -72,6 +76,18 @@ function checkValidMachine(){
 	// TEMPORARY
 	return true;
 	// FIX THIS
+}
+
+function setSelectedAsStart(){
+	if( selectedState != null ){
+		Qzero = selectedState;
+	}
+}
+
+function setSelectedAsAccept(){
+	if( selectedState != null ){
+		FStates.push(selectedState);
+	}
 }
 
 function getNextState( current, inputChar){
