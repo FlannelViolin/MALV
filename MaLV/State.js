@@ -142,6 +142,7 @@ function snapTransitionToState(p){
 	// find point along circle and add to position
 	snapped.x = snapped.x - (Math.cos(angle)*this.radius) + this.x;
 	snapped.y = snapped.y - (Math.sin(angle)*this.radius) + this.y;
+}
 
 function snapTransition(p){
 	// MATH
