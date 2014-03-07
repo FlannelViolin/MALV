@@ -71,18 +71,6 @@ function curvedLine(startX, startY, endX, endY){
 	ctx.stroke();
 }
 
-function normalize(vector){
-	var length = Math.sqrt(vector[0] * vector[0] + vector[1] * vector[1]);
-	vector[0]/=length;
-	vector[1]/=length;
-	return vector;
-}
-
-function heading(vector){
-	return Math.atan(vector[1]/vector[0]);
-}
-
-
 function distance(x,y,p,q){
 	var a = x - p;
 	var b = y - q;

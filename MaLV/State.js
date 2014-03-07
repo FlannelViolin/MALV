@@ -4,7 +4,7 @@
 //
 // ------------ State -------------
 //
-function State( X, Y, id){
+/*function State( X, Y, id){
 	//alert('State Created');
 	
 	// Vars
@@ -15,6 +15,7 @@ function State( X, Y, id){
 	this.label = id;
 	this.x = X;
 	this.y = Y;
+	this.position = Vector(X,Y);
 	this.radius = 20;
 	this.selected = false;
 	this.moving = false;
@@ -22,7 +23,6 @@ function State( X, Y, id){
 	// Functions
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
-	this.toggleSelect = toggleSelect;
 	this.snapTransition = snapTransition;
 }
 
@@ -54,7 +54,7 @@ function stateDisplay(){
 function snapTransition(p){
 	// MATH
 	// get vector from one position to the next
-	var snapped = new Array(this.x - p[0], this.y - p[1]);
+	var snapped = new Array(this.x - p.x, this.y - p.y);
 	//normalize
 	snapped = noramlize(snapped);
 	// get angle of
@@ -87,16 +87,17 @@ function State( X, Y, id){
 	// Vars
 	this.transitions = {};
 	this.tranList = new Array();
-	
 	this.id = id;
 	this.label = id;
 	this.x = X;
 	this.y = Y;
+	this.position = new Vector(X,Y);
 	this.radius = 20;
 	this.selected = false;
 	this.moving = false;
 	
 	// Functions
+	this.snapTransition = snapTransitionToState;
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
 	this.toggleSelect = toggleSelect;
@@ -127,18 +128,21 @@ function stateDisplay(){
 }
 
 // p is a vector (2 space array)
-function snapTransition(p){
+function snapTransitionToState(p){
+
 	// MATH
 	// get vector from one position to the next
-	var snapped = new Array(this.x - p[0], this.y - p[1]);
+
+	var snapped = new Vector(this.x - p.x, this.y - p.y);
+
 	//normalize
-	snapped = noramlize(snapped);
+	snapped = normalizee(snapped);
 	// get angle of
-	var angle = heading(snapped);
+	var angle = snapped.heading(snapped);
 	// find point along circle and add to position
-	snapped[0] = snapped[1] - (Math.cos(angle)*this.radius) + this.x;
-	snapped[0] = snapped[1] - (Math.sin(angle)*this.radius) + this.y;
-	
+	snapped.x = snapped.x - (Math.cos(angle)*this.radius) + this.x;
+	snapped.y = snapped.y - (Math.sin(angle)*this.radius) + this.y;
+
 	return snapped;
 }
 

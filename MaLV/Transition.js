@@ -25,11 +25,12 @@ function Transition(_beginState, _endState){
 	this.startState = _beginState;
 	this.endState = _endState;
 	
-	this.anchorPoints = new Array(2);
-	
-	
+	this.anchorPoint1 = null;
+	this.anchorPoint2 = null;
+
 	// Functions
 	this.display = transitionDisplay;
+	this.drawArrow = drawArrow;
 	this.getCharacter = getCharacter;
 	this.setCharacter = setCharacter;
 	this.getEndState = getEndState;	
@@ -52,16 +53,19 @@ function drawRecursiveArrow(){
 	
 }
 
-function drawArrow(){
-	
-}
 function transitionDisplay(){
+
 	this.midX = (this.startState.x + this.endState.x)/2;
 	this.midY = (this.startState.y + this.endState.y)/2;
 
-	// THIS DOESNT WORK
-	//setAnchors(this.startState.snapTransition(this.endState.position));
-	line(this.startState.x, this.startState.y, this.endState.x, this.endState.y);
+	// THIS DOESNT WORK 
+
+	//this.setAnchors(this.startState.snapTransition(this.endState.position),this.endState.snapTransition(this.startState.position));
+	if(this.startState != this.endState){
+		//line(this.anchorPoint1.x,this.anchorPoint1.y,this.anchorPoint2.x, this.anchorPoint2.y);
+		line(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
+	}
+	this.drawArrow();
 	
 	ctx.font="15px Georgia";
 	ctx.fillText(this.character,this.midX,this.midY);
@@ -77,19 +81,43 @@ function getAnchors(){
 // _start and end are vectors that have been snapped
 function setAnchors(_start, _end){
 	if(_start != null){
-		if(anchorPoints[0] == null){
-			anchorPoints[0] = new AnchorPoints(_start, this);
+		if(!this.anchorPoint1){
+			this.anchorPoint1 = new AnchorPoint(_start, this);
 		}
 		else{
-			anchorPoints[0].position = _start;
+			this.anchorPoint1.position = _start;
 		}
 	}
 	if(_end != null){
-		if(anchorPoints[1] == null){
-			anchorPoints[1] = new AnchorPoint(_end, this);
+		if(!this.anchorPoint2){
+			this.anchorPoint2 = new AnchorPoint(_end, this);
 		}
 		else{
-			anchorPoints[1].position=_end;
+			this.anchorPoint2.position=_end;
 		}
 	}
+}
+
+
+function drawArrow(){
+	var a = this.startState.x - this.endState.x;
+	var b = this.startState.y - this.endState.y;
+	
+	var angle = Math.atan(b/a);
+	if(a < 0){
+		angle += Math.PI;
+	}
+	
+	var tail1XOffset = Math.cos((angle - 20*Math.PI/180))*-20;
+	var tail1YOffset = Math.sin((angle - 20*Math.PI/180))*-20;
+	
+	var tail2XOffset = Math.cos((angle + 20*Math.PI/180))*-20;
+	var tail2YOffset = Math.sin((angle + 20*Math.PI/180))*-20;
+	
+	line(this.midX, this.midY, this.midX - tail1XOffset, this.midY-tail1YOffset);
+	line(this.midX, this.midY, this.midX - tail2XOffset, this.midY-tail2YOffset);
+	
+	//var anchorVector = new Vector(this.stateState.x - this.endState.x,this.startState.y - this.endState.y);
+	//anchorVector = normalizee(anchorVector);
+	//anchorVector.x *= radius
 }
