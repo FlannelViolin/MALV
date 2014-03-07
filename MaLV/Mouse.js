@@ -50,6 +50,8 @@ function handleEvent(e){
 		  tempTran = tempState.tranList[j];
 		  if( distance( tempTran.midX, tempTran.midY, clickX, clickY) < 50 ){
 			  console.log("Transition " +  tempTran.character + " from State " + tempState.label + " clicked");
+			  console.log(lastKeyCode);
+			  tempTran.character = lastKeyCode;
 		  }
 	  }
 	  //console.log("Distance to " + tempState.label + ": " + distance(tempState.x,tempState.y,clickX,clickY));
