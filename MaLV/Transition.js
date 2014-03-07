@@ -67,6 +67,13 @@ function transitionDisplay(){
 	}
 	this.drawArrow();
 	
+	if(Qzero == this.startState){
+		ctx.strokeStyle = '#ff0000';
+	}
+	else{
+		ctx.strokeStyle = '#000000';
+	}
+	
 	ctx.font="15px Georgia";
 	ctx.fillText(this.character,this.midX,this.midY);
 }

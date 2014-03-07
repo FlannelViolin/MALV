@@ -40,10 +40,10 @@ function curvedLine(startX, startY, endX, endY){
 		diffDist  = (endX-startX)/10;
 	}
 
-	console.log(calc);
+	//console.log(calc);
 	yDiff = (1.6-calc)*diffDist; // x distance from end points to two control points
 	xDiff = calc*diffDist; // y distance from end points to two control points
-	console.log("xDiff:" + xDiff + " yDiff: " + yDiff);
+	//console.log("xDiff:" + xDiff + " yDiff: " + yDiff);
 	if(endX < startX){ // end point is to the left of the start point
 
 		if(endY > startY){ // end point is under start point

@@ -30,10 +30,16 @@ function stateDisplay(){
 		this.y = mouseY;
 	}	
 	if(this.selected){
-		ctx.strokeStyle = '#0000ff';
+		ctx.strokeStyle = '#ff0000';
 	}
 	else{
-		ctx.strokeStyle = '#ff0000';
+		ctx.strokeStyle = '#000000';
+	}
+	if($.inArray(this, FStates) != -1){
+		ctx.strokeStyle = "#00ff00";
+	}
+	if(Qzero == this){
+		ctx.strokeStyle = "#0000ff";
 	}
 	ellipse(this.x, this.y, this.radius);
 	// Draw the state with a circle
