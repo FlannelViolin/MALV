@@ -15,6 +15,7 @@ function State( X, Y, id){
 	this.radius = 20;
 	this.selected = false;
 	this.moving = false;
+
 	
 	// Functions
 	this.snapTransition = snapTransitionToState;

@@ -17,5 +17,6 @@ function normalizee(vector){
 }
 
 function heading(vector){
-	return Math.atan(vector.y/vector.x);
+	return Math.atan(vector.y/vector.x); //butts
+	
 }

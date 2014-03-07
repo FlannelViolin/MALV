@@ -63,7 +63,7 @@ function transitionDisplay(){
 	//this.setAnchors(this.startState.snapTransition(this.endState.position),this.endState.snapTransition(this.startState.position));
 	if(this.startState != this.endState){
 		//line(this.anchorPoint1.x,this.anchorPoint1.y,this.anchorPoint2.x, this.anchorPoint2.y);
-		line(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
+		curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
 	}
 	this.drawArrow();
 	
