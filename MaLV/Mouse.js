@@ -46,6 +46,12 @@ function handleEvent(e){
   clickedState = null;
   for(var i=0;i<numStates;i++){
 	  var tempState = Qstates[i];
+	  for(var j=0; j < tempState.tranList.length; j++){
+		  tempTran = tempState.tranList[j];
+		  if( distance( tempTran.midX, tempTran.midY, clickX, clickY) < 50 ){
+			  console.log("Transition " +  tempTran.character + " from State " + tempState.label + " clicked");
+		  }
+	  }
 	  //console.log("Distance to " + tempState.label + ": " + distance(tempState.x,tempState.y,clickX,clickY));
 	  if(distance(tempState.x,tempState.y,clickX,clickY) < 42){
 		  console.log("State " + tempState.label + " clicked");
