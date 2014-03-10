@@ -14,8 +14,21 @@ function line(startX, startY, endX, endY){
 	ctx.stroke();
 }
 
-function arrowHead( ){
+// mid point of state
+function recursiveLine(midX, midY,radius){
+
+	ctx.beginpath;
+	ctx.moveTo(midX - radius,midY);
+	var controlPoints = new Array(); //bezierCurveTo([0],[1],[2],[3],endX,endY); after the first moveTo(startX,startY)
+	// first point
+	controlPoints[0] = midX - radius*2;
+	controlPoints[1] = midY - radius;
+	///
+	controlPoints[2] = midX - radius;
+	controlPoints[3] = midY- radius*2;
+	ctx.bezierCurveTo(controlPoints[0],controlPoints[1],controlPoints[2],controlPoints[3],midX,midY-radius);
 	
+	ctx.stroke();
 }
 
 // will draw a curved Line

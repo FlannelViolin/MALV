@@ -49,10 +49,6 @@ function getEndState(){
 	
 }
 
-function drawRecursiveArrow(){
-	
-}
-
 function transitionDisplay(){
 
 	this.midX = (this.startState.x + this.endState.x)/2;
@@ -64,6 +60,14 @@ function transitionDisplay(){
 	if(this.startState != this.endState){
 		//line(this.anchorPoint1.x,this.anchorPoint1.y,this.anchorPoint2.x, this.anchorPoint2.y);
 		curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
+		
+		ctx.font="15px Georgia";
+		ctx.fillText(this.character,this.midX,this.midY);
+	}
+	else{
+		recursiveLine(this.startState.x,this.startState.y,this.startState.radius);
+		ctx.font="15px Georgia";
+		ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10);
 	}
 	this.drawArrow();
 	
@@ -73,9 +77,7 @@ function transitionDisplay(){
 	else{
 		ctx.strokeStyle = '#000000';
 	}
-	
-	ctx.font="15px Georgia";
-	ctx.fillText(this.character,this.midX,this.midY);
+
 }
 
 
