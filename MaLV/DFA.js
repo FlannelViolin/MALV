@@ -12,7 +12,7 @@ var FStates     = [];
 
 // input
 var input = "";
-
+var error = "";
 var animate = false; // this boolean will be toggled for running the DFA in check or debug mode.
 var alerts = true; // this boolean will turn on and off alerts because the annoy me.
 // -------- FUNCTIONS --------
@@ -31,12 +31,12 @@ function readInput(){
 
 	input = document.getElementById('input').value;
 
-	if( Qzero == null ){
+	/*if( Qzero == null ){
 		Qzero = Qstates[0];
-	}
+	}*/
 	// Check valid machine state
 	if( !checkValidMachine() ){
-		alert("Invalid Machine state, check definitions");
+		alert("Invalid Machine state: " + error);
 		return false;
 	}
 	
@@ -48,10 +48,11 @@ function readInput(){
 	ctx.font="10px Georgia";
 	ctx.fillText("Checking input: "+ input,5,20);
 	for( s in inputList ){
-	
-		if(prevState!=null)
-		drawNotHighlighted(prevState.x,prevState.y,prevState.radius+3);
-		drawHighlighted(currentState.x, currentState.y, currentState.radius+3);
+		if(alerts){
+			if(prevState!=null)
+			drawNotHighlighted(prevState.x,prevState.y,prevState.radius+3);
+			drawHighlighted(currentState.x, currentState.y, currentState.radius+3);
+		}
 		if(alerts){
 			alert("Searching for transition " + inputList[s] + " from state " + currentState.label);
 		}
@@ -73,7 +74,7 @@ function readInput(){
 		alert("Machine completed in accept State");
 		return;
 	}
-	alert("No more input, finished  in state" + currentState.label);
+	alert("Not accepted, \n finished  in state" + currentState.label);
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -89,8 +90,30 @@ function readInput(){
 // TODO
 function checkValidMachine(){
 	// TEMPORARY
-	return true;
+	error = "";
+	var returnMe = true;
+		if(Qzero == null){
+			returnMe = false;
+			error += "\n No Start State set";
+		}
+		if(FStates[0] == null){
+			returnMe = false;
+			error += "\n No Accept States set";
+		}
+	return returnMe;
 	// FIX THIS
+}
+
+// alerts are true, steps through machine
+function debugInput(){
+	alerts = true;
+	readInput();
+}
+
+// just checks input and tells user of accept or reject
+function checkInput(){
+	alerts = false;
+	readInput();
 }
 
 function drawNotHighlighted(X,Y,R){
