@@ -32,20 +32,27 @@
 	<input type="button" value ="Set Accept" onclick="setSelectedAsAccept()">
 	
 </div>
-<canvas id="machineSpace" width="700" height="500" style="border:1px solid #000000;"></canvas>
+<div id="canvases">
+	<canvas id="machineSpace" width="700" height="500" style="border:1px solid #000000;"></canvas>
+	<canvas id="inputSpace" width="300" height="500" style="border:1px solid #000000;"></canvas>
+</div>
 <script>
-var c=document.getElementById("machineSpace");
-var ctx = c.getContext("2d");
+	var c=document.getElementById("machineSpace");
+	var ctx = c.getContext("2d");
+	
+	var inputCanvas=document.getElementById("inputSpace");
+	var ictx = inputCanvas.getContext("2d");
 </script>
 
+<script src="Draw.js"></script>
 <script src="keyboardInput.js"></script>
 <script src="Vector.js"></script>
 <script src="AnchorPoint.js"></script>
 <script src="Transition.js"></script>
 <script src="State.js"></script>
 <script src="Enums.js"></script>
+<script src="inputCanvasBox.js"></script>
 <script src="DFA.js"></script>
-<script src="Draw.js"></script>
 <script src="Update.js"></script>
 <script src="Mouse.js"></script>
 

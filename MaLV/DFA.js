@@ -39,14 +39,13 @@ function readInput(){
 		alert("Invalid Machine state: " + error);
 		return false;
 	}
-	
+	displayInputs(input,true);
 	currentState = Qzero;
 	prevState = null;
 	nextState = null;
 	inputList = input.split("");
 	
-	ctx.font="10px Georgia";
-	ctx.fillText("Checking input: "+ input,5,20);
+
 	for( s in inputList ){
 		if(alerts){
 			if(prevState!=null)
@@ -72,9 +71,11 @@ function readInput(){
 	
 	if( $.inArray(currentState, FStates) != -1 ){
 		alert("Machine completed in accept State");
+		setAcceptedForInput(true);
 		return;
 	}
 	alert("Not accepted, \n finished  in state" + currentState.label);
+	setAcceptedForInput(false);
 	// set current state to start state
 	// set 'nextState' to null
 	//

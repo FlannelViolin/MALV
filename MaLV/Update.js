@@ -12,7 +12,8 @@ function update(){
 	document.getElementById("demo").innerHTML=t;	
 	
 	ctx.clearRect(0,0,c.width,c.height);
-
+	ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
+	displayInputs(input);
 	//curvedLine(c.width/2,c.height/2,mouseX,mouseY);
 	//console.log("MouseX " + mouseX);
 	//console.log("MouseY " + mouseY);
