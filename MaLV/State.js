@@ -15,7 +15,8 @@ function State( X, Y, id){
 	this.radius = 20;
 	this.selected = false;
 	this.moving = false;
-
+	this.drawStartArrow = drawStartArrow;
+	
 	
 	// Functions
 	this.snapTransition = snapTransitionToState;
@@ -36,12 +37,18 @@ function stateDisplay(){
 		ctx.strokeStyle = '#000000';
 	}
 	if($.inArray(this, FStates) != -1){
-		ctx.strokeStyle = "#00ff00";
+		//ctx.strokeStyle = "#00ff00"; // the correct way to denote accept state is nested circles
+		ellipse(this.x,this.y, this.radius-5);
 	}
 	if(Qzero == this){
-		ctx.strokeStyle = "#0000ff";
-	}
+		// the correct way to denote start state is an arrow pointing to the state
+		//ctx.strokeStyle = "#0000ff";
+		this.drawStartArrow();
+		
+		}
 	ellipse(this.x, this.y, this.radius);
+
+	
 	// Draw the state with a circle
 	// Use radius and Color
 	ctx.font="20px Georgia";
@@ -93,4 +100,26 @@ function toggleSelect(){
 function addTransition( transition ){
 	this.tranList.push(transition);
 	this.transitions[transition.character] = transition.endState;
+}
+
+function drawStartArrow(){
+	var a = this.radius*3;
+	var b = -this.radius;
+	
+	var angle = Math.atan(b/a);
+	if(a < 0){
+		angle += Math.PI;
+	}
+	var xPoint = this.x - this.radius;
+	var yPoint = this.y;
+	
+	var tail1XOffset = Math.cos((angle - 20*Math.PI/180))*-20;
+	var tail1YOffset = Math.sin((angle - 20*Math.PI/180))*-20;
+	
+	var tail2XOffset = Math.cos((angle + 20*Math.PI/180))*-20;
+	var tail2YOffset = Math.sin((angle + 20*Math.PI/180))*-20;
+	
+	line(xPoint, yPoint, xPoint + tail1XOffset, yPoint-tail1YOffset);
+	line(xPoint, yPoint, xPoint + tail2XOffset, yPoint-tail2YOffset);
+	
 }

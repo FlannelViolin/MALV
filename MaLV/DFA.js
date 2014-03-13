@@ -13,8 +13,8 @@ var FStates     = [];
 // input
 var input = "";
 
-
-
+var animate = false; // this boolean will be toggled for running the DFA in check or debug mode.
+var alerts = true; // this boolean will turn on and off alerts because the annoy me.
 // -------- FUNCTIONS --------
 
 function setupDFA(){
@@ -43,12 +43,14 @@ function readInput(){
 	inputList = input.split("");
 	
 	for( s in inputList ){
+		if(alerts)
 		alert("Searching for transition " + inputList[s] + " from state " + currentState.label);
 		nextState = getNextState( currentState, inputList[s] );
 		if( nextState == null ){
 			alert("Failure, no transition found");
 			return false;
 		}
+		if(alerts)
 		alert("Found transition, advancing to State: " + nextState.label);
 		currentState = nextState;
 		nextState = null;
@@ -58,7 +60,7 @@ function readInput(){
 		alert("Machine completed in accept State");
 		return;
 	}
-	alert("No more input");
+	alert("No more input " + finished in currentState.label);
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -80,13 +82,21 @@ function checkValidMachine(){
 
 function setSelectedAsStart(){
 	if( selectedState != null ){
+		
+
 		Qzero = selectedState;
+		//toggle this for display
+	
+	
 	}
 }
 
 function setSelectedAsAccept(){
 	if( selectedState != null ){
 		FStates.push(selectedState);
+		//toggle this for display
+		selectedState.isAccept = !selectedState.isAccept;
+		console.log(selectedState.label + " is accept? "  +selectedState.isAccept);
 	}
 }
 

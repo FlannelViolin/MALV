@@ -107,7 +107,6 @@ function setAnchors(_start, _end){
 	}
 }
 
-
 function drawArrow(){
 	var a = this.startState.x - this.endState.x;
 	var b = this.startState.y - this.endState.y;

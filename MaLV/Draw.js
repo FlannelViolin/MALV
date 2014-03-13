@@ -44,7 +44,7 @@ function curvedLine(startX, startY, endX, endY){
 	var xDiff;
 	var yDiff;
 	var controlPoints = new Array(); //bezierCurveTo([0],[1],[2],[3],endX,endY); after the first moveTo(startX,startY)
-	var angle = (Math.PI/2); // 90degrees
+
 	// is it a vertical line or a horizontal line?
 	if(Math.abs(endY - startY) > Math.abs(endX-startX)){
 		diffDist  = (endY-startY)/10;		
@@ -99,3 +99,4 @@ function distance(x,y,p,q){
 	var c = Math.sqrt((a*a) + (b*b));
 	return c;
 }
+
