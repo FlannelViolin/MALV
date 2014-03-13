@@ -28,7 +28,9 @@ function setupDFA(){
 }
 
 function readInput(){
+
 	input = document.getElementById('input').value;
+
 	if( Qzero == null ){
 		Qzero = Qstates[0];
 	}
@@ -39,19 +41,30 @@ function readInput(){
 	}
 	
 	currentState = Qzero;
+	prevState = null;
 	nextState = null;
 	inputList = input.split("");
 	
+	ctx.font="10px Georgia";
+	ctx.fillText("Checking input: "+ input,5,20);
 	for( s in inputList ){
-		if(alerts)
-		alert("Searching for transition " + inputList[s] + " from state " + currentState.label);
+	
+		if(prevState!=null)
+		drawNotHighlighted(prevState.x,prevState.y,prevState.radius+3);
+		drawHighlighted(currentState.x, currentState.y, currentState.radius+3);
+		if(alerts){
+			alert("Searching for transition " + inputList[s] + " from state " + currentState.label);
+		}
+	
 		nextState = getNextState( currentState, inputList[s] );
 		if( nextState == null ){
 			alert("Failure, no transition found");
 			return false;
 		}
-		if(alerts)
-		alert("Found transition, advancing to State: " + nextState.label);
+		if(alerts){
+			alert("Found transition, advancing to State: " + nextState.label);
+		}
+		prevState = currentState;
 		currentState = nextState;
 		nextState = null;
 	}
@@ -60,7 +73,7 @@ function readInput(){
 		alert("Machine completed in accept State");
 		return;
 	}
-	alert("No more input " + finished in currentState.label);
+	alert("No more input, finished  in state" + currentState.label);
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -78,6 +91,21 @@ function checkValidMachine(){
 	// TEMPORARY
 	return true;
 	// FIX THIS
+}
+
+function drawNotHighlighted(X,Y,R){
+	ctx.strokeWidth = 3;
+	ctx.strokeStyle = 'ffffff';
+	ctx.clear;
+	ellipse(X,Y,R);
+	ellipse(X,Y,R);
+}
+// draws an ellipse 
+function drawHighlighted(X,Y,R){
+	ctx.strokeWidth = 1;
+	ctx.strokeStyle = '00ff00';
+	ctx.clear;
+	ellipse(X,Y,R);
 }
 
 function setSelectedAsStart(){

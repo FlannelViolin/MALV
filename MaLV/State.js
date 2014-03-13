@@ -16,8 +16,7 @@ function State( X, Y, id){
 	this.selected = false;
 	this.moving = false;
 	this.drawStartArrow = drawStartArrow;
-	
-	
+
 	// Functions
 	this.snapTransition = snapTransitionToState;
 	this.display = stateDisplay;
@@ -36,6 +35,7 @@ function stateDisplay(){
 	else{
 		ctx.strokeStyle = '#000000';
 	}
+
 	if($.inArray(this, FStates) != -1){
 		//ctx.strokeStyle = "#00ff00"; // the correct way to denote accept state is nested circles
 		ellipse(this.x,this.y, this.radius-5);
