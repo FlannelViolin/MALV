@@ -18,7 +18,7 @@
 
 function Transition(_beginState, _endState){
 	// Vars
-	this.character = "x";
+	this.character = lastKeyCode;
 	this.midX = (_beginState.x + _endState.x)/2;
 	this.midY = (_beginState.y + _endState.y)/2;
 	
@@ -35,6 +35,7 @@ function Transition(_beginState, _endState){
 	this.setCharacter = setCharacter;
 	this.getEndState = getEndState;	
 	this.setAnchors = setAnchors;
+	
 }
 
 function getCharacter(){
