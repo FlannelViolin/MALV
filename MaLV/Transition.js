@@ -59,17 +59,18 @@ function transitionDisplay(){
 	//this.setAnchors(this.startState.snapTransition(this.endState.position),this.endState.snapTransition(this.startState.position));
 	if(this.startState != this.endState){
 		//line(this.anchorPoint1.x,this.anchorPoint1.y,this.anchorPoint2.x, this.anchorPoint2.y);
-		curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
+		diffArray = curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
 		
 		ctx.font="15px Georgia";
 		ctx.fillText(this.character,this.midX,this.midY);
+		this.drawArrow( diffArray[0], diffArray[1] );
 	}
 	else{
 		recursiveLine(this.startState.x,this.startState.y,this.startState.radius);
 		ctx.font="15px Georgia";
 		ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10);
 	}
-	this.drawArrow();
+	
 	
 	if(Qzero == this.startState){
 		ctx.strokeStyle = '#ff0000';
@@ -107,7 +108,7 @@ function setAnchors(_start, _end){
 	}
 }
 
-function drawArrow(){
+function drawArrow( diffX, diffY ){
 	var a = this.startState.x - this.endState.x;
 	var b = this.startState.y - this.endState.y;
 	
@@ -122,8 +123,31 @@ function drawArrow(){
 	var tail2XOffset = Math.cos((angle + 20*Math.PI/180))*-20;
 	var tail2YOffset = Math.sin((angle + 20*Math.PI/180))*-20;
 	
-	line(this.midX, this.midY, this.midX - tail1XOffset, this.midY-tail1YOffset);
-	line(this.midX, this.midY, this.midX - tail2XOffset, this.midY-tail2YOffset);
+	var pointX = 0;
+	var pointY = 0;
+	
+	if(this.endState.x < this.startState.x){ // end point is to the left of the start point
+		if(this.endState.y > this.startState.y){ // end point is under start point
+			pointX = this.midX - diffX/1.4;
+			pointY = this.midY - diffY/1.4;
+		}
+		else{ // end point is above start point
+			pointX = this.midX - diffX/1.4;
+			pointY = this.midY + diffY/1.4;
+		}
+	}else{ // end point is to the right of the start point *
+		if(this.endState.y > this.startState.y){ // end point is under start point			
+			pointX = this.midX - diffX/1.4;
+			pointY = this.midY + diffY/1.4;
+		}
+		else{ // end point is above start point
+			pointX = this.midX + diffX/1.4;
+			pointY = this.midY + diffY/1.4;
+		}
+	}
+	
+	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset);
+	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset);
 	
 	//var anchorVector = new Vector(this.stateState.x - this.endState.x,this.startState.y - this.endState.y);
 	//anchorVector = normalizee(anchorVector);

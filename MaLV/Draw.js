@@ -54,16 +54,17 @@ function curvedLine(startX, startY, endX, endY){
 	}
 
 	//console.log(calc);
-	yDiff = (1.6-calc)*diffDist; // x distance from end points to two control points
+	yDiff = (1.7-calc)*diffDist; // x distance from end points to two control points
 	xDiff = calc*diffDist; // y distance from end points to two control points
 	//console.log("xDiff:" + xDiff + " yDiff: " + yDiff);
 	if(endX < startX){ // end point is to the left of the start point
-
 		if(endY > startY){ // end point is under start point
-			controlPoints[0] = startX+xDiff;//x coord on first control point
-			controlPoints[1] = startY+yDiff;//y coord on first control point
-			controlPoints[2] = endX+xDiff;//x coord on second control point
-			controlPoints[3] = endY+yDiff;// y coord on second control point
+			xDiff = Math.sqrt((xDiff*xDiff));
+			yDiff = Math.sqrt((yDiff*yDiff));
+			controlPoints[0] = startX-xDiff;//x coord on first control point
+			controlPoints[1] = startY-yDiff;//y coord on first control point
+			controlPoints[2] = endX-xDiff;//x coord on second control point
+			controlPoints[3] = endY-yDiff;// y coord on second control point
 		}
 		else{ // end point is above start point
 			controlPoints[0] = startX-xDiff;//x coord on first control point
@@ -80,6 +81,8 @@ function curvedLine(startX, startY, endX, endY){
 			controlPoints[3] = endY + yDiff;// y coord on second control point
 		}
 		else{ // end point is above start point
+			xDiff = Math.sqrt((xDiff*xDiff));
+			yDiff = Math.sqrt((yDiff*yDiff));
 			controlPoints[0] = startX+xDiff;//x coord on first control point
 			controlPoints[1] = startY+yDiff;//y coord on first control point
 			controlPoints[2] = endX+xDiff;//x coord on second control point
@@ -91,6 +94,8 @@ function curvedLine(startX, startY, endX, endY){
 	ctx.moveTo(startX,startY);
 	ctx.bezierCurveTo(controlPoints[0],controlPoints[1],controlPoints[2],controlPoints[3],endX,endY);
 	ctx.stroke();
+	
+	return [xDiff, yDiff];
 }
 
 function distance(x,y,p,q){
