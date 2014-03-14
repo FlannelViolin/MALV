@@ -61,8 +61,7 @@ function transitionDisplay(){
 		//line(this.anchorPoint1.x,this.anchorPoint1.y,this.anchorPoint2.x, this.anchorPoint2.y);
 		diffArray = curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
 		
-		ctx.font="15px Georgia";
-		ctx.fillText(this.character,this.midX,this.midY);
+		ctx.font="15px Georgia";		
 		this.drawArrow( diffArray[0], diffArray[1] );
 	}
 	else{
@@ -130,21 +129,25 @@ function drawArrow( diffX, diffY ){
 		if(this.endState.y > this.startState.y){ // end point is under start point
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY - diffY/1.4;
+			ctx.fillText(this.character,pointX-diffX,pointY-diffY);
 		}
 		else{ // end point is above start point
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY + diffY/1.4;
+			ctx.fillText(this.character,pointX-diffX,pointY+diffY);
 		}
 	}else{ // end point is to the right of the start point *
 		if(this.endState.y > this.startState.y){ // end point is under start point			
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY + diffY/1.4;
+			ctx.fillText(this.character,pointX-diffX,pointY+diffY);
 		}
 		else{ // end point is above start point
 			pointX = this.midX + diffX/1.4;
 			pointY = this.midY + diffY/1.4;
+			ctx.fillText(this.character,pointX+diffX,pointY+diffY);
 		}
-	}
+	}	
 	
 	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset);
 	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset);
