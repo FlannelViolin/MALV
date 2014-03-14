@@ -7,11 +7,11 @@ function ellipse(x,y,r){
 }
 
 // startX/Y point1 of line, endX/y point 2 of line
-function line(startX, startY, endX, endY){
-	ctx.beginPath();
-	ctx.moveTo(startX, startY); //begin drawing
-	ctx.lineTo(endX,endY);
-	ctx.stroke();
+function line(startX, startY, endX, endY, targetContext){
+	targetContext.beginPath();
+	targetContext.moveTo(startX, startY); //begin drawing
+	targetContext.lineTo(endX,endY);
+	targetContext.stroke();
 }
 
 // mid point of state

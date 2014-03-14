@@ -150,8 +150,8 @@ function drawArrow( diffX, diffY ){
 		}
 	}	
 	
-	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset);
-	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset);
+	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
+	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
 	
 	//var anchorVector = new Vector(this.stateState.x - this.endState.x,this.startState.y - this.endState.y);
 	//anchorVector = normalizee(anchorVector);
