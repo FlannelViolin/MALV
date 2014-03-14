@@ -28,3 +28,7 @@ function displayInputs(input,go){
 function setAcceptedForInput (inputAccepted){
 	didAccept.push(inputAccepted);
 }
+
+function clearInputCanvas(){
+	checkedInputs = [];
+}
