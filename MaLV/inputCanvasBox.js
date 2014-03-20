@@ -12,7 +12,7 @@ function displayInputs(input,go){
 	ictx.font="10px Georgia";
 
 	for(i in checkedInputs){
-	
+		ictx.fillStyle = 'black';
 		ictx.fillText("Checked Input: " + checkedInputs[i],10, 10 +i*bufferX);
 	}
 	
@@ -21,6 +21,7 @@ function displayInputs(input,go){
 		checkedInputs.push(input);
 		go = false;
 	}
+	drawAccepted();
 
 	
 }
@@ -38,6 +39,21 @@ function drawReadingCharacters(index){
 	
 }
 
+function drawAccepted(){
+	line(inputCanvas.width-60,0,inputCanvas.width-60,inputCanvas.height,ictx);
+	for(i in didAccept){
+		if(didAccept[i]){
+			ictx.fillStyle = 'green';
+			ictx.fillText("O",inputCanvas.width-50,10+i*bufferX);
+		}
+		if(didAccept[i] == false){
+			ictx.fillStyle = 'red';
+			ictx.fillText("X",inputCanvas.width-50,10+i*bufferX);
+		}
+		
+	}
+}
+
 function setAcceptedForInput (inputAccepted){
 	didAccept.push(inputAccepted);
 	animating = false;
@@ -45,4 +61,5 @@ function setAcceptedForInput (inputAccepted){
 
 function clearInputCanvas(){
 	checkedInputs = [];
+	didAccept = [];
 }

@@ -148,7 +148,7 @@ function readInputAnimated(){
 			}
 			else{
 				alert("Not accepted, \n finished  in state" + currentState.label);
-				setAcceptedForInput = false;
+				setAcceptedForInput(false);
 				animating = false; // updates can start drawing again
 				return;
 			}
