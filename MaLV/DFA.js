@@ -128,7 +128,7 @@ function readInputAnimated(){
 			else{
 				alert("Not accepted, \n finished  in state" + currentState.label);
 				setAcceptedForInput = false;
-				animating = false; // updaates can start drawing again
+				animating = false; // updates can start drawing again
 				return;
 			}
 		}
@@ -171,8 +171,10 @@ function debugInput(){
 	animatedInput = 0;
 	animating = true;
 	input = document.getElementById('input').value;
+	console.log(input);
 	if( !checkValidMachine() ){
 		alert("Invalid Machine state: " + error);
+		animating = false;
 		return false;
 	}
 	displayInputs(input,true);
