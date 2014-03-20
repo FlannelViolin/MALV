@@ -119,7 +119,7 @@ function drawStartArrow(){
 	var tail2XOffset = Math.cos((angle + 20*Math.PI/180))*-20;
 	var tail2YOffset = Math.sin((angle + 20*Math.PI/180))*-20;
 	
-	line(xPoint, yPoint, xPoint + tail1XOffset, yPoint-tail1YOffset);
-	line(xPoint, yPoint, xPoint + tail2XOffset, yPoint-tail2YOffset);
+	line(xPoint, yPoint, xPoint + tail1XOffset, yPoint-tail1YOffset, ctx);
+	line(xPoint, yPoint, xPoint + tail2XOffset, yPoint-tail2YOffset, ctx);
 	
 }

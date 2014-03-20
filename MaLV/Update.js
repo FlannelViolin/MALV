@@ -25,7 +25,8 @@ function update(){
 	//console.log(drawingTran);
 	//console.log(clickedState);
 	if( drawingTran == true && clickedState != null && pm == PlacementMode.TRANSITION ){
-		line(clickedState.x, clickedState.y, mouseX, mouseY);
+		line(clickedState.x, clickedState.y, mouseX, mouseY, ctx);
+		ctx.fillText(lastKeyCode,mouseX,mouseY);
 	}
 	
 // ------------------------ Everything that happens in Processing update: ----------------------------

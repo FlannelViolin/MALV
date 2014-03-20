@@ -194,3 +194,19 @@ function getNextState( current, inputChar){
 	return next;
 }
 
+function clearSelectedState(){
+	if( selectedState == null){
+		return;
+	}
+	var index = Qstates.indexOf(selectedState);
+	Qstates.splice(index,1);
+	selectedState = null;
+}
+
+function clearSelectedTransitions(){
+	if( selectedState == null){
+		return;
+	}
+	selectedState.transitions = {};
+}
+
