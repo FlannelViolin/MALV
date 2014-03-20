@@ -13,7 +13,7 @@ function update(){
 	document.getElementById("demo").innerHTML=t;	
 	if(!animating){
 		ctx.clearRect(0,0,c.width,c.height);
-		console.log("not animating");
+		//console.log("not animating");
 		
 		
 		for(var i=0; i<Qstates.length; i++){

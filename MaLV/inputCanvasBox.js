@@ -16,13 +16,21 @@ function displayInputs(input,go){
 		ictx.fillText("Checked Input: " + checkedInputs[i],10, 10 +i*bufferX);
 	}
 	
-	ictx.fillText("Checking input: "+ input,10, 20 +checkedInputs.length * bufferX);
+	ictx.fillText("Checking input: ",10, 20 +checkedInputs.length * bufferX);
 	if(go){
 		checkedInputs.push(input);
 		go = false;
 	}
+
 	
-	
+}
+
+
+function drawReadingCharacters(index){
+	var currentString = checkedInputs[checkedInputs.length - 1];
+	for(var i = 0; i < index; i++){
+		ictx.fillText(currentString[i], 30+(2*i),20 +checkedInputs.length*bufferX);
+	}
 }
 
 function setAcceptedForInput (inputAccepted){

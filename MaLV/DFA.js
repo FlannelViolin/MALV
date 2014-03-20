@@ -110,8 +110,6 @@ function readInputAnimated(){
 	
 	setTimeout(function(){
 		
-
-		
 		ctx.clearRect(0,0,c.width,c.height);
 		animatedInput++;
 		//clears ctx for this current state of the machine
@@ -119,7 +117,7 @@ function readInputAnimated(){
 		//highlights the currrent state
 		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
 		// gets next state 
-		
+		drawReadingCharacters(animatedInput);
 		if(animatedInput  == inputList.length){ // at the end of the input list
 			if( $.inArray(currentState, FStates) != -1 ){
 				alert("Machine completed in accept State");
@@ -152,6 +150,8 @@ function readInputAnimated(){
 	},1000); // updates every once every two seconds
 	
 }
+
+
 
 
 function drawMachine(){
@@ -191,6 +191,7 @@ function checkInput(){
 	readInput();
 }
 
+
 function drawNotHighlighted(X,Y,R){
 	ctx.strokeWidth = 3;
 	ctx.strokeStyle = 'ffffff';
@@ -201,7 +202,7 @@ function drawNotHighlighted(X,Y,R){
 // draws an ellipse 
 function drawHighlighted(X,Y,R){
 	ctx.strokeWidth = 1;
-	ctx.strokeStyle = '00ff00';
+	ctx.strokeStyle = '00FF00';
 	ctx.clear;
 	ellipse(X,Y,R);
 	console.log("ellipse should be drawing");
@@ -246,6 +247,8 @@ function getNextState( current, inputChar){
 	
 	return next;
 }
+
+
 
 function clearSelectedState(){
 	if( selectedState == null){
