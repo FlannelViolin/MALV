@@ -136,7 +136,7 @@ function readInputAnimated(){
 		nextState = getNextState(currentState,inputList[animatedInput]); // using animated input instead of for each loop s
 		
 		if(nextState == null){
-			animating = true; // resumes the update method clearing the context
+			animating = false; // resumes the update method clearing the context
 			return false; // breaks out of method
 		}
 		
@@ -194,7 +194,7 @@ function checkInput(){
 
 function drawNotHighlighted(X,Y,R){
 	ctx.strokeWidth = 3;
-	ctx.strokeStyle = 'ffffff';
+	ctx.strokeStyle = '#ffffff';
 	ctx.clear;
 	ellipse(X,Y,R);
 	ellipse(X,Y,R);
@@ -202,10 +202,10 @@ function drawNotHighlighted(X,Y,R){
 // draws an ellipse 
 function drawHighlighted(X,Y,R){
 	ctx.strokeWidth = 1;
-	ctx.strokeStyle = '00FF00';
+	ctx.strokeStyle = '#00FF00';
 	ctx.clear;
 	ellipse(X,Y,R);
-	console.log("ellipse should be drawing");
+
 }
 
 function setSelectedAsStart(){

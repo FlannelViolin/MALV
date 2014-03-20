@@ -15,7 +15,8 @@ function update(){
 		ctx.clearRect(0,0,c.width,c.height);
 		//console.log("not animating");
 		
-		
+		ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
+		displayInputs(input);
 		for(var i=0; i<Qstates.length; i++){
 			Qstates[i].display();
 		}
@@ -26,8 +27,8 @@ function update(){
 			ctx.fillText(lastKeyCode,mouseX,mouseY);
 		}
 	}
-	ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
-	displayInputs(input);
+	//ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
+	//displayInputs(input);
 	//curvedLine(c.width/2,c.height/2,mouseX,mouseY);
 	//console.log("MouseX " + mouseX);
 	//console.log("MouseY " + mouseY);

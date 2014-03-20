@@ -16,7 +16,7 @@ function displayInputs(input,go){
 		ictx.fillText("Checked Input: " + checkedInputs[i],10, 10 +i*bufferX);
 	}
 	
-	ictx.fillText("Checking input: ",10, 20 +checkedInputs.length * bufferX);
+	
 	if(go){
 		checkedInputs.push(input);
 		go = false;
@@ -27,10 +27,14 @@ function displayInputs(input,go){
 
 
 function drawReadingCharacters(index){
+	ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
 	var currentString = checkedInputs[checkedInputs.length - 1];
 	for(var i = 0; i < index; i++){
-		ictx.fillText(currentString[i], 30+(2*i),20 +checkedInputs.length*bufferX);
+		ictx.fillText("Checking input: ",10, 20 +checkedInputs.length * bufferX);
+		ictx.fillText(currentString[i], 100+(7*i),20 +checkedInputs.length*bufferX);
+		console.log("should be writing chras" + i);
 	}
+	
 }
 
 function setAcceptedForInput (inputAccepted){
