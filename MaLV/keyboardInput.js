@@ -1,4 +1,4 @@
-var lastKeyCode = "";
+var lastKeyCode = "X";
 
 //function handleKeyPress(e){
 //	lastKeyCode = e.keyCode;

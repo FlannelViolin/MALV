@@ -79,6 +79,8 @@ function changePlacement(newPlacement){
 		
 	pm = newPlacement;
 	console.log(pm + " " + pm.value);
+	selectedState.toggleSelect();
+	selectedState = null;
 	
 }
 
