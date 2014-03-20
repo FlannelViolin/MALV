@@ -105,18 +105,71 @@ function checkValidMachine(){
 	// FIX THIS
 }
 
-
+var animatedInput = 0; // index for reading input
 function readInputAnimated(){
-	setTimeout(function(){
-		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
-		console.log("every two seconds");
-		requestAnimationFrame(readInputAnimated);
-	},2000);
 	
+	setTimeout(function(){
+		
+
+		
+		ctx.clearRect(0,0,c.width,c.height);
+		animatedInput++;
+		//clears ctx for this current state of the machine
+		drawMachine();
+		//highlights the currrent state
+		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
+		// gets next state 
+		
+		if(animatedInput  == inputList.length){ // at the end of the input list
+			if( $.inArray(currentState, FStates) != -1 ){
+				alert("Machine completed in accept State");
+				setAcceptedForInput(true);
+				animating = false; // updates can start drawing again
+				return;
+			}
+			else{
+				alert("Not accepted, \n finished  in state" + currentState.label);
+				setAcceptedForInput = false;
+				animating = false; // updaates can start drawing again
+				return;
+			}
+		}
+		
+		nextState = getNextState(currentState,inputList[animatedInput]); // using animated input instead of for each loop s
+		
+		if(nextState == null){
+			animating = true; // resumes the update method clearing the context
+			return false; // breaks out of method
+		}
+		
+		prevState = currentState;
+		currentState = nextState;
+		nextState = null;
+	
+		
+		// calls readInputAnimated, replaces for loop
+		requestAnimationFrame(readInputAnimated);
+	},1000); // updates every once every two seconds
+	
+}
+
+
+function drawMachine(){
+	for(var i=0; i<Qstates.length; i++){
+		Qstates[i].display();
+	}
+	
+
+	if( drawingTran == true && clickedState != null && pm == PlacementMode.TRANSITION ){
+		line(clickedState.x, clickedState.y, mouseX, mouseY, ctx);
+		ctx.fillText(lastKeyCode,mouseX,mouseY);
+	}
 }
 
 // alerts are true, steps through machine
 function debugInput(){
+	animatedInput = 0;
+	animating = true;
 	input = document.getElementById('input').value;
 	if( !checkValidMachine() ){
 		alert("Invalid Machine state: " + error);
