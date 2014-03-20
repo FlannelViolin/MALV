@@ -63,3 +63,8 @@ function clearInputCanvas(){
 	checkedInputs = [];
 	didAccept = [];
 }
+
+function clearAccepted(){
+	didAccept = [];
+}
+

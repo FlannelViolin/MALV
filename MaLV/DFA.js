@@ -11,7 +11,8 @@ var Qzero       = null;
 var FStates     = [];
 
 // input
-var input = "";
+
+var boxInput = "";
 var error = "";
 var animate = false; // this boolean will be toggled for running the DFA in check or debug mode.
 var alerts = true; // this boolean will turn on and off alerts because the annoy me.
@@ -27,9 +28,9 @@ function setupDFA(){
 	// Check if machine state is valid
 }
 
-function readInput(){
+function readInput(input,newInput){
 
-	input = document.getElementById('input').value;
+	//boxInput = document.getElementById('input').value;
 
 	/*if( Qzero == null ){
 		Qzero = Qstates[0];
@@ -39,7 +40,7 @@ function readInput(){
 		alert("Invalid Machine state: " + error);
 		return false;
 	}
-	displayInputs(input,true);
+	displayInputs(input,newInput);
 	currentState = Qzero;
 	prevState = null;
 	nextState = null;
@@ -59,6 +60,7 @@ function readInput(){
 		nextState = getNextState( currentState, inputList[s] );
 		if( nextState == null ){
 			alert("Failure, no transition found");
+			setAcceptedForInput(false);
 			return false;
 		}
 		if(alerts){
@@ -106,7 +108,7 @@ function checkValidMachine(){
 }
 
 var animatedInput = 0; // index for reading input
-function readInputAnimated(){
+function readInputAnimated(input){
 	
 	setTimeout(function(){
 		
@@ -127,6 +129,7 @@ function readInputAnimated(){
 		if(nextState == null){
 			alert("no transition found");
 			animating = false; // resumes the update method clearing the context
+			setAcceptedForInput(false);
 			return false; // breaks out of method
 		}
 		
@@ -194,13 +197,16 @@ function debugInput(){
 	inputList = input.split("");
 
 	alerts = true;
-	readInputAnimated();
+	boxInput = document.getElementById('input').value;
+	readInputAnimated(boxInput);
 }
 
 // just checks input and tells user of accept or reject
 function checkInput(){
+
 	alerts = false;
-	readInput();
+	boxInput = document.getElementById('input').value;
+	readInput(boxInput,true);
 }
 
 
@@ -279,3 +285,10 @@ function clearSelectedTransitions(){
 	selectedState.transitions = {};
 }
 
+// takes array of all previous inputs and rechecks them with a new machine
+function checkAllPreviousInput(){ // array should all be strings
+	clearAccepted();
+	for(i in checkedInputs){
+		readInput(checkedInputs[i],false);
+	}
+}

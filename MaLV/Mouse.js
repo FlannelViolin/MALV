@@ -99,7 +99,7 @@ function handleEvent(e){
 		  numStates += 1;
 		  var newState = new State(clickX,clickY, numStates);
 		  Qstates.push(newState);
-		  clearInputCanvas();
+		  clearAccepted();
 	  }
 	  else{
 		  selectedState = clickedState;
@@ -128,5 +128,5 @@ function makeNewTran( start, end ){
 	//console.log("CHECK");
 	var newTran = new Transition(start, end);
 	start.addTransition(newTran);
-	clearInputCanvas();
+	clearAccepted();
 }
