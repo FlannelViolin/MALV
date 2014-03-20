@@ -105,10 +105,31 @@ function checkValidMachine(){
 	// FIX THIS
 }
 
+
+function readInputAnimated(){
+	setTimeout(function(){
+		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
+		console.log("every two seconds");
+		requestAnimationFrame(readInputAnimated);
+	},2000);
+	
+}
+
 // alerts are true, steps through machine
 function debugInput(){
+	input = document.getElementById('input').value;
+	if( !checkValidMachine() ){
+		alert("Invalid Machine state: " + error);
+		return false;
+	}
+	displayInputs(input,true);
+	currentState = Qzero;
+	prevState = null;
+	nextState = null;
+	inputList = input.split("");
+
 	alerts = true;
-	readInput();
+	readInputAnimated();
 }
 
 // just checks input and tells user of accept or reject
@@ -130,6 +151,7 @@ function drawHighlighted(X,Y,R){
 	ctx.strokeStyle = '00ff00';
 	ctx.clear;
 	ellipse(X,Y,R);
+	console.log("ellipse should be drawing");
 }
 
 function setSelectedAsStart(){
