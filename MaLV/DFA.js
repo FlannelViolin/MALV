@@ -110,16 +110,37 @@ function readInputAnimated(){
 	
 	setTimeout(function(){
 		
+		
+		
 		ctx.clearRect(0,0,c.width,c.height);
-		animatedInput++;
+
 		//clears ctx for this current state of the machine
 		drawMachine();
 		//highlights the currrent state
-		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
+		
 		// gets next state 
-		drawReadingCharacters(animatedInput);
+		drawReadingCharacters(animatedInput+1);
+		console.log(inputList[animatedInput]);
+		nextState = getNextState(currentState,inputList[animatedInput]); // using animated input instead of for each loop s
+		animatedInput++;
+		console.log(nextState);
+		if(nextState == null){
+			alert("no transition found");
+			animating = false; // resumes the update method clearing the context
+			return false; // breaks out of method
+		}
+		
+		prevState = currentState;
+		currentState = nextState;
+		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
+		nextState = null;
+		
+
 		if(animatedInput  == inputList.length){ // at the end of the input list
+		
 			if( $.inArray(currentState, FStates) != -1 ){
+				
+				
 				alert("Machine completed in accept State");
 				setAcceptedForInput(true);
 				animating = false; // updates can start drawing again
@@ -133,17 +154,6 @@ function readInputAnimated(){
 			}
 		}
 		
-		nextState = getNextState(currentState,inputList[animatedInput]); // using animated input instead of for each loop s
-		
-		if(nextState == null){
-			animating = false; // resumes the update method clearing the context
-			return false; // breaks out of method
-		}
-		
-		prevState = currentState;
-		currentState = nextState;
-		nextState = null;
-	
 		
 		// calls readInputAnimated, replaces for loop
 		requestAnimationFrame(readInputAnimated);
@@ -237,6 +247,7 @@ function getNextState( current, inputChar){
 	// CHANGE THIS
 	next = null;
 	for( t in current.tranList ){
+		console.log("input charactger: " + inputChar + " available transition: " + current.tranList[t].character);
 		if( current.tranList[t].character == inputChar ){
 			next = current.tranList[t].endState;
 		}
