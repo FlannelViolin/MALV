@@ -141,10 +141,10 @@ function addTuringTransition( transition ){
 	if( !(Alphabet.indexOf(transition.character) > -1 ) ){
 		return;
 	}
-	console.log("CHECK");
 	this.transitions[transition.character] = transition.endState;
-	for( var T in this.tranList ){
-		if( T.character = transition.character ){
+	for(var i=0; i<this.tranList.length; i++){
+		var T = this.tranList[i];
+		if( T.character == transition.character ){
 			var index = this.tranList.indexOf(T);
 			this.tranList.splice( index, 1 );
 		}
@@ -156,9 +156,11 @@ function refreshTrans(){
 	this.transitions = {};
 	this.tranList = new Array();
 	
-	for( var symbol in Alphabet ){
-		this.transitions[symbol] = this;
-		this.tranList.push( new Transition( this, this ));
+	for(var i=0;i<Alphabet.length;i++){
+		this.transitions[Alphabet[i]] = this;
+		var newT = new Transition( this, this );
+		newT.character = Alphabet[i];
+		this.tranList.push( newT );
 	}
 }
 

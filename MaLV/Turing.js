@@ -22,7 +22,13 @@ function execute(){
 
 
 function RefreshAlphabet(){
-	for( var state in QStates ){
-		state.refreshTrans();
+	Alphabet = new Array();
+	var ab = document.getElementById('Alphabet').value;
+	for( var c in ab.split("") ){
+		Alphabet.push(ab.split("")[c]);
+	}
+	for(var i=0; i<Qstates.length; i++ ){
+		st = Qstates[i];
+		st.refreshTrans();
 	}
 }
