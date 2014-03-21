@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="main.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>Welcome toMaLV</h1>
+<p>Machine Language Visualizer</p>
+
+<p id="demo"></p>
+
+<div id="buttons">	
+	Input: <input type="text" name="input" value="" id="input"> 
+	Alphabet: <input type="text" name="Alphabet" value="" id="Aplhabet">
+	<input type="button"  value="Refresh Alphabet" onclick="RefreshAlphabet()">
+	<input type="button"  value="Debug Input" onclick="debugInput()">
+	<input type="button"  value="Check Input" onclick="checkInput()">
+	<input type="button" value ="Check All Previous Input" onclick="checkAllPreviousInput()">
+	<input type="button" value ="Clear All Previous Input" onclick="clearInputCanvas()">
+	<br></br>
+
+	<input type="image" id="state_btn" src="http://i.imgur.com/M7QwM1o.png"  
+	onmouseover="this.src='http://i.imgur.com/CJdsqy7.png'" 
+	onmouseout="this.src='http://i.imgur.com/M7QwM1o.png'"
+	onclick="changePlacement(PlacementMode.STATE)"/>
+	
+	<input type="image" id="state_btn" src="http://i.imgur.com/n8ROdlG.png" 
+	onmouseover="this.src='http://i.imgur.com/A7CI6nC.png'"
+	 onmouseout="this.src='http://i.imgur.com/n8ROdlG.png'"
+	 onclick="changePlacement(PlacementMode.TRANSITION)"/>
+	 
+	<input type="button" value ="Set Start" onclick="setSelectedAsStart()">
+	<input type="button" value ="Set Accept" onclick="setSelectedAsAccept()">
+	
+	<!-- DO THIS LATER
+	<input type="button" value ="Clear Selected" onclick="clearSelectedState()">
+	<input type="button" value ="Clear Transitions" onclick="clearSelectedTransitions()">
+	-->
+	
+</div>
+<div id="canvases">
+	<canvas id="machineSpace" width="700" height="500" style="border:1px solid #000000;"></canvas>
+	<canvas id="inputSpace" width="300" height="500" style="border:1px solid #000000;"></canvas>
+</div>
+<script>
+	var c=document.getElementById("machineSpace");
+	var ctx = c.getContext("2d");
+	
+	var inputCanvas=document.getElementById("inputSpace");
+	var ictx = inputCanvas.getContext("2d");
+</script>
+
+<script src="Draw.js"></script>
+<script src="keyboardInput.js"></script>
+<script src="Vector.js"></script>
+<script src="AnchorPoint.js"></script>
+<script src="Transition.js"></script>
+<script src="State.js"></script>
+<script src="Enums.js"></script>
+<script src="inputCanvasBox.js"></script>
+<script src="Turing.js"></script>
+<script src="Update.js"></script>
+<script src="Mouse.js"></script>
+
+</body>
+</html> 

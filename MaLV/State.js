@@ -26,7 +26,7 @@ function State( X, Y, id){
 //----------------------------------
 // ---------- Turing State ---------
 //
-function TransitionState( X, Y, id){
+function TuringState( X, Y, id){
 	//alert('State Created');
 	
 	// Vars

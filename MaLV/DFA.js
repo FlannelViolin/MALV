@@ -3,6 +3,7 @@
  */
 
 // ---------- VARS -----------
+var Turing = false;
 // List of states
 var Qstates     = [];
 // Start State
