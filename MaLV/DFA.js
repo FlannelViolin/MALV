@@ -251,18 +251,16 @@ function getNextState( current, inputChar){
 	// return that state ( or NULL )
 	
 	// CHANGE THIS
-	next = null;
-	for( t in current.tranList ){
-		console.log("input charactger: " + inputChar + " available transition: " + current.tranList[t].character);
-		if( current.tranList[t].character == inputChar ){
-			next = current.tranList[t].endState;
-		}
-	}
+	//next = null;
+	//for( t in current.tranList ){
+	//	console.log("input charactger: " + inputChar + " available transition: " + current.tranList[t].character);
+	//	if( current.tranList[t].character == inputChar ){
+	//		next = current.tranList[t].endState;
+	//	}
+	//}
 	
 	//USE THESE vvv
-	
-	//alert(current.transitions.inputChar);
-	//next = current.transitions[inputChar];
+	next = current.transitions[inputChar];
 	
 	return next;
 }

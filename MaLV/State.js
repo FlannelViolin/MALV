@@ -23,6 +23,32 @@ function State( X, Y, id){
 	this.addTransition = addTransition;
 	this.toggleSelect = toggleSelect;
 }
+//----------------------------------
+// ---------- Turing State ---------
+//
+function TransitionState( X, Y, id){
+	//alert('State Created');
+	
+	// Vars
+	this.transitions = {};
+	this.tranList = new Array();
+	this.id = id;
+	this.label = id;
+	this.x = X;
+	this.y = Y;
+	this.position = new Vector(X,Y);
+	this.radius = 20;
+	this.selected = false;
+	this.moving = false;
+	this.drawStartArrow = drawStartArrow;
+
+	// Functions
+	this.snapTransition = snapTransitionToState;
+	this.display = stateDisplay;
+	this.addTransition = addTransition;
+	this.toggleSelect = toggleSelect;
+}
+//----------------------------------
 
 function stateDisplay(){
 	if(this.moving){
