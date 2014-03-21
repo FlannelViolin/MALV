@@ -48,6 +48,8 @@ function TransitionState( X, Y, id){
 	this.addTransition = addTuringTransition;
 	this.toggleSelect = toggleSelect;
 	this.refreshTrans = refreshTrans;
+	
+	this.refreshTrans();
 }
 //----------------------------------
 
@@ -136,6 +138,9 @@ function addTransition( transition ){
 }
 
 function addTuringTransition( transition ){
+	if( !(transition.character in Alphabet ) ){
+		return;
+	}
 	this.transitions[transition.character] = transition.endState;
 	for( var T in this.tranList ){
 		if( T.character = transition.character ){
@@ -148,7 +153,12 @@ function addTuringTransition( transition ){
 
 function refreshTrans(){
 	this.transitions = {};
+	this.tranList = new Array();
 	
+	for( var symbol in Alphabet ){
+		this.transitions[symbol] = this;
+		this.tranList.push( new Transition( this, this ));
+	}
 }
 
 function drawStartArrow(){
