@@ -11,7 +11,7 @@ var Qzero       = null;
 // Accept States
 var FStates     = [];
 // Alphabet
-var Alphabet 	= ['X'];
+var Alphabet 	= new Array('X');
 
 function execute(){
 	//

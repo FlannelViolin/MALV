@@ -138,9 +138,10 @@ function addTransition( transition ){
 }
 
 function addTuringTransition( transition ){
-	if( !(transition.character in Alphabet ) ){
+	if( !(Alphabet.indexOf(transition.character) > -1 ) ){
 		return;
 	}
+	console.log("CHECK");
 	this.transitions[transition.character] = transition.endState;
 	for( var T in this.tranList ){
 		if( T.character = transition.character ){
