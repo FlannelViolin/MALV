@@ -128,8 +128,9 @@ function toggleSelect(){
 
 function addTransition( transition ){
 	this.transitions[transition.character] = transition.endState;
-	for( var T in this.tranList ){
-		if( T.character = transition.character ){
+	for( var i=0; i<this.tranList.length; i++ ){
+		var T = this.tranList[i];
+		if( T.character == transition.character ){
 			var index = this.tranList.indexOf(T);
 			this.tranList.splice( index, 1 );
 		}

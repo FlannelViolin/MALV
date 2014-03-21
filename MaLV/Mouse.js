@@ -97,7 +97,12 @@ function handleEvent(e){
 	  }	  
 	  if( clickedState == null ){
 		  numStates += 1;
-		  var newState = new TuringState(clickX,clickY, numStates);
+		  if( Turing ){
+			var newState = new TuringState(clickX,clickY, numStates);
+		  }
+		  else{
+			var newState = new State(clickX,clickY, numStates);
+		  }
 		  Qstates.push(newState);
 		  clearAccepted();
 	  }

@@ -73,11 +73,11 @@ function readInput(input,newInput){
 	}
 	
 	if( $.inArray(currentState, FStates) != -1 ){
-		alert("Machine completed in accept State");
+		alert("Machine completed in accept " + currentState.label + " State for string " + input);
 		setAcceptedForInput(true);
 		return;
 	}
-	alert("Not accepted, \n finished  in state" + currentState.label);
+	alert("Not accepted, \n finished  in state " + currentState.label + " for string " + input);
 	setAcceptedForInput(false);
 	// set current state to start state
 	// set 'nextState' to null
@@ -287,6 +287,7 @@ function clearSelectedTransitions(){
 // takes array of all previous inputs and rechecks them with a new machine
 function checkAllPreviousInput(){ // array should all be strings
 	clearAccepted();
+	alerts = false;
 	for(i in checkedInputs){
 		readInput(checkedInputs[i],false);
 	}
