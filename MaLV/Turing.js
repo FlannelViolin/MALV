@@ -9,6 +9,8 @@ var Tape		= [];
 var Qzero       = null;
 // Accept States
 var FStates     = [];
+// Alphabet
+var Alphabet 	= [];
 
 function execute(){
 	//

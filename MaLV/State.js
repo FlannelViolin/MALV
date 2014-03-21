@@ -45,8 +45,9 @@ function TransitionState( X, Y, id){
 	// Functions
 	this.snapTransition = snapTransitionToState;
 	this.display = stateDisplay;
-	this.addTransition = addTransition;
+	this.addTransition = addTuringTransition;
 	this.toggleSelect = toggleSelect;
+	this.refreshTrans = refreshTrans;
 }
 //----------------------------------
 
@@ -71,7 +72,7 @@ function stateDisplay(){
 		//ctx.strokeStyle = "#0000ff";
 		this.drawStartArrow();
 		
-		}
+	}
 	ellipse(this.x, this.y, this.radius);
 
 	
@@ -124,8 +125,30 @@ function toggleSelect(){
 }
 
 function addTransition( transition ){
-	this.tranList.push(transition);
 	this.transitions[transition.character] = transition.endState;
+	for( var T in this.tranList ){
+		if( T.character = transition.character ){
+			var index = this.tranList.indexOf(T);
+			this.tranList.splice( index, 1 );
+		}
+	}
+	this.tranList.push(transition);	
+}
+
+function addTuringTransition( transition ){
+	this.transitions[transition.character] = transition.endState;
+	for( var T in this.tranList ){
+		if( T.character = transition.character ){
+			var index = this.tranList.indexOf(T);
+			this.tranList.splice( index, 1 );
+		}
+	}
+	this.tranList.push(transition);	
+}
+
+function refreshTrans(){
+	this.transitions = {};
+	
 }
 
 function drawStartArrow(){
