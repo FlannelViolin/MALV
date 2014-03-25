@@ -142,7 +142,7 @@ function addTuringTransition( transition ){
 	if( !(Alphabet.indexOf(transition.character) > -1 ) ){
 		return;
 	}
-	this.transitions[transition.character] = transition.endState;
+	this.transitions[transition.character] = transition;
 	for(var i=0; i<this.tranList.length; i++){
 		var T = this.tranList[i];
 		if( T.character == transition.character ){

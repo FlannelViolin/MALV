@@ -15,14 +15,32 @@ var FStates     = [];
 var Alphabet 	= new Array('X');
 
 function execute(){
+	Tape = document.getElementById('input').value.split("");
+	currentState = Qzero;
+	nextState = null;
 	//
-	//The Loop
-	// 	Check the character on the tape using TapeIndex
-	//	Get the transition attached to that character
-	//		If there is no matching transition - Failure
-	// 	Write the character attached to the transition
-	//  Move the TapeIndex according to the transition
-	// 	Advance to the transitions "endState"
+	var safety = 0;
+	while( true ){
+		safety++;
+		if( safety > 500 ){
+			break;
+		}	
+		
+		// 	Check the character on the tape using TapeIndex
+		var tempChar = Tape[TapeIndex];
+		//	Get the transition attached to that character
+		var tempTran = currentState.transitions[tempChar];
+		//	If there is no matching transition - Failure
+		if( tempTran == null ){
+			// FAILURE
+		}		
+		// 	Write the character attached to the transition
+		Tape[TapeIndex] = tempTran.writeCharacter;
+		//  Move the TapeIndex according to the transition
+		TapeIndex += tempTran.tapeShift;
+		// 	Advance to the transitions "endState"
+		currentState = tempTran.endState;
+	}
 }
 
 
