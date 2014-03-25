@@ -43,9 +43,29 @@ function execute(){
 	}
 }
 
+function checkInput(){
+	execute();
+}
 
+function debugInput(){
+	execute();
+}
 
+function setSelectedAsStart(){
+	if( selectedState != null ){
+		Qzero = selectedState;
+		//toggle this for display	
+	}
+}
 
+function setSelectedAsAccept(){
+	if( selectedState != null ){
+		FStates.push(selectedState);
+		//toggle this for display
+		selectedState.isAccept = !selectedState.isAccept;
+		console.log(selectedState.label + " is accept? "  +selectedState.isAccept);
+	}
+}
 
 function RefreshAlphabet(){
 	Alphabet = new Array();
