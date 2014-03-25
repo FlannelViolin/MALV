@@ -27,6 +27,10 @@ function Transition(_beginState, _endState){
 	
 	this.anchorPoint1 = null;
 	this.anchorPoint2 = null;
+	
+	// For Turing
+	this.writeCharacter = '';	// Must be in alphabet
+	this.TapeShift = 0; 		// -1 for left, 1 for right, 0 for stay
 
 	// Functions
 	this.display = transitionDisplay;

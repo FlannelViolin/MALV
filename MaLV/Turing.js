@@ -6,6 +6,7 @@ var Turing = true;
 var Qstates     = [];
 // Tape
 var Tape		= [];
+var TapeIndex   = 0;
 // Start State
 var Qzero       = null;
 // Accept States
@@ -15,6 +16,13 @@ var Alphabet 	= new Array('X');
 
 function execute(){
 	//
+	//The Loop
+	// 	Check the character on the tape using TapeIndex
+	//	Get the transition attached to that character
+	//		If there is no matching transition - Failure
+	// 	Write the character attached to the transition
+	//  Move the TapeIndex according to the transition
+	// 	Advance to the transitions "endState"
 }
 
 
