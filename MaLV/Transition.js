@@ -30,7 +30,7 @@ function Transition(_beginState, _endState){
 	
 	// For Turing
 	this.writeCharacter = '';	// Must be in alphabet
-	this.TapeShift = 0; 		// -1 for left, 1 for right, 0 for stay
+	this.tapeShift = 0; 		// -1 for left, 1 for right, 0 for stay
 
 	// Functions
 	this.display = transitionDisplay;
@@ -71,8 +71,14 @@ function transitionDisplay(){
 	}
 	else{
 		recursiveLine(this.startState.x,this.startState.y,this.startState.radius);
-		ctx.font="15px Georgia";
-		ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10);
+		ctx.font="15px Georgia";		
+		if( Turing ){
+			ctx.fillText((this.character + "," + this.writeCharacter + "," + this.tapeShift),
+						this.startState.x,this.startState.y-this.startState.radius-10);
+		}
+		else{
+			ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10);
+		}
 	}
 	
 	
@@ -130,27 +136,35 @@ function drawArrow( diffX, diffY ){
 	var pointX = 0;
 	var pointY = 0;
 	
+	var arrowLabel;
+	if( Turing ){
+		arrowLabel = (this.character + "," + this.writeCharacter + "," + this.tapeShift);
+	}
+	else{
+		arrowLabel = this.character;
+	}
+	
 	if(this.endState.x < this.startState.x){ // end point is to the left of the start point
 		if(this.endState.y > this.startState.y){ // end point is under start point
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY - diffY/1.4;
-			ctx.fillText(this.character,pointX-diffX,pointY-diffY);
+			ctx.fillText(arrowLabel,pointX-diffX,pointY-diffY);
 		}
 		else{ // end point is above start point
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY + diffY/1.4;
-			ctx.fillText(this.character,pointX-diffX,pointY+diffY);
+			ctx.fillText(arrowLabel,pointX-diffX,pointY+diffY);
 		}
 	}else{ // end point is to the right of the start point *
 		if(this.endState.y > this.startState.y){ // end point is under start point			
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY + diffY/1.4;
-			ctx.fillText(this.character,pointX-diffX,pointY+diffY);
+			ctx.fillText(arrowLabel,pointX-diffX,pointY+diffY);
 		}
 		else{ // end point is above start point
 			pointX = this.midX + diffX/1.4;
 			pointY = this.midY + diffY/1.4;
-			ctx.fillText(this.character,pointX+diffX,pointY+diffY);
+			ctx.fillText(arrowLabel,pointX+diffX,pointY+diffY);
 		}
 	}	
 	

@@ -132,6 +132,10 @@ function updateMousePos(e){
 function makeNewTran( start, end ){
 	//console.log("CHECK");
 	var newTran = new Transition(start, end);
+	if( Turing ){
+		newTran.writeCharacter = Alphabet[0];
+		newTran.tapeShift = 0;
+	}
 	start.addTransition(newTran);
 	clearAccepted();
 }
