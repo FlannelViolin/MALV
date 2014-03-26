@@ -28,6 +28,12 @@ function update(){
 			ctx.fillText(lastKeyCode,mouseX,mouseY);
 		}
 	}
+	
+	if( Turing && selectedTran != null ){
+		selectedTran.character = document.getElementById('Read').value;
+		selectedTran.writeCharacter = document.getElementById('Write').value;
+		selectedTran.tapeShift = parseInt(document.getElementById('Shift').value);
+	}
 	//ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
 	//displayInputs(input);
 	//curvedLine(c.width/2,c.height/2,mouseX,mouseY);

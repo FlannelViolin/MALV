@@ -85,3 +85,11 @@ function RefreshAlphabet(){
 		st.refreshTrans();
 	}
 }
+
+function populateRWS(){
+	if( selectedTran != null ){
+		document.getElementById('Read').value = selectedTran.character;
+		document.getElementById('Write').value = selectedTran.writeCharacter;
+		document.getElementById('Shift').value = selectedTran.tapeShift;
+	}
+}

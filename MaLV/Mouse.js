@@ -46,7 +46,6 @@ function handleEvent(e){
   clickY -= Yoffset;
   
   clickedState = null;
-  selectedTran = null;
   
   for(var i=0;i<numStates;i++){
 	  var tempState = Qstates[i];
@@ -71,7 +70,10 @@ function handleEvent(e){
 		  if( distance( tempTran.midX, tempTran.midY, clickX, clickY) < 50 ){
 			  console.log("Transition " +  tempTran.character + " from State " + selectedState.label + " clicked");
 			  selectedTran = tempTran;
-			  selectedState.moving = false;
+			  populateRWS();
+			  selectedState.moving = false;	
+			  selectedState.toggleSelect();
+			  selectedState = null;			  
 			  return;
 			  //tempTran.character = lastKeyCode;
 		  }
@@ -115,6 +117,7 @@ function handleEvent(e){
 	  else{
 		  selectedState = clickedState;
 		  selectedState.toggleSelect();
+		  selectedTran = null;
 	  }
   }
  }
