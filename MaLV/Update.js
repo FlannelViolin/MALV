@@ -8,9 +8,10 @@ var pm = PlacementMode.STATE;
 var animating = false;
 
 function update(){
-	var d=new Date();
-	var t=d.toLocaleTimeString();
-	document.getElementById("demo").innerHTML=t;	
+	//var d=new Date();
+	//var t=d.toLocaleTimeString();
+	//document.getElementById("demo").innerHTML=t;	
+	
 	if(!animating){
 		ctx.clearRect(0,0,c.width,c.height);
 		//console.log("not animating");

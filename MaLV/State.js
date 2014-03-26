@@ -55,8 +55,8 @@ function TuringState( X, Y, id){
 
 function stateDisplay(){
 	if(this.moving){
-		this.x = mouseX;
-		this.y = mouseY;
+		this.x = mouseX + $(window).scrollLeft();
+		this.y = mouseY + $(window).scrollTop();
 	}	
 	if(this.selected){
 		ctx.strokeStyle = '#ff0000';

@@ -6,7 +6,7 @@ var mouseX = 0;
 var mouseY = 0;
 
 var y = c.offsetTop;
-var Yoffset = y + 45;
+var Yoffset = y;
 var Xoffset = 5;
 //c.addEventListener('click', handleEvent, false);
 c.addEventListener('mousedown', moveState, false);
@@ -18,9 +18,11 @@ var clickedState = null;
 var tranStartState = null;
 var selectedState = null;
 
+var selectedTran = null;
+
 function moveState(e){
 	handleEvent(e);
-	if( selectedState != null && pm == PlacementMode.STATE ){
+	if( selectedState != null && pm == PlacementMode.STATE && selectedTran == null){
 		selectedState.moving = true;
 	}
 }
@@ -38,12 +40,14 @@ function handleEvent(e){
  if ((evt.clientX || evt.clientY) &&
      document.body &&
      document.body.scrollLeft!=null) {
-  clickX = evt.clientX + document.body.scrollLeft;
-  clickY = evt.clientY + document.body.scrollTop;
+  clickX = evt.clientX + $(window).scrollLeft();
+  clickY = evt.clientY + $(window).scrollTop();
   clickX -= Xoffset;
   clickY -= Yoffset;
   
   clickedState = null;
+  selectedTran = null;
+  
   for(var i=0;i<numStates;i++){
 	  var tempState = Qstates[i];
 //	  for(var j=0; j < tempState.tranList.length; j++){
@@ -66,8 +70,10 @@ function handleEvent(e){
 		  tempTran = selectedState.tranList[j];
 		  if( distance( tempTran.midX, tempTran.midY, clickX, clickY) < 50 ){
 			  console.log("Transition " +  tempTran.character + " from State " + selectedState.label + " clicked");
-			  console.log(lastKeyCode);
-			  tempTran.character = lastKeyCode;
+			  selectedTran = tempTran;
+			  selectedState.moving = false;
+			  return;
+			  //tempTran.character = lastKeyCode;
 		  }
 	  }
   }
@@ -125,6 +131,9 @@ function handleEvent(e){
 }
 
 function updateMousePos(e){
+	y = c.offsetTop;
+	Yoffset = y;
+	Xoffset = 5;
 	mouseX = e.clientX -= Xoffset;
 	mouseY = e.clientY -= Yoffset;
 }

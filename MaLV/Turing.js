@@ -38,6 +38,13 @@ function execute(){
 		Tape[TapeIndex] = tempTran.writeCharacter;
 		//  Move the TapeIndex according to the transition
 		TapeIndex += tempTran.tapeShift;
+		if( TapeIndex < 0 ){
+			// shift the whole tape right
+			// write null at new [0] position
+		}
+		if( TapeIndex > tape.length ){
+			// add new null character to end of tape
+		}
 		// 	Advance to the transitions "endState"
 		currentState = tempTran.endState;
 	}
