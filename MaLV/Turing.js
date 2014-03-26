@@ -26,6 +26,8 @@ function execute(){
 			break;
 		}	
 		
+		alert("Current State: " + currentState.label);
+		alert("Input: " + Tape);
 		// 	Check the character on the tape using TapeIndex
 		var tempChar = Tape[TapeIndex];
 		//	Get the transition attached to that character
@@ -42,7 +44,7 @@ function execute(){
 			// shift the whole tape right
 			// write null at new [0] position
 		}
-		if( TapeIndex > tape.length ){
+		if( TapeIndex > Tape.length ){
 			// add new null character to end of tape
 		}
 		// 	Advance to the transitions "endState"
