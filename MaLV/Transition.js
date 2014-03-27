@@ -22,6 +22,9 @@ function Transition(_beginState, _endState){
 	this.midX = (_beginState.x + _endState.x)/2;
 	this.midY = (_beginState.y + _endState.y)/2;
 	
+	this.entX = this.midX;
+	this.entY = this.midY;
+	
 	this.startState = _beginState;
 	this.endState = _endState;
 	
@@ -75,6 +78,8 @@ function transitionDisplay(){
 		if( Turing ){
 			ctx.fillText((this.character + "," + this.writeCharacter + "," + this.tapeShift),
 						this.startState.x,this.startState.y-this.startState.radius-10);
+			this.entX = this.x;
+			this.entY = this.startState.y-this.startState.radius-10;
 		}
 		else{
 			ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10);
@@ -147,7 +152,7 @@ function drawArrow( diffX, diffY ){
 	if(this.endState.x < this.startState.x){ // end point is to the left of the start point
 		if(this.endState.y > this.startState.y){ // end point is under start point
 			pointX = this.midX - diffX/1.4;
-			pointY = this.midY - diffY/1.4;
+			pointY = this.midY - diffY/1.4;			
 			ctx.fillText(arrowLabel,pointX-diffX,pointY-diffY);
 		}
 		else{ // end point is above start point
@@ -166,7 +171,9 @@ function drawArrow( diffX, diffY ){
 			pointY = this.midY + diffY/1.4;
 			ctx.fillText(arrowLabel,pointX+diffX,pointY+diffY);
 		}
-	}	
+	}
+	this.entX = pointX;	
+	this.entY = pointY;
 	
 	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
 	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);

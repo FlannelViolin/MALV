@@ -67,7 +67,7 @@ function handleEvent(e){
   if( selectedState != null){
 	  for(var j=0; j < selectedState.tranList.length; j++){
 		  tempTran = selectedState.tranList[j];
-		  if( distance( tempTran.midX, tempTran.midY, clickX, clickY) < 50 ){
+		  if( distance( tempTran.entX, tempTran.entY, clickX, clickY) < 35 ){
 			  console.log("Transition " +  tempTran.character + " from State " + selectedState.label + " clicked");
 			  selectedTran = tempTran;
 			  populateRWS();
