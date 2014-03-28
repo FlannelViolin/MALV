@@ -1,6 +1,9 @@
 
 // ------------ State -------------
 //
+var overlapping = new Array();
+var textoffset = 0;
+//
 function State( X, Y, id){
 	//alert('State Created');
 	
@@ -84,9 +87,12 @@ function stateDisplay(){
 	ctx.fillText(this.label,this.x-5,this.y+5);
 	
 	// Draw all attached transitions
+	overlapping = new Array();
+	textoffset = 0;
 	for(var i=0; i<this.tranList.length; i++){
 		T = this.tranList[i];
 		T.display();
+		overlapping.push(T.endState);
 	}
 }
 

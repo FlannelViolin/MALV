@@ -59,6 +59,10 @@ function getEndState(){
 
 function transitionDisplay(){
 
+	if( $.inArray(this.endState, overlapping) != -1){
+		textoffset += 13;
+	}
+
 	this.midX = (this.startState.x + this.endState.x)/2;
 	this.midY = (this.startState.y + this.endState.y)/2;
 
@@ -77,12 +81,12 @@ function transitionDisplay(){
 		ctx.font="15px Georgia";		
 		if( Turing ){
 			ctx.fillText((this.character + "," + this.writeCharacter + "," + this.tapeShift),
-						this.startState.x,this.startState.y-this.startState.radius-10);
+						this.startState.x,this.startState.y-this.startState.radius-10-textoffset);
 			this.entX = this.x;
 			this.entY = this.startState.y-this.startState.radius-10;
 		}
 		else{
-			ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10);
+			ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10-textoffset);
 		}
 	}
 	
@@ -153,23 +157,23 @@ function drawArrow( diffX, diffY ){
 		if(this.endState.y > this.startState.y){ // end point is under start point
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY - diffY/1.4;			
-			ctx.fillText(arrowLabel,pointX-diffX,pointY-diffY);
+			ctx.fillText(arrowLabel,pointX-diffX,pointY-diffY+textoffset);
 		}
 		else{ // end point is above start point
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY + diffY/1.4;
-			ctx.fillText(arrowLabel,pointX-diffX,pointY+diffY);
+			ctx.fillText(arrowLabel,pointX-diffX,pointY+diffY+textoffset);
 		}
 	}else{ // end point is to the right of the start point *
 		if(this.endState.y > this.startState.y){ // end point is under start point			
 			pointX = this.midX - diffX/1.4;
 			pointY = this.midY + diffY/1.4;
-			ctx.fillText(arrowLabel,pointX-diffX,pointY+diffY);
+			ctx.fillText(arrowLabel,pointX-diffX,pointY+diffY+textoffset);
 		}
 		else{ // end point is above start point
 			pointX = this.midX + diffX/1.4;
 			pointY = this.midY + diffY/1.4;
-			ctx.fillText(arrowLabel,pointX+diffX,pointY+diffY);
+			ctx.fillText(arrowLabel,pointX+diffX,pointY+diffY+textoffset);
 		}
 	}
 	this.entX = pointX;	
