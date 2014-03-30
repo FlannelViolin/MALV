@@ -13,10 +13,13 @@ function update(){
 	//document.getElementById("demo").innerHTML=t;	
 	
 	if(!animating){
-		ctx.clearRect(0,0,c.width,c.height);
+		//ctx.clearRect(0,0,c.width,c.height);
 		//console.log("not animating");
-		
-		ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
+		ctx.fillStyle="white";
+		ctx.fillRect(0,0,c.width,c.height);
+		//ictx.clearRect(0,0,inputCanvas.width,inputCanvas.height);
+		ictx.fillStyle="#728C9A";
+		ictx.fillRect(0,0,inputCanvas.width,inputCanvas.height);
 		displayInputs(input);
 		for(var i=0; i<Qstates.length; i++){
 			Qstates[i].display();

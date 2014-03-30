@@ -115,8 +115,9 @@ function readInputAnimated(input){
 		
 		
 		
-		ctx.clearRect(0,0,c.width,c.height);
-
+		//ctx.clearRect(0,0,c.width,c.height);
+		ctx.fillStyle="#B7AA86";
+		ctx.fillRect(0,0,c.width,c.height);
 		//clears ctx for this current state of the machine
 		drawMachine();
 		//highlights the currrent state
