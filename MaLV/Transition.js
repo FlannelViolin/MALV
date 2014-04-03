@@ -65,6 +65,10 @@ function transitionDisplay(){
 	
 	if( this == selectedTran ){
 		ctx.fillStyle="blue";
+		this.character = lastKeyCode;
+	}
+	else{
+		ctx.fillStyle="black";
 	}
 
 	this.midX = (this.startState.x + this.endState.x)/2;
@@ -184,12 +188,12 @@ function drawArrow( diffX, diffY ){
 	this.entY = pointY;
 	
 	if( this.startState == selectedState ){
+		ctx.fillStyle = "rgba(0,0,255,.5)";
 		ellipse(pointX, pointY, 17);
 	}
-	else{
-		line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
-		line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
-	}
+	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
+	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
+
 	
 	//var anchorVector = new Vector(this.stateState.x - this.endState.x,this.startState.y - this.endState.y);
 	//anchorVector = normalizee(anchorVector);
