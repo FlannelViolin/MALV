@@ -4,6 +4,7 @@ html{
 }
 body{
 	background-color: #B7A77A;
+	margin:20px;
 }
 
 #canvases{
@@ -18,3 +19,7 @@ img{
 	width:auto;
 	max-height:100%;
 }
+p{
+	width:510px;
+}
+
