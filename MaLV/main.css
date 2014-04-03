@@ -1,12 +1,20 @@
-/*http://colorschemedesigner.com/#3t31Tdth1xQpB*/
+﻿/*http://colorschemedesigner.com/#3t31Tdth1xQpB*/
 html{
 	font-family:Georgia;
 }
 body{
-	
-	background-color:#B7A77A;
+	background-color: #B7A77A;
 }
 
 #canvases{
 
+}
+
+#intro{
+	margin:50px;
+}
+
+img{
+	width:auto;
+	max-height:100%;
 }
