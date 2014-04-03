@@ -62,6 +62,10 @@ function transitionDisplay(){
 	if( $.inArray(this.endState, overlapping) != -1){
 		textoffset += 13;
 	}
+	
+	if( this == selectedTran ){
+		ctx.fillStyle="blue";
+	}
 
 	this.midX = (this.startState.x + this.endState.x)/2;
 	this.midY = (this.startState.y + this.endState.y)/2;
@@ -179,8 +183,13 @@ function drawArrow( diffX, diffY ){
 	this.entX = pointX;	
 	this.entY = pointY;
 	
-	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
-	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
+	if( this.startState == selectedState ){
+		ellipse(pointX, pointY, 17);
+	}
+	else{
+		line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
+		line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
+	}
 	
 	//var anchorVector = new Vector(this.stateState.x - this.endState.x,this.startState.y - this.endState.y);
 	//anchorVector = normalizee(anchorVector);

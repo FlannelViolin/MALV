@@ -17,7 +17,6 @@ var numStates = 0;
 var clickedState = null;
 var tranStartState = null;
 var selectedState = null;
-
 var selectedTran = null;
 
 function moveState(e){

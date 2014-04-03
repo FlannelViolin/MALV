@@ -252,16 +252,6 @@ function getNextState( current, inputChar){
 	// Find the state at the end of the transition that matches the input Character
 	// return that state ( or NULL )
 	
-	// CHANGE THIS
-	//next = null;
-	//for( t in current.tranList ){
-	//	console.log("input charactger: " + inputChar + " available transition: " + current.tranList[t].character);
-	//	if( current.tranList[t].character == inputChar ){
-	//		next = current.tranList[t].endState;
-	//	}
-	//}
-	
-	//USE THESE vvv
 	next = current.transitions[inputChar];
 	
 	return next;
