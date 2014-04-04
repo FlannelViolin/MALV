@@ -65,7 +65,9 @@ function transitionDisplay(){
 	
 	if( this == selectedTran ){
 		ctx.fillStyle="blue";
-		this.character = lastKeyCode;
+		if( !Turing ){
+			this.character = lastKeyCode;
+		}
 	}
 	else{
 		ctx.fillStyle="black";
