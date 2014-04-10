@@ -23,6 +23,7 @@ function State( X, Y, id){
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
 	this.toggleSelect = toggleSelect;
+	this.destroy = StateDestroy;
 }
 //----------------------------------
 // ---------- Turing State ---------
