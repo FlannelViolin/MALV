@@ -31,6 +31,7 @@ function Transition(_beginState, _endState){
 	this.getEndState = getEndState;	
 	this.setAnchors = setAnchors;
 	this.destroy = TranDestroy;
+	this.reset = TranReset;
 	
 }
 
@@ -181,7 +182,17 @@ function drawArrow( diffX, diffY ){
 	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
 }
 
-function TranDestroy(){
+function TranReset(){
 	this.startState.transitions[this.character] = this.startState;
 	this.endState = this.startState;	
 }
+
+function TranDestroy(){
+	if( Turing ){
+		this.reset();
+		return;
+	}
+	this.startState.transitions[this.character] = null;
+	deleteAtIndex = $.inArray(this, this.startState.tranList);
+	this.startState.tranList.splice( deleteAtIndex, 1 );
+}	

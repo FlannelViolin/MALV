@@ -175,7 +175,6 @@ function deleteSelected(){
 	// If current selection is a transition
 	if( selectedTran != null ){
 		console.log("Deleting Transition " + selectedTran.character);
-		// Remove from parent's transitions list and dictionary
-		// Delete transition
+		selectedTran.destroy();
 	}
 }
