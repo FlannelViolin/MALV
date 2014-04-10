@@ -34,7 +34,8 @@ function execute(){
 		var tempTran = currentState.transitions[tempChar];
 		//	If there is no matching transition - Failure
 		if( tempTran == null ){
-			// FAILURE
+			alert("No valid transition found or No character to read");
+			return;
 		}		
 		// 	Write the character attached to the transition
 		Tape[TapeIndex] = tempTran.writeCharacter;
