@@ -162,3 +162,20 @@ function makeNewTran( start, end ){
 	start.addTransition(newTran);
 	clearAccepted();
 }
+
+function deleteSelected(){
+	// If current selection is a state
+	if( selectedState != null ){
+		console.log("Deleting State " + selectedState.label);
+		selectedState.destroy();
+		selectedState = null;
+		numStates -= 1;
+	}
+	
+	// If current selection is a transition
+	if( selectedTran != null ){
+		console.log("Deleting Transition " + selectedTran.character);
+		// Remove from parent's transitions list and dictionary
+		// Delete transition
+	}
+}

@@ -30,6 +30,7 @@ function Transition(_beginState, _endState){
 	this.setCharacter = setCharacter;
 	this.getEndState = getEndState;	
 	this.setAnchors = setAnchors;
+	this.destroy = TranDestroy;
 	
 }
 
@@ -178,4 +179,9 @@ function drawArrow( diffX, diffY ){
 	}
 	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
 	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
+}
+
+function TranDestroy(){
+	this.startState.transitions[this.character] = this.startState;
+	this.endState = this.startState;	
 }

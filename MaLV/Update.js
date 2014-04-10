@@ -23,11 +23,7 @@ function update(){
 		displayInputs(input);
 		for(var i=0; i<Qstates.length; i++){
 			Qstates[i].display();
-		}
-		if( drawingTran == true && clickedState != null && pm == PlacementMode.TRANSITION ){
-			line(clickedState.x, clickedState.y, mouseX, mouseY, ctx);
-			ctx.fillText(lastKeyCode,mouseX,mouseY);
-		}
+		}		
 	}
 	
 	// Set the selected transitions attributes to those in the text boxes
@@ -39,8 +35,8 @@ function update(){
 
 	// Draw a line simulating the transition being created
 	if( drawingTran == true && clickedState != null && pm == PlacementMode.TRANSITION ){
-		line(clickedState.x, clickedState.y, mouseX, mouseY, ctx);
-		ctx.fillText(lastKeyCode,mouseX,mouseY);
+		line(clickedState.x, clickedState.y, mouseX, mouseY+$(window).scrollTop(), ctx);
+		ctx.fillText(lastKeyCode,mouseX,mouseY+ $(window).scrollTop());
 	}
 }
 

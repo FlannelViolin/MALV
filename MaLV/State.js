@@ -49,7 +49,9 @@ function TuringState( X, Y, id){
 	this.addTransition = addTuringTransition;
 	this.toggleSelect = toggleSelect;
 	this.refreshTrans = refreshTrans;
+	this.destroy = StateDestroy;
 	
+	// Call this initially
 	this.refreshTrans();
 }
 //----------------------------------
@@ -190,4 +192,26 @@ function drawStartArrow(){
 	line(xPoint, yPoint, xPoint + tail1XOffset, yPoint-tail1YOffset, ctx);
 	line(xPoint, yPoint, xPoint + tail2XOffset, yPoint-tail2YOffset, ctx);
 	
+}
+
+function StateDestroy(){
+	// Delete all transitions leading TO this state
+	var destroyQueue = new Array();
+	for(var i=0;i<numStates;i++){
+		var deleteTempState = Qstates[i];
+		for(var j=0; j < deleteTempState.tranList.length; j++){
+			deleteTempTran = deleteTempState.tranList[j];
+			if( deleteTempTran.endState == this ){
+				destroyQueue.push( deleteTempTran );
+			}
+		}
+	}
+	for(var k=0;k<destroyQueue.length;k++){
+		destroyQueue[k].destroy();
+	}
+
+	// Delete myself
+	deleteAtIndex = $.inArray(this, Qstates);
+	Qstates.splice( deleteAtIndex, 1 );	
+	delete this;
 }
