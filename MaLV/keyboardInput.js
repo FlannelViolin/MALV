@@ -1,19 +1,17 @@
-var lastKeyCode = "X";
 
-//function handleKeyPress(e){
-//	lastKeyCode = e.keyCode;
-//   console.log("Keycode set to " + lastKeyCode);
-//}
+// Handle Keyboard input
 
+var lastKeyCode = "X";			//variable to track the las key pressed
+
+// Called on key press
 $(document).ready(function(){
-//	console.log("MERP");
   $(this).keydown(function(e){
-    lastKeyCode = String.fromCharCode(e.keyCode);
-    console.log("Keycode set to " + lastKeyCode);
-    changeSelectedStateLabel();
+    lastKeyCode = String.fromCharCode(e.keyCode);		// Changes lastKeyCode
+	// DEBUG
+    // console.log("Keycode set to " + lastKeyCode);
+    changeSelectedStateLabel();							// Changes the Label of the selected state
   });
   $("input").keyup(function(){
-   //
   });
 });
 

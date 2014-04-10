@@ -1,5 +1,5 @@
 /**
- *Georgia is AWESOME
+ * Georgia is AWESOME
  * 
  * 
  */

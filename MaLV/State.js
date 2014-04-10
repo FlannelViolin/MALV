@@ -5,8 +5,6 @@ var overlapping = new Array();
 var textoffset = 0;
 //
 function State( X, Y, id){
-	//alert('State Created');
-	
 	// Vars
 	this.transitions = {};
 	this.tranList = new Array();

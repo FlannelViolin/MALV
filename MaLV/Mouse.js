@@ -2,13 +2,16 @@
  *  Controls mouse input
  */
 
+ // Mouse position
 var mouseX = 0;
 var mouseY = 0;
 
+// Offsets for drawing canvas and detecting input
 var y = c.offsetTop;
 var Yoffset = y;
 var Xoffset = 5;
-//c.addEventListener('click', handleEvent, false);
+
+// Define functions to be called on mouse clicks
 c.addEventListener('mousedown', moveState, false);
 c.addEventListener('mouseup', stopMoveState, false);
 c.onmousemove = updateMousePos;
@@ -19,6 +22,7 @@ var tranStartState = null;
 var selectedState = null;
 var selectedTran = null;
 
+// Called on mouseDown event
 function moveState(e){
 	handleEvent(e);
 	if( selectedState != null && pm == PlacementMode.STATE && selectedTran == null){
@@ -26,16 +30,19 @@ function moveState(e){
 	}
 }
 
+// Called on mouseUp event
 function stopMoveState(e){
 	if( selectedState != null && pm == PlacementMode.STATE ){
 		selectedState.moving = false;
 	}
 }
 
+// Called on any mouse Click
 function handleEvent(e){
  var evt = e ? e:window.event;
  var clickX=0, clickY=0;
 
+ // Determine location of click
  if ((evt.clientX || evt.clientY) &&
      document.body &&
      document.body.scrollLeft!=null) {
@@ -46,38 +53,38 @@ function handleEvent(e){
   
   clickedState = null;
   
+  // Check each state
   for(var i=0;i<numStates;i++){
 	  var tempState = Qstates[i];
-//	  for(var j=0; j < tempState.tranList.length; j++){
-//		  tempTran = tempState.tranList[j];
-//		  if( distance( tempTran.midX, tempTran.midY, clickX, clickY) < 50 ){
-//			  console.log("Transition " +  tempTran.character + " from State " + tempState.label + " clicked");
-//			  console.log(lastKeyCode);
-//			  tempTran.character = lastKeyCode;
-//		  }
-//	  }
-	  //console.log("Distance to " + tempState.label + ": " + distance(tempState.x,tempState.y,clickX,clickY));
+	  
+	  // Successful click on a state
 	  if(distance(tempState.x,tempState.y,clickX,clickY) < 42){
 		  console.log("State " + tempState.label + " clicked");
 		  clickedState = Qstates[i];
 		  break;
 	  }
   }
+  
+  // A state is already selected
   if( selectedState != null){
+  
+	  // Check transitions belonging to selected state
 	  for(var j=0; j < selectedState.tranList.length; j++){
 		  tempTran = selectedState.tranList[j];
+		  
+		  // Successful click on a transition
 		  if( distance( tempTran.entX, tempTran.entY, clickX, clickY) < 30 ){
-			  console.log("Transition " +  tempTran.character + " from State " + selectedState.label + " clicked");
+			  // DEBUG
+			  //console.log("Transition " +  tempTran.character + " from State " + selectedState.label + " clicked");
 			  lastKeyCode = tempTran.character;
 			  selectedTran = tempTran;
 			  if( Turing ){
-				populateRWS();kh
+				populateRWS();
 			  }
 			  selectedState.moving = false;	
 			  selectedState.toggleSelect();
 			  selectedState = null;			  
 			  return;
-			  //tempTran.character = lastKeyCode;
 		  }
 	  }
   }
@@ -124,6 +131,7 @@ function handleEvent(e){
   }
  }
  
+// DEBUG
 // alert (evt.type.toUpperCase() + ' mouse event:'
 //  +'\n pageX = ' + clickX
 //  +'\n pageY = ' + clickY 
@@ -135,6 +143,7 @@ function handleEvent(e){
  return false;
 }
 
+// Updates the variables tracking the mouse's position
 function updateMousePos(e){
 	y = c.offsetTop;
 	Yoffset = y;
@@ -143,8 +152,8 @@ function updateMousePos(e){
 	mouseY = e.clientY -= Yoffset;
 }
 
+// Make a new transition with start and end states as params
 function makeNewTran( start, end ){
-	//console.log("CHECK");
 	var newTran = new Transition(start, end);
 	if( Turing ){
 		newTran.writeCharacter = Alphabet[0];

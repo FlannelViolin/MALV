@@ -1,32 +1,20 @@
 /**
- * 
+ *  Script defining transition 'objects' and related methods
  */
 
-//
-// -------------- Transition ----------------
-//
-// character
-// AnchorPoint[]
-// endState
-// beginState
-//
-// list or hash of transitions
-//
-// Color
-// ------------------------------------
-
-
+ // Transition Constructor
 function Transition(_beginState, _endState){
 	// Vars
-	this.character = lastKeyCode;
-	this.midX = (_beginState.x + _endState.x)/2;
-	this.midY = (_beginState.y + _endState.y)/2;
+	this.character = lastKeyCode;					// Transitions 'Key'
 	
-	this.entX = this.midX;
-	this.entY = this.midY;
+	this.midX = (_beginState.x + _endState.x)/2;	// Midpoint of transition
+	this.midY = (_beginState.y + _endState.y)/2;	// Used in drawing calculations
 	
-	this.startState = _beginState;
-	this.endState = _endState;
+	this.entX = this.midX;							// "Entity point" of transition
+	this.entY = this.midY;							// Used for selecting transition
+	
+	this.startState = _beginState;					// Transition's start state
+	this.endState = _endState;						// Transitions end State
 	
 	this.anchorPoint1 = null;
 	this.anchorPoint2 = null;
@@ -45,6 +33,7 @@ function Transition(_beginState, _endState){
 	
 }
 
+// Returns transition's key character
 function getCharacter(){
 	return this.character;
 }
@@ -54,15 +43,16 @@ function setCharacter(c){
 }
 
 function getEndState(){
-	
+	return this.endState;
 }
 
 function transitionDisplay(){
-
+	// Offsets text if sharing a position with another transition
 	if( $.inArray(this.endState, overlapping) != -1){
 		textoffset += 13;
 	}
 	
+	// Denote that this is selected transition by color change
 	if( this == selectedTran ){
 		ctx.fillStyle="blue";
 		if( !Turing ){
@@ -73,19 +63,19 @@ function transitionDisplay(){
 		ctx.fillStyle="black";
 	}
 
+	// Calculate current midpoint
 	this.midX = (this.startState.x + this.endState.x)/2;
 	this.midY = (this.startState.y + this.endState.y)/2;
 
-	// THIS DOESNT WORK 
-
-	//this.setAnchors(this.startState.snapTransition(this.endState.position),this.endState.snapTransition(this.startState.position));
+	// Draw transition if it is between to different states
 	if(this.startState != this.endState){
-		//line(this.anchorPoint1.x,this.anchorPoint1.y,this.anchorPoint2.x, this.anchorPoint2.y);
 		diffArray = curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
 		
 		ctx.font="15px Georgia";		
 		this.drawArrow( diffArray[0], diffArray[1] );
 	}
+	
+	// Draw transition if it is a recursive transition
 	else{
 		recursiveLine(this.startState.x,this.startState.y,this.startState.radius);
 		ctx.font="15px Georgia";		
@@ -98,8 +88,7 @@ function transitionDisplay(){
 		else{
 			ctx.fillText(this.character,this.startState.x,this.startState.y-this.startState.radius-10-textoffset);
 		}
-	}
-	
+	}	
 	
 	if(Qzero == this.startState){
 		ctx.strokeStyle = '#ff0000';
@@ -109,13 +98,6 @@ function transitionDisplay(){
 	}
 
 }
-
-
-
-/*
-function getAnchors(){
-
-}*/
 
 // _start and end are vectors that have been snapped
 function setAnchors(_start, _end){
@@ -137,6 +119,7 @@ function setAnchors(_start, _end){
 	}
 }
 
+// Draws the transition. painful and complex.
 function drawArrow( diffX, diffY ){
 	var a = this.startState.x - this.endState.x;
 	var b = this.startState.y - this.endState.y;
@@ -195,9 +178,4 @@ function drawArrow( diffX, diffY ){
 	}
 	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
 	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
-
-	
-	//var anchorVector = new Vector(this.stateState.x - this.endState.x,this.startState.y - this.endState.y);
-	//anchorVector = normalizee(anchorVector);
-	//anchorVector.x *= radius
 }

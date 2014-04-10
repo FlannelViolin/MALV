@@ -17,6 +17,10 @@ var Alphabet 	= new Array('X');
 function execute(){
 	Tape = document.getElementById('input').value.split("");
 	currentState = Qzero;
+	if( currentState == null ){
+		alert("No start state");
+	}
+	
 	nextState = null;
 	//
 	var safety = 0;
@@ -24,7 +28,7 @@ function execute(){
 		safety++;
 		if( safety > 500 ){
 			break;
-		}	
+		}
 		
 		alert("Current State: " + currentState.label);
 		alert("Input: " + Tape);

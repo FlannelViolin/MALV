@@ -1,6 +1,7 @@
 /**
  * 
  */
+ 
 // p being the position of the anchor point on the canvas, t being the transition.
 function AnchorPoint(p, t){
 	this.position = p;

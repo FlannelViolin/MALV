@@ -1,3 +1,7 @@
+/**
+* Draws Stuff
+* With Math!
+*/
 
 //xy are the center point, r is the radius of the circle
 function ellipse(x,y,r){
