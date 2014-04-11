@@ -3,6 +3,7 @@
  */
 var bufferX = 15; // this var is for the space between inputs in input box
 
+var prevInputs = [];
 var checkedInputs = [];  // checked inputs for input box
 var didAccept = []; // array of booleans if an input was accepted or not
 //input is a string
@@ -56,6 +57,10 @@ function drawAccepted(){
 			ictx.fillStyle = 'AA0000';
 			ictx.fillText("Invalid",inputCanvas.width-50,10+i*bufferX);
 		}
+		if(didAccept[i] == AcceptedForInput.CLEARED){
+			ictx.fillStyle = 'AA0000';
+			ictx.fillText("-",inputCanvas.width-50,10+i*bufferX);
+		}
 		
 	}
 }
@@ -66,12 +71,17 @@ function setAcceptedForInput (inputAccepted){
 }
 
 function clearInputCanvas(){
+	prevInputs = checkedInputs;
+	
 	checkedInputs = [];
+	
 	didAccept = [];
 }
 
 function clearAccepted(){
-	didAccept = [];
+	for(i in didAccept){
+		didAccept[i] = AcceptedForInput.CLEARED;
+	}
 }
 
 

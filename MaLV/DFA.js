@@ -37,11 +37,11 @@ function readInput(input,newInput){
 		Qzero = Qstates[0];
 	}*/
 	// Check valid machine state
-	displayInputs(input,true);
+	if(newInput){displayInputs(input,true);}
 	if( !checkValidMachine() ){
 		alert("Invalid Machine state: " + error);
-		setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
-		return false;
+		if(newInput){setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);}
+		return AcceptedForInput.IMPOSSIBLE;
 	}
 	console.log(input);
 	//displayInputs(input,true);
@@ -64,8 +64,8 @@ function readInput(input,newInput){
 		nextState = getNextState( currentState, inputList[s] );
 		if( nextState == null ){
 			alert("Failure, no transition found");
-			setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
-			return false;
+			if(newInput){setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);}
+			return AcceptedForInput.IMPOSSIBLE;
 		}
 		if(alerts){
 			alert("Found transition, advancing to State: " + nextState.label);
@@ -77,11 +77,12 @@ function readInput(input,newInput){
 	
 	if( $.inArray(currentState, FStates) != -1 ){
 		alert("Machine completed in accept " + currentState.label + " State for string " + input);
-		setAcceptedForInput(AcceptedForInput.ACCEPTED);
-		return;
+		if(newInput){setAcceptedForInput(AcceptedForInput.ACCEPTED);}
+		return AcceptedForInput.ACCEPTED;
 	}
 	alert("Not accepted, \n finished  in state " + currentState.label + " for string " + input);
-	setAcceptedForInput(AcceptedForInput.NOTACCEPTED);
+	if(newInput){setAcceptedForInput(AcceptedForInput.NOTACCEPTED);}
+	return AcceptedForInput.NOTACCEPTED;
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -150,6 +151,7 @@ function readInputAnimated(input){
 				
 				
 				alert("Machine completed in accept State");
+				
 				setAcceptedForInput(AcceptedForInput.ACCEPTED);
 				animating = false; // updates can start drawing again
 				return;
@@ -286,6 +288,6 @@ function checkAllPreviousInput(){ // array should all be strings
 	clearAccepted();
 	alerts = false;
 	for(i in checkedInputs){
-		readInput(checkedInputs[i],false);
+		didAccept[i] = readInput(checkedInputs[i],false);
 	}
 }
