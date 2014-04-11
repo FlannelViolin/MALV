@@ -3,7 +3,6 @@
  */
 var bufferX = 15; // this var is for the space between inputs in input box
 
-var prevInputs = [];
 var checkedInputs = [];  // checked inputs for input box
 var didAccept = []; // array of booleans if an input was accepted or not
 //input is a string
@@ -71,7 +70,6 @@ function setAcceptedForInput (inputAccepted){
 }
 
 function clearInputCanvas(){
-	prevInputs = checkedInputs;
 	
 	checkedInputs = [];
 	
