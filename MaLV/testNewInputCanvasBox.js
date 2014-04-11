@@ -1,6 +1,6 @@
 var bufferX = 15;
 
-checkedInputs []; // array of inputs[]s 
+checkedInputs = []; // array of inputs[]s 
 input = []; // 2 index arry of all a single input and its relative accepted state 
 
 // takes a new input 
@@ -46,7 +46,7 @@ function drawAccepted(){
 
 function setAcceptedForInput (inputAccepted){
 		for(i in checkedInputs){
-			if(checkedInputs[i][1] ==null({ // find the latest null value, fill it in
+			if(checkedInputs[i][1] ==null){ // find the latest null value, fill it in
 				checkedInputs[i][1] = inputAccpted;
 				break;
 			}

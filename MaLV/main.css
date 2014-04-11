@@ -1,6 +1,7 @@
-﻿/*http://colorschemedesigner.com/#3t31Tdth1xQpB*/
+/*http://colorschemedesigner.com/#3t31Tdth1xQpB*/
 html{
 	font-family:Georgia;
+	position:absolute;
 }
 body{
 	background-color: #B7A77A;
@@ -10,6 +11,8 @@ body{
 #canvases{
 
 }
+
+
 
 #intro{
 	margin:50px;
