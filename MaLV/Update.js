@@ -20,7 +20,7 @@ function update(){
 		ictx.fillRect(0,0,inputCanvas.width,inputCanvas.height);
 		
 		// Draw the elements in their current state
-		displayInputs(input);
+		displayInputs(input,false);
 		for(var i=0; i<Qstates.length; i++){
 			Qstates[i].display();
 		}		

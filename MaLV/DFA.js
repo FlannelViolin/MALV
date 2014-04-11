@@ -37,11 +37,14 @@ function readInput(input,newInput){
 		Qzero = Qstates[0];
 	}*/
 	// Check valid machine state
+	displayInputs(input,true);
 	if( !checkValidMachine() ){
 		alert("Invalid Machine state: " + error);
+		setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
 		return false;
 	}
-	displayInputs(input,newInput);
+	console.log(input);
+	//displayInputs(input,true);
 	currentState = Qzero;
 	prevState = null;
 	nextState = null;
@@ -61,7 +64,7 @@ function readInput(input,newInput){
 		nextState = getNextState( currentState, inputList[s] );
 		if( nextState == null ){
 			alert("Failure, no transition found");
-			setAcceptedForInput(false);
+			setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
 			return false;
 		}
 		if(alerts){
@@ -74,11 +77,11 @@ function readInput(input,newInput){
 	
 	if( $.inArray(currentState, FStates) != -1 ){
 		alert("Machine completed in accept " + currentState.label + " State for string " + input);
-		setAcceptedForInput(true);
+		setAcceptedForInput(AcceptedForInput.ACCEPTED);
 		return;
 	}
 	alert("Not accepted, \n finished  in state " + currentState.label + " for string " + input);
-	setAcceptedForInput(false);
+	setAcceptedForInput(AcceptedForInput.NOTACCEPTED);
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -131,7 +134,7 @@ function readInputAnimated(input){
 		if(nextState == null){
 			alert("no transition found");
 			animating = false; // resumes the update method clearing the context
-			setAcceptedForInput(false);
+			setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
 			return false; // breaks out of method
 		}
 		
@@ -147,13 +150,13 @@ function readInputAnimated(input){
 				
 				
 				alert("Machine completed in accept State");
-				setAcceptedForInput(true);
+				setAcceptedForInput(AcceptedForInput.ACCEPTED);
 				animating = false; // updates can start drawing again
 				return;
 			}
 			else{
 				alert("Not accepted, \n finished  in state" + currentState.label);
-				setAcceptedForInput(false);
+				setAcceptedForInput(AcceptedForInput.NOTACCEPTED);
 				animating = false; // updates can start drawing again
 				return;
 			}
@@ -186,13 +189,16 @@ function debugInput(){
 	animatedInput = 0;
 	animating = true;
 	input = document.getElementById('input').value;
+	
+	displayInputs(input,true);
 	console.log(input);
 	if( !checkValidMachine() ){
 		alert("Invalid Machine state: " + error);
 		animating = false;
+		setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
 		return false;
 	}
-	displayInputs(input,true);
+	
 	currentState = Qzero;
 	prevState = null;
 	nextState = null;

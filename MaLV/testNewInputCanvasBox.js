@@ -6,7 +6,7 @@ input = []; // 2 index arry of all a single input and its relative accepted stat
 // takes a new input 
 function takeInputs(newInput,go){
 	ictx.font="10px Georgia";
-	
+	console.log(newInput);
 	for(i in checkedInputs){
 		ictx.fillStyle = 'black';
 		ictx.fillText("Checked Input: " + checkedInputs[i][0],10, 10 +i*bufferX);
@@ -28,17 +28,17 @@ function takeInputs(newInput,go){
 function drawAccepted(){
 	line(inputCanvas.width-60,0,inputCanvas.width-60,inputCanvas.height,ictx);
 	for(i in checkedInputs){
-		if(checkedInputs[i][1] == ACCEPTED){
+		if(checkedInputs[i][1] == AcceptedForInput.ACCEPTED){
 			ictx.fillStyle = '#AAFF00';
-			ictx.fillText("O",inputCanvas.width-50,10+i*bufferX);
+			ictx.fillText("Accepted",inputCanvas.width-50,10+i*bufferX);
 		}
-		if(checkedInputs[i][1]== NOTACCEPTED){
+		if(checkedInputs[i][1]== AcceptedForInput.NOTACCEPTED){
 			ictx.fillStyle = '#AA0000';
-			ictx.fillText("X",inputCanvas.width-50,10+i*bufferX);
+			ictx.fillText("Rejected",inputCanvas.width-50,10+i*bufferX);
 		}
-		if(checkedInputs[i][1]== IMPOSSIBLE){
+		if(checkedInputs[i][1]== AcceptedForInput.IMPOSSIBLE){
 			ictx.fillStyle = '#FFFFFF';
-			ictx.fillText("-",inputCanvas.width-50,10+i*bufferX);
+			ictx.fillText("Impossible",inputCanvas.width-50,10+i*bufferX);
 		}
 		
 	}
