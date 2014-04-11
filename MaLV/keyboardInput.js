@@ -18,6 +18,8 @@ $(document).ready(function(){
 
 function changeSelectedStateLabel(){
 	if( selectedState != null ){
-		selectedState.label = lastKeyCode;
+		if( distance(mouseX, mouseY, selectedState.x, selectedState.y) < 42 ){
+			selectedState.label = lastKeyCode;
+		}
 	}
 }
