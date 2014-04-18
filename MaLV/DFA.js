@@ -13,24 +13,44 @@ var FStates     = [];
 
 // input
 
+// step state information
+var currentState;
+var prevState;
+
+
 var boxInput = "";
 var error = "";
 var animate = false; // this boolean will be toggled for running the DFA in check or debug mode.
 var alerts = true; // this boolean will turn on and off alerts because the annoy me.
 // -------- FUNCTIONS --------
 
-function setupDFA(){
-	// Get the start state
-	// Get the state list
-	// Get the accept states
-	//
-	// Set transitions to the start state's transitions
-	//  
-	// Check if machine state is valid
+
+function step(s,newInput){
+	
+	nextState = getNextState( currentState, inputList[s] );
+	if( nextState == null ){
+		alert("Failure, no transition found");
+		if(newInput){setAcceptedForInput(AcceptedForInput.NOTACCEPTED);}
+		return AcceptedForInput.NOTACCEPTED;
+	}
+	
+	prevState = currentState;
+	currentState = nextState;
+	nextState = null;
+}
+
+function isAccepted(input,newInput){
+	if( $.inArray(currentState, FStates) != -1 ){
+		alert("Machine completed in accept " + currentState.label + " State for string " + input);
+		if(newInput){setAcceptedForInput(AcceptedForInput.ACCEPTED);}
+		return AcceptedForInput.ACCEPTED;
+	}
+	alert("Not accepted, \n finished  in state " + currentState.label + " for string " + input);
+	if(newInput){setAcceptedForInput(AcceptedForInput.NOTACCEPTED);}
+	return AcceptedForInput.NOTACCEPTED;
 }
 
 function readInput(input,newInput){
-
 	//boxInput = document.getElementById('input').value;
 
 	/*if( Qzero == null ){
@@ -52,37 +72,12 @@ function readInput(input,newInput){
 	
 
 	for( s in inputList ){
-		if(alerts){
-			if(prevState!=null)
-			drawNotHighlighted(prevState.x,prevState.y,prevState.radius+3);
-			drawHighlighted(currentState.x, currentState.y, currentState.radius+3);
+		if(step(s,newInput)==AcceptedForInput.NOTACCEPTED){
+			return AcceptedForInput.NOTACCEPTED;
 		}
-		if(alerts){
-			alert("Searching for transition " + inputList[s] + " from state " + currentState.label);
-		}
-	
-		nextState = getNextState( currentState, inputList[s] );
-		if( nextState == null ){
-			alert("Failure, no transition found");
-			if(newInput){setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);}
-			return AcceptedForInput.IMPOSSIBLE;
-		}
-		if(alerts){
-			alert("Found transition, advancing to State: " + nextState.label);
-		}
-		prevState = currentState;
-		currentState = nextState;
-		nextState = null;
 	}
 	
-	if( $.inArray(currentState, FStates) != -1 ){
-		alert("Machine completed in accept " + currentState.label + " State for string " + input);
-		if(newInput){setAcceptedForInput(AcceptedForInput.ACCEPTED);}
-		return AcceptedForInput.ACCEPTED;
-	}
-	alert("Not accepted, \n finished  in state " + currentState.label + " for string " + input);
-	if(newInput){setAcceptedForInput(AcceptedForInput.NOTACCEPTED);}
-	return AcceptedForInput.NOTACCEPTED;
+	return isAccepted(input,newInput);
 	// set current state to start state
 	// set 'nextState' to null
 	//
@@ -127,28 +122,15 @@ function readInputAnimated(input){
 		//highlights the currrent state
 		
 		// gets next state 
-		drawReadingCharacters(animatedInput+1);
-		console.log(inputList[animatedInput]);
-		nextState = getNextState(currentState,inputList[animatedInput]); // using animated input instead of for each loop s
-		animatedInput++;
-		console.log(nextState);
-		if(nextState == null){
-			alert("no transition found");
-			animating = false; // resumes the update method clearing the context
-			setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);
-			return false; // breaks out of method
-		}
+		drawReadingCharacters(animatedInput);
 		
-		prevState = currentState;
-		currentState = nextState;
+		
+	
 		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
-		nextState = null;
-		
 
 		if(animatedInput  == inputList.length){ // at the end of the input list
 		
 			if( $.inArray(currentState, FStates) != -1 ){
-				
 				
 				alert("Machine completed in accept State");
 				
@@ -163,8 +145,9 @@ function readInputAnimated(input){
 				return;
 			}
 		}
-		
-		
+
+		step(animatedInput);
+		animatedInput++;
 		// calls readInputAnimated, replaces for loop
 		requestAnimationFrame(readInputAnimated);
 	},1000); // updates every once every two seconds
@@ -206,7 +189,6 @@ function debugInput(){
 	nextState = null;
 	inputList = input.split("");
 
-	alerts = true;
 	boxInput = document.getElementById('input').value;
 	readInputAnimated(boxInput);
 }
@@ -214,8 +196,8 @@ function debugInput(){
 // just checks input and tells user of accept or reject
 function checkInput(){
 
-	alerts = false;
 	boxInput = document.getElementById('input').value;
+	console.log(boxInput);
 	readInput(boxInput,true);
 }
 

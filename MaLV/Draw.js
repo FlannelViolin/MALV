@@ -36,9 +36,9 @@ function recursiveLine(midX, midY,radius){
 }
 
 // will draw a curved Line
-function curvedLine(startX, startY, endX, endY){
+function originalCurvedLine(startX, startY, endX, endY){
 
-	var a = startX - endX;
+	/*var a = startX - endX;
 	var b = startY - endY;
 	
 	var calc = Math.atan(b/a);
@@ -56,11 +56,15 @@ function curvedLine(startX, startY, endX, endY){
 	else{	
 		diffDist  = (endX-startX)/10;
 	}
-
+	
 	//console.log(calc);
 	yDiff = (1.7-calc)*diffDist; // x distance from end points to two control points
-	xDiff = calc*diffDist; // y distance from end points to two control points
+	xDiff = calc*diffDist; // y distance from end points to two control points*/
+	diffArray = calcDiff(startX,startY,endX,endY);
 	//console.log("xDiff:" + xDiff + " yDiff: " + yDiff);
+	yDiff = diffArray[1];
+	xDiff = diffArray[0];
+	var controlPoints = new Array(); //bezierCurveTo([0],[1],[2],[3],endX,endY); after the first moveTo(startX,startY)
 	if(endX < startX){ // end point is to the left of the start point
 		if(endY > startY){ // end point is under start point
 			xDiff = Math.sqrt((xDiff*xDiff));
@@ -100,6 +104,36 @@ function curvedLine(startX, startY, endX, endY){
 	ctx.stroke();
 	
 	return [xDiff, yDiff];
+}
+
+// start X,Y, array of control points, end X,Y
+function curvedLine(startX,startY,controlPoints,endX,endY){
+	ctx.beginPath;
+	ctx.moveTo(starX,startY);
+	ctx.bezierCurveTo(controlPoints[0],controlPoints[1],controlPoints[2],controlPoints[3],endX,endY);
+	ctx.stroke();
+}
+
+function calcDiff(startX,startY,endX,endY){
+	a = startX - endX;
+	b = startY - endY;
+	
+	calc = Math.atan(b/a);
+
+	//var calc = heading(new Vector(startX-startY,endX-endY));
+	
+	// is it a vertical line or a horizontal line?
+	if(Math.abs(endY - startY) > Math.abs(endX-startX)){
+		diffDist  = (endY-startY)/10;		
+	}
+	else{	
+		diffDist  = (endX-startX)/10;
+	}
+
+	//console.log(calc);
+	yDiff = (1.7-calc)*diffDist; // x distance from end points to two control points
+	xDiff = calc*diffDist; // y distance from end points to two control points
+	return [xDiff,yDiff];
 }
 
 function distance(x,y,p,q){
