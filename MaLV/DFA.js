@@ -122,9 +122,9 @@ function readInputAnimated(input){
 		//highlights the currrent state
 		
 		// gets next state 
-		drawReadingCharacters(animatedInput+1);
+		drawReadingCharacters(animatedInput);
 		
-		animatedInput++;
+		
 	
 		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
 
@@ -147,7 +147,7 @@ function readInputAnimated(input){
 		}
 
 		step(animatedInput);
-		
+		animatedInput++;
 		// calls readInputAnimated, replaces for loop
 		requestAnimationFrame(readInputAnimated);
 	},1000); // updates every once every two seconds

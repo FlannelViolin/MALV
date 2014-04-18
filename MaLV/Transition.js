@@ -32,7 +32,6 @@ function Transition(_beginState, _endState){
 	this.setAnchors = setAnchors;
 	this.destroy = TranDestroy;
 	this.reset = TranReset;
-	
 }
 
 // Returns transition's key character
@@ -71,7 +70,7 @@ function transitionDisplay(){
 
 	// Draw transition if it is between to different states
 	if(this.startState != this.endState){
-		diffArray = curvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
+		diffArray = originalCurvedLine(this.startState.x, this.startState.y,this.endState.x,this.endState.y);
 		
 		ctx.font="15px Georgia";		
 		this.drawArrow( diffArray[0], diffArray[1] );
