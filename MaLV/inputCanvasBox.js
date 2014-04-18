@@ -45,19 +45,19 @@ function drawAccepted(){
 	line(inputCanvas.width-60,0,inputCanvas.width-60,inputCanvas.height,ictx);
 	for(i in didAccept){
 		if(didAccept[i]==AcceptedForInput.ACCEPTED){
-			ictx.fillStyle = 'AAFF00';
+			ictx.fillStyle = '#AAFF00';
 			ictx.fillText("Accepted",inputCanvas.width-50,10+i*bufferX);
 		}
 		if(didAccept[i] == AcceptedForInput.NOTACCEPTED){
-			ictx.fillStyle = 'AA0000';
+			ictx.fillStyle = '#AA0000';
 			ictx.fillText("Rejected",inputCanvas.width-50,10+i*bufferX);
 		}
 		if(didAccept[i] == AcceptedForInput.IMPOSSIBLE){
-			ictx.fillStyle = 'AA0000';
+			ictx.fillStyle = '#AA0000';
 			ictx.fillText("Invalid",inputCanvas.width-50,10+i*bufferX);
 		}
 		if(didAccept[i] == AcceptedForInput.CLEARED){
-			ictx.fillStyle = 'AA0000';
+			ictx.fillStyle = '#AA0000';
 			ictx.fillText("-",inputCanvas.width-50,10+i*bufferX);
 		}
 		
