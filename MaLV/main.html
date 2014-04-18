@@ -10,7 +10,7 @@
 <body>
 	<div id="banner">
 		<a href="index.html">
-			<img src="http://i.imgur.com/awx7N8T.png" alt="malv logo" height="50">
+			<img src="Malv Icons/MaLV.png" alt="malv logo" height="50">
 		</a>
 		
 		<h1>Deterministic Finite Automaton </h1>
@@ -29,12 +29,13 @@
 	onmouseout="this.src='Images/play_btn.png'"
 	onclick="debugInput()"/>
 	
-	<canvas id="fake" width="200" height ="1"></canvas>
+	
 
 	<input type="image" id="state_btn" src="Images/state_btn.png"  
 	onmouseover="this.src='Images/state_btn_hover.png'" 
 	onmouseout="this.src='Images/state_btn.png'"
-	onclick="changePlacement(PlacementMode.STATE)"/>
+	onclick="changePlacement(PlacementMode.STATE)"
+	style="padding-left:200px"/>
 	
 	<input type="image" id="transistion_btn" src="Images/transition_btn.png" 
 	onmouseover="this.src='Images/transition_btn_hover.png'"
