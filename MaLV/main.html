@@ -34,8 +34,23 @@
 	 onmouseout="this.src='http://i.imgur.com/n8ROdlG.png'"
 	 onclick="changePlacement(PlacementMode.TRANSITION)"/>
 	 
-	<input type="button" value ="Set Start" onclick="setSelectedAsStart()">
-	<input type="button" value ="Set Accept" onclick="setSelectedAsAccept()">
+	 <input type="image" id="start_btn" src="Images/start_btn.png" 
+	onmouseover="this.src='Images/start_btn.png'"
+	 onmouseout="this.src='Images/start_btn.png'"
+	 onclick="setSelectedAsStart()"/>
+	 
+	 <input type="image" id="start_btn" src="Images/accept_btn.png" 
+	onmouseover="this.src='Images/accept_btn.png'"
+	 onmouseout="this.src='Images/accept_btn.png'"
+	 onclick="setSelectedAsAccept()"/>
+	 
+	 <input type="image" id="start_btn" src="Images/clear_btn.png" 
+	onmouseover="this.src='Images/clear_btn.png'"
+	 onmouseout="this.src='Images/clear_btn.png'"
+	 onclick="deleteSelected()"/>
+	 
+	<!--<input type="button" value ="Set Start" onclick="setSelectedAsStart()">-->
+	<!--<input type="button" value ="Set Accept" onclick="setSelectedAsAccept()">-->
 	<input type="button" value ="Delete" onclick="deleteSelected()">
 	
 	<!-- DO THIS LATER
