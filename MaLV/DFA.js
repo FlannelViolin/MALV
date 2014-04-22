@@ -24,7 +24,22 @@ var animate = false; // this boolean will be toggled for running the DFA in chec
 var alerts = true; // this boolean will turn on and off alerts because the annoy me.
 // -------- FUNCTIONS --------
 
+function arrayToObject(array){
+	jobject = {};
+	for(var i=0; i<array.length; i++){
+		jobject[i] = array[i];
+	}
+	return jobject;
+}
 
+function objectToArray(jobject){
+	array = [];
+	for(i in jobject){
+		array[i] = jobject[i];
+	}
+	return array;
+}
+	
 function step(s,newInput){
 	
 	nextState = getNextState( currentState, inputList[s] );
@@ -51,6 +66,9 @@ function isAccepted(input,newInput){
 }
 
 function readInput(input,newInput){
+	jQstates = arrayToObject(Qstates);
+	console.log(JSON.stringify(jQstates));
+	
 	//boxInput = document.getElementById('input').value;
 
 	/*if( Qzero == null ){
@@ -176,7 +194,8 @@ function debugInput(){
 	input = document.getElementById('input').value;
 	
 	displayInputs(input,true);
-	console.log(input);
+	// DEBUG
+	//console.log(input);
 	if( !checkValidMachine() ){
 		alert("Invalid Machine state: " + error);
 		animating = false;
