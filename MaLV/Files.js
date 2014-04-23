@@ -46,9 +46,21 @@ function saveAsCookie(){
 function loadFromCookie(){
 	cookieString = document.cookie;
 	parsed = JSON.parse(cookieString, parseHelp);
-	loaded = objectToArray(parsed);
 	
-	// set Qstates based on loaded
+	Qstates = [];
+	numStates = 0;
+	for( i in parsed ){		
+		newState = new State( parsed[i].x, parsed[i].y, parsed[i].id );
+		Qstates[numStates] = newState;
+		numStates ++;		
+	}
+	for( i in parsed ){
+		for( j in parsed[i].tranList ){
+			newTran = new Transition( Qstates[i], Qstates[(parsed[i].tranList[j].endState)-1] );
+			Qstates[i].addTransition( newTran );
+		}
+	}
+
 
 }
 
@@ -60,15 +72,28 @@ function parseHelp(key, value) {
 }
 
 function stringifyHelp(key, value) {
+	//DEBUG
+	//console.log(key);
+	if (typeof value == 'function'){
+		return;
+	}
+	//DEBUG
+	//console.log(key + "---" + value + "---" + typeof value);
     if (typeof value == 'object' && value != null) {
-        if (CyclicCache.indexOf(value) != -1) {
-            // Circular reference found, discard key
-            return;
-        }
-        // Store value in cache
-        CyclicCache.push(value);
+        if (key == "tranList"){
+			return value;
+		}
+		if (key == "endState"){
+			return value.id;
+		}
     }
-    return value;
+	if (key == "character" || key == 'label' || key == 'id' || key == 'x' || key == 'y'){
+		return value;
+	}
+	if (key > -1){
+		return value;
+	}
+    return;
 }
 
 function arrayToObject(array){
