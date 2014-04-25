@@ -1,7 +1,7 @@
 
 // Handle Keyboard input
 
-var lastKeyCode = "X";			//variable to track the las key pressed
+var lastKeyCode = "X";			//variable to track the last key pressed
 
 // Called on key press
 $(document).ready(function(){
@@ -14,6 +14,7 @@ $(document).ready(function(){
   $("input").keyup(function(){
   });
 });
+
 
 
 function changeSelectedStateLabel(){

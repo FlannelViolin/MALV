@@ -1,19 +1,12 @@
 /**
- *  Script to model Vectors for use in drawing
+ *  Script to hold vector math for various calculations
  *  	Contains functions to create and manipulate vectors
  *		
  */
  
-// Takes the vectors components as params
-function Vector(X,Y){
-	this.x = X;
-	this.y = Y;
-	this.normalize = normalizee;
-	this.heading = heading;
-}
 
 // Normalizes a given vector
-function normalizee(vector){
+function normalizee(x,y){
 	length = Math.sqrt(x * x + y * y);
 	x/=length;
 	y/=length;

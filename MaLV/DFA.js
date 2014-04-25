@@ -24,22 +24,25 @@ var animate = false; // this boolean will be toggled for running the DFA in chec
 var alerts = true; // this boolean will turn on and off alerts because the annoy me.
 // -------- FUNCTIONS --------
 
-	
+// s is an index in the input string, newInput is if it hasn't been proceessed before	
 function step(s,newInput){
 	
-	nextState = getNextState( currentState, inputList[s] );
+	// get next state from currentState with next character
+	nextState = getNextState( currentState, inputList[s] ); 
 	if( nextState == null ){
 		alert("Failure, no transition found");
 		if(newInput){setAcceptedForInput(AcceptedForInput.NOTACCEPTED);}
 		return AcceptedForInput.NOTACCEPTED;
 	}
 	
+	// reset states
 	prevState = currentState;
 	currentState = nextState;
 	nextState = null;
 }
 
 function isAccepted(input,newInput){
+	// if machine ends in accept state
 	if( $.inArray(currentState, FStates) != -1 ){
 		alert("Machine completed in accept " + currentState.label + " State for string " + input);
 		if(newInput){setAcceptedForInput(AcceptedForInput.ACCEPTED);}
@@ -51,11 +54,7 @@ function isAccepted(input,newInput){
 }
 
 function readInput(input,newInput){	
-	//boxInput = document.getElementById('input').value;
 
-	/*if( Qzero == null ){
-		Qzero = Qstates[0];
-	}*/
 	// Check valid machine state
 	if(newInput){displayInputs(input,true);}
 	if( !checkValidMachine() ){
@@ -63,69 +62,60 @@ function readInput(input,newInput){
 		if(newInput){setAcceptedForInput(AcceptedForInput.IMPOSSIBLE);}
 		return AcceptedForInput.IMPOSSIBLE;
 	}
-	console.log(input);
-	//displayInputs(input,true);
+	// DEBUG
+	//console.log(input);
+	
+	// set up initial states
 	currentState = Qzero;
 	prevState = null;
 	nextState = null;
 	inputList = input.split("");
 	
-
+	// step through input
 	for( s in inputList ){
 		if(step(s,newInput)==AcceptedForInput.NOTACCEPTED){
 			return AcceptedForInput.NOTACCEPTED;
 		}
 	}
 	
+	// return if it was accepted or not
 	return isAccepted(input,newInput);
-	// set current state to start state
-	// set 'nextState' to null
-	//
-	// Iterate through input 
-	//		set next state to the return of GetNextState( currentState, inputCharacter )
-	// 		if its null
-	// 			fail and quit
-	//		advance to next state
-	//
-	// Check for success or failure
+	
 }
 
-// TODO
 function checkValidMachine(){
-	// TEMPORARY
+	
+	// set up error message
 	error = "";
-	var returnMe = true;
+	var isValid = true;
 		if(Qzero == null){
-			returnMe = false;
+			isValid = false;
 			error += "\n No Start State set";
 		}
 		if(FStates[0] == null){
-			returnMe = false;
+			isValid = false;
 			error += "\n No Accept States set";
 		}
-	return returnMe;
+	return isValid;
 	// FIX THIS
 }
 
 var animatedInput = 0; // index for reading input
 function readInputAnimated(input){
 	
+	// set up recursive loop
 	setTimeout(function(){
 		
-		
-		
-		//ctx.clearRect(0,0,c.width,c.height);
 		ctx.fillStyle="#B7AA86";
 		ctx.fillRect(0,0,c.width,c.height);
-		//clears ctx for this current state of the machine
+		
+		// draws the machine, needs to be done because we stopped the update
 		drawMachine();
-		//highlights the currrent state
-		
-		// gets next state 
-		drawReadingCharacters(animatedInput);
-		
 		
 	
+		drawReadingCharacters(animatedInput);
+
+		
 		drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
 
 		if(animatedInput  == inputList.length){ // at the end of the input list
@@ -145,18 +135,19 @@ function readInputAnimated(input){
 				return;
 			}
 		}
-
-		step(animatedInput);
+		
+		// step with current input
+		step(animatedInput,false);
 		animatedInput++;
 		// calls readInputAnimated, replaces for loop
-		requestAnimationFrame(readInputAnimated);
-	},1000); // updates every once every two seconds
+		requestAnimationFrame(readInputAnimated); // basic recursion 
+	},1000); // updates every once every 1 second
 	
 }
 
 
 
-
+// Draws the current machine state
 function drawMachine(){
 	for(var i=0; i<Qstates.length; i++){
 		Qstates[i].display();
@@ -169,10 +160,10 @@ function drawMachine(){
 	}
 }
 
-// alerts are true, steps through machine
+//  steps through machine
 function debugInput(){
 	animatedInput = 0;
-	animating = true;
+	animating = true; // stops updating
 	input = document.getElementById('input').value;
 	
 	displayInputs(input,true);
@@ -185,12 +176,15 @@ function debugInput(){
 		return false;
 	}
 	
+	// set up states
 	currentState = Qzero;
 	prevState = null;
 	nextState = null;
 	inputList = input.split("");
 
 	boxInput = document.getElementById('input').value;
+	
+	// start animating through input
 	readInputAnimated(boxInput);
 }
 
@@ -203,13 +197,7 @@ function checkInput(){
 }
 
 
-function drawNotHighlighted(X,Y,R){
-	ctx.strokeWidth = 3;
-	ctx.strokeStyle = '#ffffff';
-	ctx.clear;
-	ellipse(X,Y,R);
-	ellipse(X,Y,R);
-}
+
 // draws an ellipse 
 function drawHighlighted(X,Y,R){
 	ctx.strokeWidth = 1;
@@ -230,6 +218,7 @@ function setSelectedAsStart(){
 	}
 }
 
+// toggles accept on and off
 function setSelectedAsAccept(){
 	if( selectedState != null ){
 		if( $.inArray(selectedState, FStates) != -1){

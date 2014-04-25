@@ -100,25 +100,6 @@ function transitionDisplay(){
 
 }
 
-// _start and end are vectors that have been snapped
-/*function setAnchors(_start, _end){
-	if(_start != null){
-		if(!this.anchorPoint1){
-			this.anchorPoint1 = new AnchorPoint(_start, this);
-		}
-		else{
-			this.anchorPoint1.position = _start;
-		}
-	}
-	if(_end != null){
-		if(!this.anchorPoint2){
-			this.anchorPoint2 = new AnchorPoint(_end, this);
-		}
-		else{
-			this.anchorPoint2.position=_end;
-		}
-	}
-}*/
 
 // Draws the transition. painful and complex.
 function drawArrow( diffX, diffY ){

@@ -164,6 +164,7 @@ function makeNewTran( start, end ){
 	clearAccepted();
 }
 
+// removes selcted objects from the machine
 function deleteSelected(){
 	// If current selection is a state
 	if( selectedState != null ){

@@ -6,6 +6,7 @@
  
  // Determine Environment (Mozilla/Chrome)
  
+// TODO will finish
  // CHROME??
  /*
  require('fs');
@@ -33,10 +34,13 @@ NetUtil.asyncFetch(file, function(inputStream, status) {
 });
 */
 
+// Collection to check for cyclic graph
 var CyclicCache = [];
+
+// Save the current machine as a cookie text string
 function saveAsCookie(){
 	CyclicCache = [];
-	jQstates = arrayToObject(Qstates);
+	jQstates = arrayToObject(Qstates); // turn collection of states into an object
 	
 	if( Turing ){
 		jQstates.Alphabet = Alphabet;
@@ -44,12 +48,13 @@ function saveAsCookie(){
 	
 	//DEBUG
 	//console.log(JSON.stringify(jQstates));
-	document.cookie=JSON.stringify(jQstates, stringifyHelp);
+	document.cookie=JSON.stringify(jQstates, stringifyHelp); // set cookie
 }
 
 function loadFromCookie(){
 	cookieString = document.cookie;
-	parsed = JSON.parse(cookieString || "null", parseHelp);
+	
+	parsed = JSON.parse(cookieString || "null", parseHelp); // turn returned string into an object
 	
 	if ( Turing ){
 		Alphabet = parsed.Alphabet;
@@ -57,6 +62,7 @@ function loadFromCookie(){
 	
 	Qstates = [];
 	numStates = 0;
+	// repopulate the machine with states
 	for( i in parsed ){
 		if( Turing ){
 			newState = new TuringState( parsed[i].x, parsed[i].y, parsed[i].id );
@@ -67,6 +73,8 @@ function loadFromCookie(){
 		Qstates[numStates] = newState;
 		numStates ++;		
 	}
+	
+	// repopulate the machine with transitions
 	for( i in parsed ){
 		for( j in parsed[i].tranList ){
 			newTran = new Transition( Qstates[i], Qstates[(parsed[i].tranList[j].endState)-1] );
@@ -78,6 +86,8 @@ function loadFromCookie(){
 
 }
 
+
+// TODO fill this in
 function parseHelp(key, value) {
 	
 	// USE TO RECONSTRUCT OBJECTS
@@ -85,6 +95,8 @@ function parseHelp(key, value) {
 	return value;
 }
 
+
+//create the entire cookie 
 function stringifyHelp(key, value) {
 	//DEBUG
 	//console.log(key);
@@ -93,7 +105,7 @@ function stringifyHelp(key, value) {
 	}
 	
 	if (typeof value == 'function'){
-		return;
+		return; // functions take up alot of space
 	}
 	//DEBUG
 	//console.log(key + "---" + value + "---" + typeof value);
@@ -114,7 +126,7 @@ function stringifyHelp(key, value) {
     return;
 }
 
-function arrayToObject(array){
+function arrayToObject(array){ 
 	jobject = {};
 	for(var i=0; i<array.length; i++){
 		jobject[i] = array[i];

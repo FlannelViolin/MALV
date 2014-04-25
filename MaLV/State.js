@@ -12,7 +12,6 @@ function State( X, Y, id){
 	this.label = id;
 	this.x = X;
 	this.y = Y;
-	this.position = new Vector(X,Y);
 	this.radius = 20;
 	this.selected = false;
 	this.moving = false;
@@ -38,14 +37,13 @@ function TuringState( X, Y, id){
 	this.label = id;
 	this.x = X;
 	this.y = Y;
-	this.position = new Vector(X,Y);
 	this.radius = 20;
 	this.selected = false;
 	this.moving = false;
 	this.drawStartArrow = drawStartArrow;
 
 	// Functions
-	this.snapTransition = snapTransitionToState;
+	//this.snapTransition = snapTransitionToState;
 	this.display = stateDisplay;
 	this.addTransition = addTuringTransition;
 	this.toggleSelect = toggleSelect;
@@ -103,10 +101,13 @@ function toggleSelect(){
 	this.selected = !this.selected;
 }
 
+
 function addTransition( transition ){
+	// hook up end state to transition
 	this.transitions[transition.character] = transition.endState;
 	for( var i=0; i<this.tranList.length; i++ ){
 		var T = this.tranList[i];
+		
 		if( T.character == transition.character ){
 			var index = this.tranList.indexOf(T);
 			this.tranList.splice( index, 1 );
@@ -130,6 +131,7 @@ function addTuringTransition( transition ){
 	this.tranList.push(transition);	
 }
 
+// refreshes all transitions on alphabet change in turing machine
 function refreshTrans(){
 	this.transitions = {};
 	this.tranList = new Array();
@@ -143,6 +145,7 @@ function refreshTrans(){
 }
 
 function drawStartArrow(){
+	// MATH
 	var a = this.radius*3;
 	var b = -this.radius;
 	

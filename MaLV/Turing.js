@@ -71,15 +71,26 @@ function setSelectedAsStart(){
 	}
 }
 
+// toggles the if a state is an accepted state or not
 function setSelectedAsAccept(){
 	if( selectedState != null ){
-		FStates.push(selectedState);
-		//toggle this for display
-		selectedState.isAccept = !selectedState.isAccept;
-		console.log(selectedState.label + " is accept? "  +selectedState.isAccept);
+		if( $.inArray(selectedState, FStates) != -1){
+			i = FStates.indexOf(selectedState);
+			// remove it from the array
+			if(i != -1){
+				FStates.splice(i,1);
+			}
+		}
+		else{
+			FStates.push(selectedState);
+			//toggle this for display
+			selectedState.isAccept = !selectedState.isAccept;
+			console.log(selectedState.label + " is accept? "  +selectedState.isAccept);
+		}
 	}
 }
 
+//Updates alphabets based on input box
 function RefreshAlphabet(){
 	Alphabet = new Array();
 	var ab = document.getElementById('Alphabet').value;
@@ -92,6 +103,7 @@ function RefreshAlphabet(){
 	}
 }
 
+// Populates the transition property text boxes when a transition is selected
 function populateRWS(){
 	if( selectedTran != null ){
 		document.getElementById('Read').value = selectedTran.character;

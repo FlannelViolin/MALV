@@ -38,30 +38,8 @@ function recursiveLine(midX, midY,radius){
 // will draw a curved Line
 function originalCurvedLine(startX, startY, endX, endY){
 
-	/*var a = startX - endX;
-	var b = startY - endY;
 	
-	var calc = Math.atan(b/a);
-
-	//var calc = heading(new Vector(startX-startY,endX-endY));
-	var diffDist; // distance between control points and end points
-	var xDiff;
-	var yDiff;
-	var controlPoints = new Array(); //bezierCurveTo([0],[1],[2],[3],endX,endY); after the first moveTo(startX,startY)
-
-	// is it a vertical line or a horizontal line?
-	if(Math.abs(endY - startY) > Math.abs(endX-startX)){
-		diffDist  = (endY-startY)/10;		
-	}
-	else{	
-		diffDist  = (endX-startX)/10;
-	}
-	
-	//console.log(calc);
-	yDiff = (1.7-calc)*diffDist; // x distance from end points to two control points
-	xDiff = calc*diffDist; // y distance from end points to two control points*/
 	diffArray = calcDiff(startX,startY,endX,endY);
-	//console.log("xDiff:" + xDiff + " yDiff: " + yDiff);
 	yDiff = diffArray[1];
 	xDiff = diffArray[0];
 	var controlPoints = new Array(); //bezierCurveTo([0],[1],[2],[3],endX,endY); after the first moveTo(startX,startY)
@@ -98,18 +76,15 @@ function originalCurvedLine(startX, startY, endX, endY){
 		}
 	}
 	
-	ctx.beginPath;
-	ctx.moveTo(startX,startY);
-	ctx.bezierCurveTo(controlPoints[0],controlPoints[1],controlPoints[2],controlPoints[3],endX,endY);
-	ctx.stroke();
-	
+	curvedLine(startX,startY,controlPoints,endX,endY);
+
 	return [xDiff, yDiff];
 }
 
 // start X,Y, array of control points, end X,Y
 function curvedLine(startX,startY,controlPoints,endX,endY){
 	ctx.beginPath;
-	ctx.moveTo(starX,startY);
+	ctx.moveTo(startX,startY);
 	ctx.bezierCurveTo(controlPoints[0],controlPoints[1],controlPoints[2],controlPoints[3],endX,endY);
 	ctx.stroke();
 }
@@ -120,7 +95,6 @@ function calcDiff(startX,startY,endX,endY){
 	
 	calc = Math.atan(b/a);
 
-	//var calc = heading(new Vector(startX-startY,endX-endY));
 	
 	// is it a vertical line or a horizontal line?
 	if(Math.abs(endY - startY) > Math.abs(endX-startX)){
@@ -130,7 +104,6 @@ function calcDiff(startX,startY,endX,endY){
 		diffDist  = (endX-startX)/10;
 	}
 
-	//console.log(calc);
 	yDiff = (1.7-calc)*diffDist; // x distance from end points to two control points
 	xDiff = calc*diffDist; // y distance from end points to two control points
 	return [xDiff,yDiff];

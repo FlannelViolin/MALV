@@ -10,7 +10,9 @@ var pm = PlacementMode.STATE;	// The placement mode
 var animating = false;			// If the application is animating the current machine
 
 // Called at a set interval
-function update(){	
+function update(){
+	
+	// animating is turned off when we want normal functionality, this will allow debug input to work	
 	if(!animating){
 	
 		// Clear the canvases
