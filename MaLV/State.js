@@ -19,7 +19,7 @@ function State( X, Y, id){
 	this.drawStartArrow = drawStartArrow;
 
 	// Functions
-	this.snapTransition = snapTransitionToState;
+	//this.snapTransition = snapTransitionToState;
 	this.display = stateDisplay;
 	this.addTransition = addTransition;
 	this.toggleSelect = toggleSelect;
@@ -98,37 +98,6 @@ function stateDisplay(){
 	}
 }
 
-// p is a vector (2 space array)
-function snapTransitionToState(p){
-
-	// MATH
-	// get vector from one position to the next
-
-	var snapped = new Vector(this.x - p.x, this.y - p.y);
-
-	//normalize
-	snapped = normalizee(snapped);
-	// get angle of
-	var angle = snapped.heading(snapped);
-	// find point along circle and add to position
-	snapped.x = snapped.x - (Math.cos(angle)*this.radius) + this.x;
-	snapped.y = snapped.y - (Math.sin(angle)*this.radius) + this.y;
-}
-
-function snapTransition(p){
-	// MATH
-	// get vector from one position to the next
-	var snapped = new Array(this.x - p[0], this.y - p[1]);
-	//normalize
-	snapped = noramlize(snapped);
-	// get angle of
-	var angle = heading(snapped);
-	// find point along circle and add to position
-	snapped[0] = snapped[1] - (Math.cos(angle)*this.radius) + this.x;
-	snapped[0] = snapped[1] - (Math.sin(angle)*this.radius) + this.y;
-	
-	return snapped;
-}
 
 function toggleSelect(){
 	this.selected = !this.selected;

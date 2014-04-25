@@ -232,10 +232,18 @@ function setSelectedAsStart(){
 
 function setSelectedAsAccept(){
 	if( selectedState != null ){
-		FStates.push(selectedState);
-		//toggle this for display
-		selectedState.isAccept = !selectedState.isAccept;
-		console.log(selectedState.label + " is accept? "  +selectedState.isAccept);
+		if( $.inArray(selectedState, FStates) != -1){
+			i = FStates.indexOf(selectedState);
+			if(i != -1){
+				FStates.splice(i,1);
+			}
+		}
+		else{
+			FStates.push(selectedState);
+			//toggle this for display
+			selectedState.isAccept = !selectedState.isAccept;
+			console.log(selectedState.label + " is accept? "  +selectedState.isAccept);
+		}
 	}
 }
 

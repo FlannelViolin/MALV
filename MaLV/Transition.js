@@ -16,8 +16,8 @@ function Transition(_beginState, _endState){
 	this.startState = _beginState;					// Transition's start state
 	this.endState = _endState;						// Transitions end State
 	
-	this.anchorPoint1 = null;
-	this.anchorPoint2 = null;
+	//this.anchorPoint1 = null;
+	//this.anchorPoint2 = null;
 	
 	// For Turing
 	this.writeCharacter = '';	// Must be in alphabet
@@ -29,7 +29,7 @@ function Transition(_beginState, _endState){
 	this.getCharacter = getCharacter;
 	this.setCharacter = setCharacter;
 	this.getEndState = getEndState;	
-	this.setAnchors = setAnchors;
+	//this.setAnchors = setAnchors;
 	this.destroy = TranDestroy;
 	this.reset = TranReset;
 }
@@ -101,7 +101,7 @@ function transitionDisplay(){
 }
 
 // _start and end are vectors that have been snapped
-function setAnchors(_start, _end){
+/*function setAnchors(_start, _end){
 	if(_start != null){
 		if(!this.anchorPoint1){
 			this.anchorPoint1 = new AnchorPoint(_start, this);
@@ -118,7 +118,7 @@ function setAnchors(_start, _end){
 			this.anchorPoint2.position=_end;
 		}
 	}
-}
+}*/
 
 // Draws the transition. painful and complex.
 function drawArrow( diffX, diffY ){
@@ -180,6 +180,7 @@ function drawArrow( diffX, diffY ){
 	line(pointX, pointY, pointX - tail1XOffset, pointY-tail1YOffset, ctx);
 	line(pointX, pointY, pointX - tail2XOffset, pointY-tail2YOffset, ctx);
 }
+
 
 function TranReset(){
 	this.startState.transitions[this.character] = this.startState;

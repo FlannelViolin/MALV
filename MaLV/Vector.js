@@ -14,15 +14,15 @@ function Vector(X,Y){
 
 // Normalizes a given vector
 function normalizee(vector){
-	var length = Math.sqrt(vector.x * vector.x + vector.y * vector.y);
-	vector.x/=length;
-	vector.y/=length;
+	length = Math.sqrt(x * x + y * y);
+	x/=length;
+	y/=length;
 	// DEBUG
 	// console.log(vector.x + " " + vector.y);
 	return vector;
 }
 
 // Returns the heading of a given vector
-function heading(vector){
-	return Math.atan(vector.y/vector.x); 	
+function heading(x,y){
+	return Math.atan(y/x); 	
 }
