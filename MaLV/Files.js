@@ -38,6 +38,10 @@ function saveAsCookie(){
 	CyclicCache = [];
 	jQstates = arrayToObject(Qstates);
 	
+	if( Turing ){
+		jQstates.Alphabet = Alphabet;
+	}
+	
 	//DEBUG
 	//console.log(JSON.stringify(jQstates));
 	document.cookie=JSON.stringify(jQstates, stringifyHelp);
@@ -45,18 +49,28 @@ function saveAsCookie(){
 
 function loadFromCookie(){
 	cookieString = document.cookie;
-	parsed = JSON.parse(cookieString, parseHelp);
+	parsed = JSON.parse(cookieString || "null", parseHelp);
+	
+	if ( Turing ){
+		Alphabet = parsed.Alphabet;
+	}
 	
 	Qstates = [];
 	numStates = 0;
-	for( i in parsed ){		
-		newState = new State( parsed[i].x, parsed[i].y, parsed[i].id );
+	for( i in parsed ){
+		if( Turing ){
+			newState = new TuringState( parsed[i].x, parsed[i].y, parsed[i].id );
+		}
+		else{
+			newState = new State( parsed[i].x, parsed[i].y, parsed[i].id );
+		}
 		Qstates[numStates] = newState;
 		numStates ++;		
 	}
 	for( i in parsed ){
 		for( j in parsed[i].tranList ){
 			newTran = new Transition( Qstates[i], Qstates[(parsed[i].tranList[j].endState)-1] );
+			newTran.character = parsed[i].tranList[j].character;
 			Qstates[i].addTransition( newTran );
 		}
 	}
@@ -74,6 +88,10 @@ function parseHelp(key, value) {
 function stringifyHelp(key, value) {
 	//DEBUG
 	//console.log(key);
+	if (key == "Alphabet"){
+		return value;
+	}
+	
 	if (typeof value == 'function'){
 		return;
 	}
