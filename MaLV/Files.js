@@ -48,11 +48,11 @@ function saveAsCookie(){
 	
 	//DEBUG
 	//console.log(JSON.stringify(jQstates));
-	document.cookie=JSON.stringify(jQstates, stringifyHelp); // set cookie
+	document.cookie=("save=" + JSON.stringify(jQstates, stringifyHelp)); // set cookie
 }
 
 function loadFromCookie(){
-	cookieString = document.cookie;
+	cookieString = getCookie("save");
 	
 	parsed = JSON.parse(cookieString || "null", parseHelp); // turn returned string into an object
 	
@@ -125,6 +125,18 @@ function stringifyHelp(key, value) {
 	}
     return;
 }
+
+function getCookie(cname){
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0; i<ca.length; i++){
+		var c = ca[i].trim();
+  		if (c.indexOf(name)==0){
+			return c.substring(name.length,c.length);
+		}
+ 	}
+	return "";
+} 
 
 function arrayToObject(array){ 
 	jobject = {};
