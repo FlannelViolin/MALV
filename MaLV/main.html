@@ -62,9 +62,9 @@
 	 onmouseout="this.src='Images/clear_btn.png'"
 	 onclick="deleteSelected()"/>
 	 <br>
-	 <input type="text" name="input" value="" id="input" size="122" style="font-size:12px;">
+	 <input type="text" name="input" value="" id="input" size="122" style="font-size:12px; padding-left:2px;">
 	 <br>
-	<canvas id="pointer" width="750" height ="25" style="border:1px solid #000000";></canvas>
+	<canvas id="pointer" width="750" height ="25" style="padding-left:2px;"></canvas>
 	
 </div>
 <div id="canvases">
@@ -84,7 +84,7 @@
 	var ictx = inputCanvas.getContext("2d");
 	
 	var pointerCanvas=document.getElementById("pointer");
-	var pctx = inputCanvas.getContext("2d");
+	var pctx = pointerCanvas.getContext("2d");
 	
 	
 </script>

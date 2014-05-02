@@ -20,7 +20,8 @@ function update(){
 		ctx.fillRect(0,0,c.width,c.height);
 		ictx.fillStyle="#728C9A";
 		ictx.fillRect(0,0,inputCanvas.width,inputCanvas.height);
-		
+		pctx.fillStyle="#EEE9E9";
+		pctx.fillRect(0,0,pointerCanvas.width,pointerCanvas.height);
 		// Draw the elements in their current state
 		displayInputs(input,false);
 		for(var i=0; i<Qstates.length; i++){
