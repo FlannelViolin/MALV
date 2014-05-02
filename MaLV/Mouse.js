@@ -128,7 +128,9 @@ function handleEvent(e){
 		  selectedState = clickedState;
 		  selectedState.toggleSelect();
 		  selectedTran = null;
-		  document.getElementById('RWS').style.visibility = "hidden";
+		  if(Turing){
+			document.getElementById('RWS').style.visibility = "hidden";
+		  }
 	  }
   }
  }
