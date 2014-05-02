@@ -210,7 +210,7 @@ function drawHighlighted(X,Y,R){
 function setSelectedAsStart(){
 	if( selectedState != null ){
 		
-
+		clearAccepted();
 		Qzero = selectedState;
 		//toggle this for display
 	
@@ -221,6 +221,7 @@ function setSelectedAsStart(){
 // toggles accept on and off
 function setSelectedAsAccept(){
 	if( selectedState != null ){
+		clearAccepted();
 		if( $.inArray(selectedState, FStates) != -1){
 			i = FStates.indexOf(selectedState);
 			if(i != -1){

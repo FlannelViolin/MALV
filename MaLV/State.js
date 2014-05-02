@@ -169,6 +169,7 @@ function drawStartArrow(){
 
 function StateDestroy(){
 	// Delete all transitions leading TO this state
+	clearAccepted();
 	var resetQueue = new Array();
 	for(var i=0;i<numStates;i++){
 		var deleteTempState = Qstates[i];

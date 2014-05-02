@@ -169,6 +169,7 @@ function TranReset(){
 }
 
 function TranDestroy(){
+	clearAccepted();
 	if( Turing ){
 		this.reset();
 		return;
