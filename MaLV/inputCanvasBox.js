@@ -6,6 +6,8 @@ var charWidth = 10;
 var checkedInputs = [];  // checked inputs for input box
 var didAccept = []; // array of booleans if an input was accepted or not
 
+var fontR = 1.5;
+var fontW = 3;
 //input is a string, go is whether not it has already been added to the list
 function displayInputs(input,go){
 	
@@ -30,6 +32,14 @@ function displayInputs(input,go){
 
 }
 
+function drawPointer(index){
+	console.log(index);
+	pctx.fillStyle = "black";
+	pctx.strokeStyle = "black";
+	// 		X1         Y1              X2       Y2  
+	line(0,pointerCanvas.height/2,pointerCanvas.width,pointerCanvas.height/2,pctx);
+}
+
 // Draw each new character as we loop through the input
 function drawReadingCharacters(index){
 	
@@ -38,7 +48,7 @@ function drawReadingCharacters(index){
 	
 	// display the inputs, needs to be called because we puase the update
 	displayInputs(input,false);
-	
+	drawPointer(index);
 	// the last string in the list
 	var currentString = checkedInputs[checkedInputs.length - 1]; 
 	
