@@ -14,9 +14,12 @@ var FStates     = [];
 // Alphabet
 var Alphabet 	= new Array('X');
 
+var currentState = null;
+var nextState 	 = null;
+
 document.getElementById('RWS').style.visibility = "hidden";
 
-function execute(){
+function setup(){
 	Tape = document.getElementById('input').value.split("");
 	currentState = Qzero;
 	if( currentState == null ){
@@ -24,59 +27,101 @@ function execute(){
 	}
 	TapeIndex = 0;
 	nextState = null;
-	//
-	var safety = 0;
-	while( true ){
-		safety++;
-		if( safety > 500 ){
-			break;
+	displayInputs(Tape.toString(),true);
+}
+
+function step(){
+	//DEBUG
+	//alert("Current State: " + currentState.label);
+	//alert("Input: " + Tape);
+		
+	// 	Check the character on the tape using TapeIndex
+	var tempChar = Tape[TapeIndex];
+	//	Get the transition attached to that character
+	var tempTran = currentState.transitions[tempChar];
+	//	If there is no matching transition - Failure
+	if( tempTran == null ){
+		return false;
+	}		
+	// 	Write the character attached to the transition
+	Tape[TapeIndex] = tempTran.writeCharacter;
+	//  Move the TapeIndex according to the transition
+	TapeIndex += tempTran.tapeShift;
+	if( TapeIndex < 0 ){
+		Tape.unshift(0);
+	}
+	if( TapeIndex > Tape.length ){
+		Tape.push(0);
+	}
+	// 	Advance to the transitions "endState"
+	currentState = tempTran.endState;
+		
+	// Update the input string
+	var tempstring = "";
+	for( i in Tape ){
+		tempstring += Tape[i];
+	}
+	document.getElementById('input').value = tempstring;
+	
+	return true;
+}
+
+function readInputAnimated(){
+
+	
+	
+	// set up recursive loop
+	setTimeout(function(){
+		
+		ctx.fillStyle="#B7AA86";
+		ctx.fillRect(0,0,c.width,c.height);
+		
+		// draws the machine, needs to be done because we stopped the update
+		//drawMachine();
+		for(var i=0; i<Qstates.length; i++){
+			Qstates[i].display();
 		}
 		
-		//DEBUG
-		//alert("Current State: " + currentState.label);
-		//alert("Input: " + Tape);
+	
+		drawReadingCharacters(TapeIndex);
+
 		
-		// 	Check the character on the tape using TapeIndex
-		var tempChar = Tape[TapeIndex];
-		//	Get the transition attached to that character
-		var tempTran = currentState.transitions[tempChar];
-		//	If there is no matching transition - Failure
-		if( tempTran == null ){
-			if( $.inArray(currentState, FStates) != -1){
-				alert("Finished in Accept State");
+		//drawHighlighted(currentState.x,currentState.y,currentState.radius+3);
+		
+		// step with current input
+		foundAState = step();
+
+		if(!foundAState){ // at the end of the input list
+		
+			if( $.inArray(currentState, FStates) != -1 ){
+				
+				alert("Machine completed in accept State");
+				
+				setAcceptedForInput(AcceptedForInput.ACCEPTED);
+				animating = false; // updates can start drawing again
 				return;
 			}
-			alert("No valid transition found or No character to read");
-			return;
+			else{
+				alert("Not accepted, \n finished  in state" + currentState.label);
+				setAcceptedForInput(AcceptedForInput.NOTACCEPTED);
+				animating = false; // updates can start drawing again
+				return;
+			}
 		}		
-		// 	Write the character attached to the transition
-		Tape[TapeIndex] = tempTran.writeCharacter;
-		//  Move the TapeIndex according to the transition
-		TapeIndex += tempTran.tapeShift;
-		if( TapeIndex < 0 ){
-			Tape.unshift(0);
-		}
-		if( TapeIndex > Tape.length ){
-			Tape.push(0);
-		}
-		// 	Advance to the transitions "endState"
-		currentState = tempTran.endState;
 		
-		// Update the input string
-		var tempstring = "";
-		for( i in Tape ){
-			tempstring += Tape[i];
-		}
-		document.getElementById('input').value = tempstring;
-	}
+		// calls readInputAnimated, replaces for loop
+		requestAnimationFrame(readInputAnimated); // basic recursion 
+	},1000); // updates every once every 1 second
+	
 }
 
 function checkInput(){
-	execute();
+	//
 }
 
 function debugInput(){
-	execute();
+	setup();
+	readInputAnimated();
 }
 
 function setSelectedAsStart(){

@@ -69,6 +69,8 @@
 	 onclick="deleteSelected()"/>
 	 <br>
 	 <input type="text" name="input" value="" id="input" size="114">
+	 <br>	 
+	 <canvas id="pointer" width="750" height ="25" style="border:1px solid #000000";></canvas>
 	
 	
 </div>
@@ -83,6 +85,9 @@
 	
 	var inputCanvas=document.getElementById("inputSpace");
 	var ictx = inputCanvas.getContext("2d");
+	
+	var pointerCanvas=document.getElementById("pointer");
+	var pctx = inputCanvas.getContext("2d");
 </script>
 
 <script src="Draw.js"></script>
