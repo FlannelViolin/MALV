@@ -14,13 +14,15 @@ var FStates     = [];
 // Alphabet
 var Alphabet 	= new Array('X');
 
+document.getElementById('RWS').style.visibility = "hidden";
+
 function execute(){
 	Tape = document.getElementById('input').value.split("");
 	currentState = Qzero;
 	if( currentState == null ){
 		alert("No start state");
 	}
-	
+	TapeIndex = 0;
 	nextState = null;
 	//
 	var safety = 0;
@@ -30,14 +32,20 @@ function execute(){
 			break;
 		}
 		
-		alert("Current State: " + currentState.label);
-		alert("Input: " + Tape);
+		//DEBUG
+		//alert("Current State: " + currentState.label);
+		//alert("Input: " + Tape);
+		
 		// 	Check the character on the tape using TapeIndex
 		var tempChar = Tape[TapeIndex];
 		//	Get the transition attached to that character
 		var tempTran = currentState.transitions[tempChar];
 		//	If there is no matching transition - Failure
 		if( tempTran == null ){
+			if( $.inArray(currentState, FStates) != -1){
+				alert("Finished in Accept State");
+				return;
+			}
 			alert("No valid transition found or No character to read");
 			return;
 		}		
@@ -53,6 +61,13 @@ function execute(){
 		}
 		// 	Advance to the transitions "endState"
 		currentState = tempTran.endState;
+		
+		// Update the input string
+		var tempstring = "";
+		for( i in Tape ){
+			tempstring += Tape[i];
+		}
+		document.getElementById('input').value = tempstring;
 	}
 }
 
@@ -106,8 +121,10 @@ function RefreshAlphabet(){
 // Populates the transition property text boxes when a transition is selected
 function populateRWS(){
 	if( selectedTran != null ){
+		document.getElementById('RWS').style.visibility='visible';
 		document.getElementById('Read').value = selectedTran.character;
 		document.getElementById('Write').value = selectedTran.writeCharacter;
 		document.getElementById('Shift').value = selectedTran.tapeShift;
 	}
 }
+
