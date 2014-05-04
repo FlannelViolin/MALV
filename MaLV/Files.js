@@ -48,7 +48,14 @@ function saveAsCookie(){
 	
 	//DEBUG
 	//console.log(JSON.stringify(jQstates));
-	document.cookie=("save=" + JSON.stringify(jQstates, stringifyHelp)); // set cookie
+	
+	saveString = JSON.stringify(jQstates, stringifyHelp);
+	
+	//Cookie
+	document.cookie=("save=" + saveString); // set cookie
+	
+	//PHP
+	$.post("../phps/SavedFiles.php", saveString, CALLBACK);
 }
 
 function loadFromCookie(){
