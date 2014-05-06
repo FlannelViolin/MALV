@@ -55,11 +55,16 @@ function saveAsCookie(){
 	document.cookie=("save=" + saveString); // set cookie
 	
 	//PHP
-	$.post("../phps/SavedFiles.php", saveString, CALLBACK);
+       $.get("test.php?q="+saveString, saveString, function(data,status){alert(status);});
+	$.post("test.php", {save: saveString}, function(){});
 }
 
 function loadFromCookie(){
-	cookieString = getCookie("save");
+	//PHP
+	// FILL THIS IN
+
+	//Cookie
+	//cookieString = getCookie("save");
 	
 	parsed = JSON.parse(cookieString || "null", parseHelp); // turn returned string into an object
 	
