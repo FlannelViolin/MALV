@@ -37,8 +37,7 @@ NetUtil.asyncFetch(file, function(inputStream, status) {
 // Collection to check for cyclic graph
 var CyclicCache = [];
 
-// Save the current machine as a cookie text string
-function saveAsCookie(){
+function packToString(){
 	CyclicCache = [];
 	jQstates = arrayToObject(Qstates); // turn collection of states into an object
 	
@@ -50,24 +49,28 @@ function saveAsCookie(){
 	//console.log(JSON.stringify(jQstates));
 	
 	saveString = JSON.stringify(jQstates, stringifyHelp);
+	return saveString;
+}
+
+// Save the current machine as a cookie text string
+function saveAsCookie(){	
+	saveString = packToString();
 	
 	//Cookie
 	document.cookie=("save=" + saveString); // set cookie
-	
+}
+
+function saveAsFile(){	
+	saveString = packToString();
+
 	//PHP
-       $.get("test.php?q="+saveString, saveString, function(data,status){alert(status);});
+    $.get("test.php?q="+saveString, saveString, function(data,status){alert(status);});
 	$.post("test.php", {save: saveString}, function(){});
 }
 
-function loadFromCookie(){
-	//PHP
-	// FILL THIS IN
+function unpackString(loadString){
+	parsed = JSON.parse(loadString || "null", parseHelp); // turn returned string into an object
 
-	//Cookie
-	//cookieString = getCookie("save");
-	
-	parsed = JSON.parse(cookieString || "null", parseHelp); // turn returned string into an object
-	
 	if ( Turing ){
 		Alphabet = parsed.Alphabet;
 	}
@@ -94,8 +97,18 @@ function loadFromCookie(){
 			Qstates[i].addTransition( newTran );
 		}
 	}
+}
 
+function loadFromCookie(){
+	//Cookie
+	cookieString = getCookie("save");
+	unpackString(cookieString);
+}
 
+function loadFromFile(){
+	// LOAD TEXT FROM PHP
+	
+	unpackString(cookieString);
 }
 
 
