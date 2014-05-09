@@ -178,3 +178,22 @@ function objectToArray(jobject){
 	}
 	return array;
 }
+
+function openStringWindow(){
+	var stringWindow = window.open('String.html');
+	stringWindow.focus();
+
+	//stringWindow.document.write(stringText); 
+}
+
+function showString(){
+	document.getElementById("stringTextWrapper").innerHTML = "<textarea id='stringText'></textarea>"
+	document.getElementById("stringText").value = packToString();
+	
+}
+
+function loadString(){
+	var stringToLoad = document.getElementById("stringText").value; 
+	console.log(stringToLoad);
+	unpackString(stringToLoad);
+}
