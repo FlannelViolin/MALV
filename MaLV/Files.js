@@ -64,8 +64,8 @@ function saveAsFile(){
 	saveString = packToString();
 
 	//PHP
-    $.get("test.php?q="+saveString, saveString, function(data,status){alert(status);});
-	$.post("test.php", {save: saveString}, function(){});
+    	$.get("Save.php?q="+saveString, saveString, function(data,status){alert(status);});
+	$.post("Save.php", {save: saveString}, function(){});
 }
 
 function unpackString(loadString){
