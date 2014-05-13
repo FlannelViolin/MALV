@@ -2,15 +2,19 @@
 
 echo "It works!";
 
-//$saveString = $_POST['save'];
+error_reporting(E_ALL);
+ini_set('display_errors',1);
 
-$filename = "test.txt";
-$file = fopen( $filename, "w" );
+$saveString = $_POST['save'];
+
+$filename = "Saves.txt";
+$file = fopen( $filename, "a+" );
 if( $file == false )
 {
    echo ( "Error in opening new file" );
    exit();
 }
+fwrite( $file, "\n" );
 fwrite( $file, $saveString );
 fclose( $file );
 ?>
