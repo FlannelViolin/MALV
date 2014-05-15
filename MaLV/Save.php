@@ -6,8 +6,8 @@ error_reporting(E_ALL);
 ini_set('display_errors',1);
 
 $saveString = $_POST['save'];
+$filename = $_POST['name'];
 
-$filename = "Saves.txt";
 $file = fopen( $filename, "a+" );
 if( $file == false )
 {
@@ -16,6 +16,9 @@ if( $file == false )
 }
 fwrite( $file, "\n" );
 fwrite( $file, $saveString );
+
+$lines = file($file);
+
 fclose( $file );
 ?>
 

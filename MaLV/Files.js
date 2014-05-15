@@ -63,9 +63,13 @@ function saveAsCookie(){
 function saveAsFile(){	
 	saveString = packToString();
 
+	var d = new Date();
+	var timeVar = d.getTime();
+	alert(timeVar);	 
+
 	//PHP
-    	$.get("Save.php?q="+saveString, saveString, function(data,status){alert(status);});
-	$.post("Save.php", {save: saveString}, function(){});
+    	//$.get("Save.php?q="+saveString, saveString, function(data,status){alert(status);});
+	$.post("Save.php", {save: saveString, name: timeVar}, function(){});
 }
 
 function unpackString(loadString){
