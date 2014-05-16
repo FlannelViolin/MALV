@@ -66,10 +66,11 @@ function saveAsFile(){
 	var d = new Date();
 	var timeVar = d.getTime();
 	alert(timeVar);	 
+	var newFileName = "Saves/" + timeVar;
 
 	//PHP
     	//$.get("Save.php?q="+saveString, saveString, function(data,status){alert(status);});
-	$.post("Save.php", {save: saveString, name: timeVar}, function(){});
+	$.post("Save.php", {save: saveString, name: newFileName}, function(){});
 }
 
 function unpackString(loadString){
