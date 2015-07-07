@@ -21,7 +21,7 @@ var prevState;
 var boxInput = "";
 var error = "";
 var animate = false; // this boolean will be toggled for running the DFA in check or debug mode.
-var alerts = true; // this boolean will turn on and off alerts because the annoy me.
+var alerts = true; // this boolean will turn on and off alerts because they annoy me.
 // -------- FUNCTIONS --------
 
 // s is an index in the input string, newInput is if it hasn't been proceessed before	
@@ -240,6 +240,9 @@ function setSelectedAsAccept(){
 function getNextState( current, inputChar){
 	// Find the state at the end of the transition that matches the input Character
 	// return that state ( or NULL )
+
+	//DEBUG
+	//console.log(JSON.stringify(current.transitions));
 	
 	next = current.transitions[inputChar];
 	

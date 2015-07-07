@@ -56,8 +56,11 @@ function transitionDisplay(){
 	// Denote that this is selected transition by color change
 	if( this == selectedTran ){
 		ctx.fillStyle="blue";
-		if( !Turing ){
-			this.character = lastKeyCode;
+		if( !Turing && (this.character != lastKeyCode)){
+			replaceTran = new Transition(this.startState,this.endState);
+			this.startState.addTransition(replaceTran);
+			selectedTran = replaceTran;
+			this.destroy();
 		}
 	}
 	else{
